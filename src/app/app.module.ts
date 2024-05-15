@@ -13,10 +13,18 @@ import {
 import {HttpClientModule} from "@angular/common/http";
 import {CoreModule} from "./@core/core.module";
 import {ThemeModule} from "./@theme/theme.module";
+import { UsersComponent } from './users/users.component';
+import { ProductComponent } from './product/product.component';
+import { CategoryComponent } from './category/category.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UsersComponent,
+    ProductComponent,
+    CategoryComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
