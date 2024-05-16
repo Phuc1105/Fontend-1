@@ -6,6 +6,13 @@ import {PagesComponent} from './pages.component';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {PagesRoutingModule} from './pages-routing.module';
 import {PaginatorModule} from "../@theme/components/paginator/paginator.module";
+import { AddUserComponent } from './users/add-user/add-user.component';
+import { ListUsersComponent } from './users/list-users/list-users.component';
+import { AddProductComponent } from './products/add-product/add-product.component';
+import { ListProductsComponent } from './products/list-products/list-products.component';
+import { AddCategoryComponent } from './categories/add-category/add-category.component';
+import { ListCategoriesComponent } from './categories/list-categories/list-categories.component';
+import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
 
 @NgModule({
   imports: [
@@ -17,6 +24,13 @@ import {PaginatorModule} from "../@theme/components/paginator/paginator.module";
   ],
   declarations: [
     PagesComponent,
+    AddUserComponent,
+    ListUsersComponent,
+    AddProductComponent,
+    ListProductsComponent,
+    AddCategoryComponent,
+    ListCategoriesComponent,
+    ListInventoryComponent,
   ],
   providers: []
 })

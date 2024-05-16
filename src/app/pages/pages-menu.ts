@@ -2,33 +2,98 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Main Dashboard',
-    group: true,
-  },
-  {
-    title: 'Main Dashboard',
+    title: 'Bảng Điều Khiển Chính',
     icon: 'home-outline',
     link: '/pages/dashboard',
   },
   {
-    title: 'User Management',
+    title: 'Quản Lý Nhân Viên',
     icon: 'people-outline',
-    link: '/pages/users',
+    children: [
+      {
+        title: 'Thêm Nhân Viên',
+        link: '/pages/users/add-user',
+      },
+      {
+        title: 'Danh Sách Nhân Viên',
+        link: '/pages/users/list-users',
+      },
+    ],
   },
   {
-    title: 'Product Management',
+    title: 'Quản Lý Sản Phẩm',
     icon: 'cube-outline',
-    link: '/pages/product',
+    children: [
+      {
+        title: 'Thêm Sản Phẩm',
+        link: '/pages/products/add-product',
+      },
+      {
+        title: 'Danh Sách Sản Phẩm',
+        link: '/pages/products/list-products',
+      },
+    ],
   },
   {
-    title: 'Category Management',
+    title: 'Quản Lý Danh Mục',
     icon: 'grid-outline',
-    link: '/pages/category',
+    children: [
+      {
+        title: 'Thêm Danh Mục',
+        link: '/pages/categories/add-category',
+      },
+      {
+        title: 'Danh Sách Danh Mục',
+        link: '/pages/categories/list-categories',
+      },
+    ],
   },
   {
-    title: 'Inventory Management',
+    title: 'Quản Lý Đơn Hàng',
     icon: 'archive-outline',
-    link: '/pages/inventory',
+    children: [
+      {
+        title: 'Danh Sách Đơn Hàng',
+        link: '/pages/inventories/list-inventory',
+      },
+    ]
+  },
+  {
+    title: 'Thống Kê',
+    icon: 'trending-up-outline',
+    children: [
+      {
+        title: 'Thống Kê Doanh Thu',
+        link: '/pages/dashboard',
+      },
+    ]
+  },
+  {
+    title: 'Quản Lý Khuyến Mãi',
+    icon: 'gift-outline',
+    children: [
+      {
+        title: 'Thêm Khuyến Mãi',
+        link: '/pages/dashboard',
+      },
+      {
+        title: 'Danh Sách Khuyến Mãi',
+        link: '/pages/dashboard',
+      },
+    ],
+  },
+  {
+    title: 'Quản Lý Khách Hàng',
+    icon: 'person-outline',
+    children: [
+      {
+        title: 'Thêm Khách Hàng',
+        link: '/pages/dashboard',
+      },
+      {
+        title: 'Danh Sách Khách Hàng',
+        link: '/pages/dashboard',
+      },
+    ],
   },
 ];
-
