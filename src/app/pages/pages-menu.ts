@@ -96,4 +96,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'Quản Lý Giao Hàng',
+    icon: 'person-outline',
+    children: [
+      {
+        title: 'Thêm Đơn Hàng',
+        link: '/pages/delivery/add-delivery',
+      },
+      {
+        title: 'Danh Sách Giao Hàng',
+        link: '/pages/delivery/list-deliveries',
+      },
+    ],
+  },
 ];

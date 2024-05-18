@@ -14,6 +14,9 @@ import { AddCategoryComponent } from './categories/add-category/add-category.com
 import { ListCategoriesComponent } from './categories/list-categories/list-categories.component';
 import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
+import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
+import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 
 @NgModule({
   imports: [
@@ -33,6 +36,9 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
     ListCategoriesComponent,
     ListInventoryComponent,
     EditUserComponent,
+    ListDeliveriesComponent,
+    AddDeliveryComponent,
+    EditDeliveryComponent,
   ],
   providers: []
 })
