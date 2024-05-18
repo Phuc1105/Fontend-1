@@ -19,6 +19,7 @@ import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.compo
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { RevenueComponent } from './statistics/revenue/revenue.component';
+import { EditInventoryComponent } from './inventories/edit-inventory/edit-inventory.component';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { RevenueComponent } from './statistics/revenue/revenue.component';
     EditDeliveryComponent,
     EditProductComponent,
     RevenueComponent,
+    EditInventoryComponent,
   ],
   providers: []
 })

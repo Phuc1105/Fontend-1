@@ -15,6 +15,7 @@ import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.compo
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { RevenueComponent } from './statistics/revenue/revenue.component';
+import { EditInventoryComponent } from './inventories/edit-inventory/edit-inventory.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,10 @@ const routes: Routes = [
       {
         path: 'inventories/list-inventory',
         component: ListInventoryComponent,
+      },
+      {
+        path: 'inventories/edit-inventory',
+        component: EditInventoryComponent,
       },
       {
         path: 'delivery/list-deliveries',
