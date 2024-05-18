@@ -1,0 +1,59 @@
+<main class="form" id="orders_form">
+    <section class="form__header">
+        <h4>Thêm Đơn Hàng Trà Sữa Mới</h4>
+    </section>
+    <section class="form__body p-3">
+        <form>
+            <div class="form-group">
+                <label for="customer_name">Tên Khách Hàng:</label>
+                <input type="text" id="customer_name" name="customer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="customer_phone">Số Điện Thoại:</label>
+                <input type="tel" id="customer_phone" name="customer_phone" required>
+            </div>
+            <div class="form-group">
+                <label for="milk_tea_flavor">Hương Vị Trà Sữa:</label>
+                <select id="milk_tea_flavor" name="milk_tea_flavor" required>
+                    <option value="original">Truyền thống</option>
+                    <option value="matcha">Matcha</option>
+                    <option value="taro">Khoai Môn</option>
+                    <option value="honeydew">Dưa Gang</option>
+                    <option value="chocolate">Sô-cô-la</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sugar_level">Đường:</label>
+                <select id="sugar_level" name="sugar_level" required>
+                    <option value="0">Không đường</option>
+                    <option value="30">30%</option>
+                    <option value="50">50%</option>
+                    <option value="70">70%</option>
+                    <option value="100">100%</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ice_level">Đá:</label>
+                <select id="ice_level" name="ice_level" required>
+                    <option value="0">Không đá</option>
+                    <option value="30">30%</option>
+                    <option value="50">50%</option>
+                    <option value="70">70%</option>
+                    <option value="100">100%</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="toppings">Topping:</label>
+                <select id="toppings" name="toppings" multiple>
+                    <option value="pearl">Trân Châu</option>
+                    <option value="pudding">Pudding</option>
+                    <option value="aloe">Thạch Lô Hội</option>
+                    <option value="grass_jelly">Thạch Đen</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Thêm Đơn Hàng</button>
+            </div>
+        </form>
+    </section>
+</main>
