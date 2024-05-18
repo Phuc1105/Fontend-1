@@ -13,6 +13,8 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
 import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
+import { RevenueComponent } from './statistics/revenue/revenue.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,12 @@ const routes: Routes = [
         component: ListProductsComponent,
       },
       {
+        path: 'products/edit-product',
+        component: EditProductComponent,
+      },
+     
+      
+      {
         path: 'categories/add-category',
         component: AddCategoryComponent,
       },
@@ -66,6 +74,10 @@ const routes: Routes = [
       {
         path: 'delivery/edit-delivery',
         component: EditDeliveryComponent,
+      },
+      {
+        path: 'statistics/revenue',
+        component: RevenueComponent,
       },
     ],
   },

@@ -1,0 +1,124 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #ff5722;
+    padding: 20px 0;
+}
+
+header h1 {
+    color: #fff;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav ul li a.active,
+nav ul li a:hover {
+    color: #3625ee;
+}
+
+#content {
+    padding: 50px 0;
+}
+
+.chart {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: 300px; /* Thay đổi kích thước tuỳ ý */
+    margin-bottom: 20px;
+}
+
+.sales-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.month {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+}
+.chart {
+    width: 400px;
+    height: 300px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 10px;
+}
+
+.bar {
+    width: 30px;
+    background-color: #ff5722;
+    position: relative;
+    transition: height 0.5s ease;
+}
+
+.bar::before {
+    content: attr(data-label);
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.bar::after {
+    content: attr(data-label);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.bar:hover::after {
+    opacity: 1;
+}
+
+.bar:hover {
+    background-color: #ff9f43;
+}
+
+.value {
+    position: absolute;
+    bottom: calc(var(--bar-height) + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bar:hover .value {
+    opacity: 1;
+}
