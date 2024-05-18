@@ -13,6 +13,9 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
 import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
+import { ListPersonnelComponent } from './personnel/list-personnel/list-personnel.component';
+import { EditPersonneComponent } from './personnel/edit-personne/edit-personne.component';
+import { AddPersonnelComponent } from './personnel/add-personnel/add-personnel.component';
 
 const routes: Routes = [
   {
@@ -66,6 +69,21 @@ const routes: Routes = [
       {
         path: 'delivery/edit-delivery',
         component: EditDeliveryComponent,
+      },
+      {
+        data: { breadcrumb:'Nhân viên / Danh sách'},
+        path: 'personnels/list-personnel',
+        component: ListPersonnelComponent,
+      },
+      {
+        data: { breadcrumb:'Nhân viên / Thêm'},
+        path: 'personnels/add-personnel',
+        component: AddPersonnelComponent,
+      },
+      {
+        data: { breadcrumb:'Nhân viên / Sửa'},
+        path: 'personnels/edit-personnel',
+        component: EditPersonneComponent,
       },
     ],
   },

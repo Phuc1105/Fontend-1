@@ -83,16 +83,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Quản Lý Khách Hàng',
+    title: 'Quản Lý Nhân Viên',
     icon: 'person-outline',
     children: [
       {
-        title: 'Thêm Khách Hàng',
-        link: '/pages/dashboard',
+        title: 'Thêm nhân viên',
+        link: '/pages/personnels/add-personnel',
       },
       {
-        title: 'Danh Sách Khách Hàng',
-        link: '/pages/dashboard',
+        title: 'Danh sách nhân viên',
+        link: '/pages/personnels/list-personnel',
       },
     ],
   },
