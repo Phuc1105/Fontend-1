@@ -3,7 +3,7 @@
         <h4>Danh Sách Danh Mục</h4>
         <div class="input-group">
             <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;">
-           
+
         </div>
         <div class="export__file">
             <label for="export-file" class="export__file-btn" title="Xuất File"></label>
@@ -20,6 +20,7 @@
             <thead>
                 <tr>
                     <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Ảnh <span class="icon-arrow">&UpArrow;</span></th>
                     <th> Loại Sản Phẩm <span class="icon-arrow">&UpArrow;</span></th>
                     <th> Mô Tả <span class="icon-arrow">&UpArrow;</span></th>
                     <th> Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
@@ -28,18 +29,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td> 1 </td>
-                    <td> <img src="assets/images/maxresdefault.jpg" alt="Zinzu Chan Lee">Trà trái cây tươi</td>
-                    <td> Ngon Quá Ngon Quá </td>
+                <tr *ngFor="let category of categories">
+                    <td>{{ category.id }}</td>
                     <td>
-                        <p class="status delivered">Kích hoạt</p>
+                        <img [src]="category.image" alt="{{ category.name }}">
                     </td>
-                    <td> <strong> Có </strong></td>
-                    <td class="d-flex justify-content-between align-items-center">
-                        <a routerLink="/pages/categories/edit-category"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
-                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')">Xóa</button>
-                    </td>                                                         
+                    <td>
+                        {{ category.name }}
+                    </td>
+                    <td>{{ category.description }}</td>
+                    <td>
+                        <p class="status" [class.delivered]="category.status === 'Kích hoạt'">{{ category.status }}</p>
+                    </td>
+                    <td><strong>{{ category.trend ? 'Có' : 'Không' }}</strong></td>
+                    <td class="d-flex justify-content-between align-items-center">>
+                    </td>
                 </tr>
             </tbody>
         </table>
