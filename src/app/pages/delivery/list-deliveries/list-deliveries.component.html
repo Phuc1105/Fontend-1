@@ -1,9 +1,8 @@
-<main class="table" id="customers_table">
+<main class="table" id="orders_table">
     <section class="table__header">
-        <h4 >Danh Sách Nhân Viên</h4>
+        <h4>Danh Sách Đơn Hàng Trà Sữa</h4>
         <div class="input-group">
             <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;">
-           
         </div>
         <div class="export__file">
             <label for="export-file" class="export__file-btn" title="Xuất File"></label>
@@ -20,26 +19,28 @@
             <thead>
                 <tr>
                     <th> Id <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Tên Tài Khoản <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Email <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Vai Trò <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Tên Khách Hàng <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Số Điện Thoại <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Hương Vị Trà Sữa <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Đường <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Đá <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Topping <span class="icon-arrow">&UpArrow;</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td> 1 </td>
-                    <td> <img src="assets/images/Zinzu Chan Lee.jpg" alt="Zinzu Chan Lee">Zinzu Chan Lee</td>
-                    <td> zinzu.chan@example.com </td>
-                    <td>
-                        <p class="status delivered">Kích hoạt</p>
-                    </td>
-                    <td> <strong> Admin </strong></td>
+                    <td> Ngọc Trinh </td>
+                    <td> 0909123456 </td>
+                    <td> Truyền thống </td>
+                    <td> 50% </td>
+                    <td> 70% </td>
+                    <td> Trân Châu, Thạch Lô Hội </td>
                     <td class="d-flex justify-content-between align-items-center">
-                        <a routerLink="/pages/users/edit-user"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
+                        <a routerLink="/pages/delivery/edit-delivery"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
                         <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')">Xóa</button>
-                    </td>                                                         
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -10,6 +10,9 @@ import { AddCategoryComponent } from './categories/add-category/add-category.com
 import { ListCategoriesComponent } from './categories/list-categories/list-categories.component';
 import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
+import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
+import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 
 const routes: Routes = [
   {
@@ -51,6 +54,18 @@ const routes: Routes = [
       {
         path: 'inventories/list-inventory',
         component: ListInventoryComponent,
+      },
+      {
+        path: 'delivery/list-deliveries',
+        component: ListDeliveriesComponent,
+      },
+      {
+        path: 'delivery/add-delivery',
+        component: AddDeliveryComponent,
+      },
+      {
+        path: 'delivery/edit-delivery',
+        component: EditDeliveryComponent,
       },
     ],
   },

@@ -15,9 +15,11 @@ import {CoreModule} from "./@core/core.module";
 import {ThemeModule} from "./@theme/theme.module";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
+   
    
   ],
   imports: [
