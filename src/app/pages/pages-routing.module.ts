@@ -23,50 +23,62 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       {
+        data: { breadcrumb:'Bảng thống kê'},
         path: 'dashboard',
         component: DashboardComponent,
       },
       {
+        data: { breadcrumb:'Khách hàng/ Thêm'},
         path: 'users/edit-user',
         component: EditUserComponent,
       },
       {
+        data: { breadcrumb:'Khách hàng/ Thêm'},
         path: 'users/add-user',
         component: AddUserComponent,
       },
       {
+        data: { breadcrumb:'Khách hàng/ Danh sách'},
         path: 'users/list-users',
         component: ListUsersComponent,
       },
       {
+        data: { breadcrumb:'Sản phẩm / Thêm'},
         path: 'products/add-product',
         component: AddProductComponent,
       },
       {
+        data: { breadcrumb:'Sản phẩm / Danh sách'},
         path: 'products/list-products',
         component: ListProductsComponent,
       },
       {
+        data: { breadcrumb:'Danh mục / Thêm'},
         path: 'categories/add-category',
         component: AddCategoryComponent,
       },
       {
+        data: { breadcrumb:'Danh mục / Danh sách'},
         path: 'categories/list-categories',
         component: ListCategoriesComponent,
       },
       {
+        data: { breadcrumb:'Đơn hàng / Danh sách'},
         path: 'inventories/list-inventory',
         component: ListInventoryComponent,
       },
       {
+        data: { breadcrumb:'Vận chuyển / Danh sách'},
         path: 'delivery/list-deliveries',
         component: ListDeliveriesComponent,
       },
       {
+        data: { breadcrumb:'Vận chuyển / Thêm'},
         path: 'delivery/add-delivery',
         component: AddDeliveryComponent,
       },
       {
+        data: { breadcrumb:'Vận chuyển / Sửa'},
         path: 'delivery/edit-delivery',
         component: EditDeliveryComponent,
       },
