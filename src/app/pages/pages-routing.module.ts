@@ -86,6 +86,11 @@ const routes: Routes = [
         component: ListInventoryComponent,
       },
       {
+        data: { breadcrumb:'Đơn hàng / Sửa'},
+        path: 'inventories/edit-inventory',
+        component: EditInventoryComponent,
+      },
+      {
         data: { breadcrumb:'Vận chuyển / Danh sách'},
         path: 'delivery/list-deliveries',
         component: ListDeliveriesComponent,
