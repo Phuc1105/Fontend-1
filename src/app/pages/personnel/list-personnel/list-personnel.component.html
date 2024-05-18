@@ -1,9 +1,8 @@
 <main class="table" id="customers_table">
     <section class="table__header">
-        <h4 >Danh Sách Nhân Viên</h4>
+        <h4>Danh Sách Nhân Viên</h4>
         <div class="input-group">
-            <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;">
-           
+            <input type="search" placeholder="Tìm kiếm..." class="form-control" style="margin-top: 2px;">
         </div>
         <div class="export__file">
             <label for="export-file" class="export__file-btn" title="Xuất File"></label>
@@ -14,66 +13,43 @@
         </div>
     </section>
     <section class="table__body">
-        <table>
-            <thead>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light">
                 <tr>
-                    <th> Id <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Ảnh <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Tên nhân viên <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> SĐT <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Chức vụ <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Ca làm <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Id <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Ảnh <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Tên nhân viên <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>SĐT <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Chức vụ <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Ca làm <span class="icon-arrow">&UpArrow;</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td> 1 </td>
-                    <td> <img src="assets/images/Zinzu Chan Lee.jpg" alt="Zinzu Chan Lee"></td>
-                    <td>Nhân viên 1</td>
-                    <td> 012345678 </td>    
-                    <td> Nhân viên </td>
+                <tr *ngFor="let employee of employees">
+                    <td>{{ employee.id }}</td>
+                    <td><img [src]="employee.image" alt="{{ employee.name }}" class="img-thumbnail"
+                            style="width: 50px; height: 50px;"></td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.phone }}</td>
+                    <td>{{ employee.position }}</td>
                     <td>
-                        <p class="status delivered">Hoạt động</p>
+                        <p class="status" [ngClass]="{
+                            'delivered': employee.status === 'Hoạt động',
+                            'completed': employee.status === 'Hoàn thành',
+                            'not-done': employee.status === 'Chưa làm'
+                        }">{{ employee.status }}</p>
                     </td>
-                    <td> <strong> Ca 2 (9h-1h) </strong></td>  
+                    <td><strong>{{ employee.shift }}</strong></td>
                     <td class="d-flex justify-content-between align-items-center">
-                        <a routerLink="//pages/personnels/edit-personnel"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
-                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')">Xóa</button>
-                    </td>                                                         
-                </tr>
-                <tr>
-                    <td> 2 </td>
-                    <td> <img src="assets/images/nhanvien2.jpg" alt="Zinzu Chan Lee"></td>
-                    <td>Nhân viên 2</td>
-                    <td> 098765432 </td>    
-                    <td> Nhân viên </td>
-                    <td>
-                        <p class="status delivered">Hoàn thành</p>
+                        <a [routerLink]="['/pages/personnels/edit-personnel']">
+                            <button class="btn btn-primary px-4 py-1">Sửa</button>
+                        </a>
+                        <button class="btn btn-danger px-4 py-1" (click)="confirmDelete()">Xóa</button>
                     </td>
-                    <td> <strong> Ca 1 (6h30-9h) </strong></td>  
-                    <td class="d-flex justify-content-between align-items-center">
-                        <a routerLink="//pages/personnels/edit-personnel"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
-                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')">Xóa</button>
-                    </td>                                                         
                 </tr>
-                <tr>
-                    <td> 3 </td>
-                    <td> <img src="assets/images/nhanvien2.jpg" alt="Zinzu Chan Lee"></td>
-                    <td>Nhân viên 2</td>
-                    <td> 098765432 </td>    
-                    <td> Nhân viên </td>
-                    <td>
-                        <p class="status delivered">Chưa làm</p>
-                    </td>
-                    <td> <strong> Ca 3 (1h-4h) </strong></td>  
-                    <td class="d-flex justify-content-between align-items-center">
-                        <a routerLink="//pages/personnels/edit-personnel"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
-                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')">Xóa</button>
-                    </td>                                                         
-                </tr>
-            </tbody>    
+            </tbody>
         </table>
     </section>
 </main>

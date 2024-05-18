@@ -74,11 +74,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Thêm Khuyến Mãi',
-        link: '/pages/dashboard',
+        link: '/pages/discounts/add-discount',
       },
       {
         title: 'Danh Sách Khuyến Mãi',
-        link: '/pages/dashboard',
+        link: '/pages/discounts/list-discount',
       },
     ],
   },

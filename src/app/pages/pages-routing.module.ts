@@ -16,6 +16,9 @@ import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.co
 import { ListPersonnelComponent } from './personnel/list-personnel/list-personnel.component';
 import { EditPersonneComponent } from './personnel/edit-personne/edit-personne.component';
 import { AddPersonnelComponent } from './personnel/add-personnel/add-personnel.component';
+import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
+import { AddDiscountComponent } from './discounts/add-discount/add-discount.component';
+import { ListDiscountComponent } from './discounts/list-discount/list-discount.component';
 
 const routes: Routes = [
   {
@@ -96,6 +99,21 @@ const routes: Routes = [
         data: { breadcrumb:'Nhân viên / Sửa'},
         path: 'personnels/edit-personnel',
         component: EditPersonneComponent,
+      },
+      {
+        data: { breadcrumb:'Khuyến mãi / Danh sách'},
+        path: 'discounts/list-discount',
+        component: ListDiscountComponent,
+      },
+      {
+        data: { breadcrumb:'Khuyến mãi / Thêm'},
+        path: 'discounts/add-discount',
+        component: AddDiscountComponent,
+      },
+      {
+        data: { breadcrumb:'Khuyến mãi / Sửa'},
+        path: 'discounts/edit-discount',
+        component: EditDiscountComponent,
       },
     ],
   },
