@@ -23,6 +23,7 @@ import { EditPersonneComponent } from './personnel/edit-personne/edit-personne.c
 import { ListDiscountComponent } from './discounts/list-discount/list-discount.component';
 import { AddDiscountComponent } from './discounts/add-discount/add-discount.component';
 import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
+import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.c
     ListDiscountComponent,
     AddDiscountComponent,
     EditDiscountComponent,
+    EditCategoryComponent,
   ],
   providers: []
 })

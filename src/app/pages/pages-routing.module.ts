@@ -22,6 +22,7 @@ import { AddPersonnelComponent } from './personnel/add-personnel/add-personnel.c
 import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
 import { AddDiscountComponent } from './discounts/add-discount/add-discount.component';
 import { ListDiscountComponent } from './discounts/list-discount/list-discount.component';
+import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
 
 const routes: Routes = [
   {
@@ -65,12 +66,19 @@ const routes: Routes = [
      
       
       {
+        data: { breadcrumb:'Danh mục / Thêm'},
         path: 'categories/add-category',
         component: AddCategoryComponent,
       },
       {
+        data: { breadcrumb:'Danh mục / Danh sách'},
         path: 'categories/list-categories',
         component: ListCategoriesComponent,
+      },
+      {
+        data: { breadcrumb:'Danh mục / Sửa'},
+        path: 'categories/edit-category',
+        component: EditCategoryComponent,
       },
       {
         data: { breadcrumb:'Đơn hàng / Danh sách'},
@@ -121,6 +129,11 @@ const routes: Routes = [
         data: { breadcrumb:'Khuyến mãi / Sửa'},
         path: 'discounts/edit-discount',
         component: EditDiscountComponent,
+      },
+      {
+        data: { breadcrumb:'Thống kê / Bảng thống kê'},
+        path: 'statistics/revenue',
+        component: RevenueComponent,
       },
     ],
   },

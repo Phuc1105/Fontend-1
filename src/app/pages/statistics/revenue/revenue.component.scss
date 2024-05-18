@@ -1,124 +1,158 @@
-.container {
-    width: 80%;
-    margin: 0 auto;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
-header {
-    background-color: #ff5722;
-    padding: 20px 0;
+nav {
+    background-color: #444;
+    padding: 15px 0;
 }
 
-header h1 {
-    color: #fff;
-    text-align: center;
+nav .container {
+    display: flex;
+    justify-content: center;
 }
 
 nav ul {
-    list-style-type: none;
-    margin: 0;
+    list-style: none;
     padding: 0;
-    text-align: center;
+    margin: 0;
+    display: flex;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+    margin: 0 15px;
 }
 
 nav ul li a {
+    color: #fff;
     text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #666;
+}
+
+#content {
+    padding: 40px 0;
+}
+
+#content .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px 0;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 30px;
+}
+
+.chart .bar {
+    width: 25%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 4px 4px 0 0;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.chart .bar[data-label="Tháng 5"] {
+    background-color: #c38d9e;
+}
+
+.chart .bar[data-label="Tháng 6"] {
+    background-color: #e27d60;
+}
+
+.chart .bar[data-label="Tháng 7"] {
+    background-color: #41b3a3;
+}
+
+.chart .bar:hover {
+    transform: scale(1.1);
+}
+
+.chart .bar::before {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -25px;
     color: #333;
     font-weight: bold;
 }
 
-nav ul li a.active,
-nav ul li a:hover {
-    color: #3625ee;
-}
-
-#content {
-    padding: 50px 0;
-}
-
-.chart {
+.chart .bar .value {
+    position: absolute;
+    top: -30px;
     background-color: #fff;
-    border: 1px solid #ccc;
-    height: 300px; /* Thay đổi kích thước tuỳ ý */
-    margin-bottom: 20px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    color: #333;
 }
 
 .sales-data {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.month {
+.sales-data .month {
     flex: 1;
-    background-color: #fff;
-    border: 1px solid #ccc;
     padding: 20px;
     text-align: center;
-}
-.chart {
-    width: 400px;
-    height: 300px;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    padding: 10px;
+    margin: 10px;
+    background-color: #ddd;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.bar {
-    width: 30px;
-    background-color: #ff5722;
-    position: relative;
-    transition: height 0.5s ease;
+.sales-data .month h3 {
+    margin: 0 0 10px 0;
+    color: #333;
 }
 
-.bar::before {
-    content: attr(data-label);
-    display: block;
-    text-align: center;
-    margin-top: 5px;
-    font-size: 12px;
-}
-
-.bar::after {
-    content: attr(data-label);
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.bar:hover::after {
-    opacity: 1;
-}
-
-.bar:hover {
-    background-color: #ff9f43;
-}
-
-.value {
-    position: absolute;
-    bottom: calc(var(--bar-height) + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    color: #fff;
-    font-size: 14px;
+.sales-data .month p {
+    margin: 0;
+    color: #555;
     font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
-.bar:hover .value {
-    opacity: 1;
+.sales-data .month:hover {
+    background-color: #3579cd;
+    transform: translateY(-10px);
+}
+
+@media (max-width: 768px) {
+    .chart .bar {
+        width: 30%;
+    }
+
+    .sales-data .month {
+        flex: 100%;
+    }
 }
