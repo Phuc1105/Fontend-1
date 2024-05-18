@@ -7,15 +7,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
   },
   {
-    title: 'Quản Lý Nhân Viên',
+    title: 'Quản Lý Khách Hàng',
     icon: 'people-outline',
     children: [
       {
-        title: 'Thêm Nhân Viên',
+        title: 'Thêm Khách Hàng',
         link: '/pages/users/add-user',
       },
       {
-        title: 'Danh Sách Nhân Viên',
+        title: 'Danh Sách Khách Hàng',
         link: '/pages/users/list-users',
       },
     ],
@@ -83,15 +83,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Quản Lý Nhân Viên',
+    title: 'Quản Lý Khách Hàng',
     icon: 'person-outline',
     children: [
       {
-        title: 'Thêm nhân viên',
+        title: 'Thêm Khách Hàng',
         link: '/pages/personnels/add-personnel',
       },
       {
-        title: 'Danh sách nhân viên',
+        title: 'Danh sách Khách Hàng',
         link: '/pages/personnels/list-personnel',
       },
     ],
