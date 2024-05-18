@@ -64,7 +64,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Thống Kê Doanh Thu',
-        link: '/pages/dashboard',
+        link: '/pages/statistics/revenue',
       },
     ]
   },
