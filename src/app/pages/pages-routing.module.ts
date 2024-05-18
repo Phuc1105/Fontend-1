@@ -16,6 +16,12 @@ import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.co
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { RevenueComponent } from './statistics/revenue/revenue.component';
 import { EditInventoryComponent } from './inventories/edit-inventory/edit-inventory.component';
+import { ListPersonnelComponent } from './personnel/list-personnel/list-personnel.component';
+import { EditPersonneComponent } from './personnel/edit-personne/edit-personne.component';
+import { AddPersonnelComponent } from './personnel/add-personnel/add-personnel.component';
+import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
+import { AddDiscountComponent } from './discounts/add-discount/add-discount.component';
+import { ListDiscountComponent } from './discounts/list-discount/list-discount.component';
 
 const routes: Routes = [
   {
@@ -23,26 +29,32 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       {
+        data: { breadcrumb:'Bảng thống kê'},
         path: 'dashboard',
         component: DashboardComponent,
       },
       {
+        data: { breadcrumb:'Khách hàng/ Thêm'},
         path: 'users/edit-user',
         component: EditUserComponent,
       },
       {
+        data: { breadcrumb:'Khách hàng/ Thêm'},
         path: 'users/add-user',
         component: AddUserComponent,
       },
       {
+        data: { breadcrumb:'Khách hàng/ Danh sách'},
         path: 'users/list-users',
         component: ListUsersComponent,
       },
       {
+        data: { breadcrumb:'Sản phẩm / Thêm'},
         path: 'products/add-product',
         component: AddProductComponent,
       },
       {
+        data: { breadcrumb:'Sản phẩm / Danh sách'},
         path: 'products/list-products',
         component: ListProductsComponent,
       },
@@ -61,28 +73,54 @@ const routes: Routes = [
         component: ListCategoriesComponent,
       },
       {
+        data: { breadcrumb:'Đơn hàng / Danh sách'},
         path: 'inventories/list-inventory',
         component: ListInventoryComponent,
       },
       {
-        path: 'inventories/edit-inventory',
-        component: EditInventoryComponent,
-      },
-      {
+        data: { breadcrumb:'Vận chuyển / Danh sách'},
         path: 'delivery/list-deliveries',
         component: ListDeliveriesComponent,
       },
       {
+        data: { breadcrumb:'Vận chuyển / Thêm'},
         path: 'delivery/add-delivery',
         component: AddDeliveryComponent,
       },
       {
+        data: { breadcrumb:'Vận chuyển / Sửa'},
         path: 'delivery/edit-delivery',
         component: EditDeliveryComponent,
       },
       {
-        path: 'statistics/revenue',
-        component: RevenueComponent,
+        data: { breadcrumb:'Nhân viên / Danh sách'},
+        path: 'personnels/list-personnel',
+        component: ListPersonnelComponent,
+      },
+      {
+        data: { breadcrumb:'Nhân viên / Thêm'},
+        path: 'personnels/add-personnel',
+        component: AddPersonnelComponent,
+      },
+      {
+        data: { breadcrumb:'Nhân viên / Sửa'},
+        path: 'personnels/edit-personnel',
+        component: EditPersonneComponent,
+      },
+      {
+        data: { breadcrumb:'Khuyến mãi / Danh sách'},
+        path: 'discounts/list-discount',
+        component: ListDiscountComponent,
+      },
+      {
+        data: { breadcrumb:'Khuyến mãi / Thêm'},
+        path: 'discounts/add-discount',
+        component: AddDiscountComponent,
+      },
+      {
+        data: { breadcrumb:'Khuyến mãi / Sửa'},
+        path: 'discounts/edit-discount',
+        component: EditDiscountComponent,
       },
     ],
   },

@@ -17,9 +17,12 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
 import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
-import { EditProductComponent } from './products/edit-product/edit-product.component';
-import { RevenueComponent } from './statistics/revenue/revenue.component';
-import { EditInventoryComponent } from './inventories/edit-inventory/edit-inventory.component';
+import { AddPersonnelComponent } from './personnel/add-personnel/add-personnel.component';
+import { ListPersonnelComponent } from './personnel/list-personnel/list-personnel.component';
+import { EditPersonneComponent } from './personnel/edit-personne/edit-personne.component';
+import { ListDiscountComponent } from './discounts/list-discount/list-discount.component';
+import { AddDiscountComponent } from './discounts/add-discount/add-discount.component';
+import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
 
 @NgModule({
   imports: [
@@ -42,9 +45,12 @@ import { EditInventoryComponent } from './inventories/edit-inventory/edit-invent
     ListDeliveriesComponent,
     AddDeliveryComponent,
     EditDeliveryComponent,
-    EditProductComponent,
-    RevenueComponent,
-    EditInventoryComponent,
+    AddPersonnelComponent,
+    ListPersonnelComponent,
+    EditPersonneComponent,
+    ListDiscountComponent,
+    AddDiscountComponent,
+    EditDiscountComponent,
   ],
   providers: []
 })
