@@ -102,7 +102,7 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Vận chuyển / Sửa'},
-        path: 'delivery/edit-delivery',
+        path: 'delivery/edit-delivery/:id',
         component: EditDeliveryComponent,
       },
       {
