@@ -24,6 +24,7 @@ import { ListDiscountComponent } from './discounts/list-discount/list-discount.c
 import { AddDiscountComponent } from './discounts/add-discount/add-discount.component';
 import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -32,6 +33,8 @@ import { EditCategoryComponent } from './categories/edit-category/edit-category.
     DashboardModule,
     NbMenuModule,
     PaginatorModule,
+    ReactiveFormsModule, 
+    FormsModule,
   ],
   declarations: [
     PagesComponent,
@@ -53,6 +56,7 @@ import { EditCategoryComponent } from './categories/edit-category/edit-category.
     AddDiscountComponent,
     EditDiscountComponent,
     EditCategoryComponent,
+
   ],
   providers: []
 })

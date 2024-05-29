@@ -10,16 +10,17 @@ import {
   NbDatepickerModule,
   NbDialogModule, NbWindowModule, NbToastrModule, NbChatModule
 } from '@nebular/theme';
-import {HttpClientModule} from "@angular/common/http";
-import {CoreModule} from "./@core/core.module";
-import {ThemeModule} from "./@theme/theme.module";
+import { HttpClientModule } from "@angular/common/http";
+import { CoreModule } from "./@core/core.module";
+import { ThemeModule } from "./@theme/theme.module";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-   
-   
+
+
   ],
   imports: [
     BrowserModule,
@@ -37,6 +38,8 @@ import {ThemeModule} from "./@theme/theme.module";
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
