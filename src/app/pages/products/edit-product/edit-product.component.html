@@ -1,42 +1,57 @@
-
-
 <main class="form" id="customers_form">
     <section class="form__header">
-        <h4>Sửa sản phẩm</h4>
+      <h4>Sửa sản phẩm</h4>
     </section>
     <section class="form__body p-3">
-        <form>
-            <div class="form-group">
-                <label for="username">Tên sản phẩm:</label>
-                <input type="text" id="username" name="username" required value="Trà sữa trứng">
-            </div>
-            <div class="form-group">
-                <label for="file">Hình ảnh:</label>
-                <input type="file" id="file" name="file" required>
-            </div>
-            <div class="form-group">
-                <label for="price">Giá sản phẩm:</label>
-                <input type="number" id="price" name="price" required value="30.000">
-            </div>
-            <div class="form-group">
-                <label for="status">Trạng Thái:</label>
-                <select id="status" name="status" required>
-                    <option value="1">Kích hoạt</option>
-                    <option value="2">Hiển thị</option>
-                    <option value="3">Ẩn</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="role">Loại sản phẩm:</label>
-                <select id="role" name="role" required>
-                    <option value="1">Trà sữa</option>
-                    <option value="2">Trà</option>
-                    <option value="3">Bánh ngọt</option>
-                </select>
-            </div>
-            <div class="form-actions">
-                <button type="submit">Lưu thay đổi</button>
-            </div>
-        </form>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Tên sản phẩm:</label>
+          <input type="text" id="username" formControlName="username">
+          <span *ngIf="productForm.get('username')?.invalid && productForm.get('username')?.touched" class="text-danger">
+            Vui lòng nhập tên sản phẩm
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="file">Hình ảnh:</label>
+          <input type="file" id="file" formControlName="file">
+          <span *ngIf="productForm.get('file')?.invalid && productForm.get('file')?.touched" class="text-danger">
+            Vui lòng nhập hình ảnh
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="price">Giá sản phẩm:</label>
+          <input type="number" id="price" formControlName="price">
+          <span *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="text-danger">
+            <span *ngIf="productForm.get('price')?.errors?.['required']">Vui lòng nhập giá sản phẩm</span>
+            <span *ngIf="productForm.get('price')?.errors?.['min']">Giá sản phẩm phải lớn hơn 0</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="status">Trạng Thái:</label>
+          <select id="status" formControlName="status">
+            <option value="1">Kích hoạt</option>
+            <option value="2">Hiển thị</option>
+            <option value="3">Ẩn</option>
+          </select>
+          <span *ngIf="productForm.get('status')?.invalid && productForm.get('status')?.touched" class="text-danger">
+            Vui lòng chọn trạng thái của sản phẩm
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="role">Loại sản phẩm:</label>
+          <select id="role" formControlName="role">
+            <option value="1">Trà sữa</option>
+            <option value="2">Trà</option>
+            <option value="3">Bánh ngọt</option>
+          </select>
+          <span *ngIf="productForm.get('role')?.invalid && productForm.get('role')?.touched" class="text-danger">
+            Vui lòng chọn loại sản phẩm
+          </span>
+        </div>
+        <div class="form-actions">
+          <button type="submit" [disabled]="productForm.invalid">Lưu thay đổi</button>
+        </div>
+      </form>
     </section>
-</main>
+  </main>
+  
