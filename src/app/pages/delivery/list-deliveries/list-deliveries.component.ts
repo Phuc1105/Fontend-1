@@ -117,11 +117,12 @@ export class ListDeliveriesComponent implements OnInit {
     localStorage.setItem('data', JSON.stringify(this.deliveries));
 
   }
-
   filterValue: string = '';
-
   filter() {
     this.deliveries = this.listDeliveries.filter(p => p.customer_name.includes(this.filterValue));
+  }
+  delete(){
+    
   }
 }
   

@@ -11,6 +11,9 @@ import {API_ENDPOINT} from "../../config/api-endpoint.config";
   providedIn: 'root',
 })
 export class UserService extends ApiService {
+  getUsers() {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(
     private _http: HttpClient,
