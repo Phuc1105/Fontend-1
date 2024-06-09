@@ -6,29 +6,33 @@
         <section class="form__body p-3">
             <form>
                 <div class="form-group">
+                    <label for="id">Id</label>
+                    <input type="text" id="id" name="id" class="form-control" value="{{data?.id}}" disabled>
+                </div>
+                <div class="form-group">
                     <label for="username">Tên nhân viên</label>
-                    <input type="text" id="username" name="username" class="form-control" required>
+                    <input type="text" id="username" name="username" class="form-control" value="{{data?.username}}" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Điện thoại:</label>
-                    <input type="text" id="phone" name="phone" class="form-control" required>
+                    <input type="text" id="phone" name="phone" class="form-control" value="{{data?.phone}}" required>
                 </div>
                 <div class="form-group">
                     <label for="chucvu">Chức vụ:</label>
                     <select id="chucvu" name="chucvu" class="form-control" required>
-                        <option value="" disabled selected>Chọn chức vụ nhân viên...</option>
-                        <option value="1">Quản lý</option>
-                        <option value="2">Nhân viên</option>
-                        <option value="3">Giao hàng</option>
+                        <option value="" disabled>Chọn chức vụ nhân viên...</option>
+                        <option value="Manager" [selected]="data?.position == 'Manager'">Quản lý</option>
+                        <option value="Staff" [selected]="data?.position == 'Staff'" >Nhân viên</option>
+                        <option value="Delivery" [selected]="data?.position == 'Delivery'">Giao hàng</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="ca">Ca làm:</label>
                     <select id="ca" name="ca" class="form-control" required>
                         <option value="" disabled selected>Chọn ca làm...</option>
-                        <option value="1">Ca 1(6h30 - 9h)</option>
-                        <option value="2">Ca 2(9h - 1h)</option>
-                        <option value="3">Ca 3(1h 4h)</option>
+                        <option value="Shift 1" [selected]="data?.shift == 'Shift 1'">Ca 1(7h-10h)</option>
+                        <option value="Shift 2" [selected]="data?.shift == 'Shift 2'">Ca 2(10h-14h)</option>
+                        <option value="Shift 3" [selected]="data?.shift == 'Shift 3'">Ca 3(14h-18h)</option>
                     </select>
                 </div>
                 <div class="form-group">
