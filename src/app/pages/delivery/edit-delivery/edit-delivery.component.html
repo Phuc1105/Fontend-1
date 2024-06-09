@@ -1,0 +1,62 @@
+<main class="form" id="orders_form">
+    <section class="form__header">
+        <h4>Sửa Đơn Hàng Trà Sữa</h4>
+    </section>
+    <section class="form__body p-3">
+        <form (ngSubmit)="update()">
+            <div class="form-group">
+                <label for="customer_name">Tên Khách Hàng:</label>
+                <input type="text" id="customer_name" name="customer_name" formControlName="customer_name"
+                     [value]="editdelivery.customer_name">
+
+            </div>
+            <div class="form-group">
+                <label for="customer_phone">Số Điện Thoại:</label>
+                <input type="tel" id="customer_phone" name="customer_phone" formControlName="customer_phone"
+                    [(ngModel)]="editdelivery.customer_phone" [value]="editdelivery.customer_phone">
+            </div>
+            <div class="form-group">
+                <label for="milkTea_flavor">Hương Vị Trà Sữa</label>
+                <select id="milkTea_flavor" name="milkTea_flavor" required>
+                    <option value="original">Truyền thống</option>
+                    <option value="matcha">Matcha</option>
+                    <option value="taro">Khoai Môn</option>
+                    <option value="honeydew">Dưa Gang</option>
+                    <option value="chocolate">Sô-cô-la</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sugar">Đường</label>
+                <select id="sugar" name="sugar" required>
+                    <option value="0">Không đường</option>
+                    <option value="30">30%</option>
+                    <option value="50">50%</option>
+                    <option value="70">70%</option>
+                    <option value="100">100%</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ice">Đá</label>
+                <select id="ice" name="ice" required>
+                    <option value="0">Không đá</option>
+                    <option value="30">30%</option>
+                    <option value="50">50%</option>
+                    <option value="70">70%</option>
+                    <option value="100">100%</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="toppings">Topping</label>
+                <select id="toppings" name="toppings" multiple>
+                    <option value="pearl">Trân Châu</option>
+                    <option value="pudding">Pudding</option>
+                    <option value="aloe">Thạch Lô Hội</option>
+                    <option value="grass_jelly">Thạch Đen</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Sửa Đơn Hàng</button>
+            </div>
+        </form>
+    </section>
+</main>

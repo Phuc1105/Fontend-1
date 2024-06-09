@@ -13,6 +13,7 @@ import { ListProductsComponent } from './products/list-products/list-products.co
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
 import { ListCategoriesComponent } from './categories/list-categories/list-categories.component';
 import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { ListInventoryComponent } from './inventories/list-inventory/list-invent
     DashboardModule,
     NbMenuModule,
     PaginatorModule,
+    CommonModule
   ],
   declarations: [
     PagesComponent,
