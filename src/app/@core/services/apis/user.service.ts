@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from "../common/api.service";
 import { UserProfile } from "../../model/user-info.model";
 import { API_ENDPOINT } from "../../config/api-endpoint.config";
-import Ap
+import { API_USER } from '../../config/api-endpoint.config';
 @Injectable({
   providedIn: 'root',
 })
