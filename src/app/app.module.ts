@@ -16,10 +16,13 @@ import { HttpClientModule } from "@angular/common/http";
 import { CoreModule } from "./@core/core.module";
 import { ThemeModule } from "./@theme/theme.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditProductComponent } from './pages/products/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    EditProductComponent,
+  
   ],
   imports: [
     BrowserModule,

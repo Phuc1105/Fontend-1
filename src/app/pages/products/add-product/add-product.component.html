@@ -3,7 +3,7 @@
       <h4>Thêm sản phẩm</h4>
     </section>
     <section class="form__body p-3">
-      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="create()" [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Tên sản phẩm:</label>
           <input type="text" id="username" formControlName="username">
@@ -29,9 +29,8 @@
         <div class="form-group">
           <label for="status">Trạng Thái:</label>
           <select id="status" formControlName="status">
-            <option value="1">Kích hoạt</option>
-            <option value="2">Hiển thị</option>
-            <option value="3">Ẩn</option>
+            <option value="active">Hiển thị</option>
+            <option value="displayed">Ẩn</option>
           </select>
           <div *ngIf="productForm.get('status')?.invalid && productForm.get('status')?.touched">
             <spam class="text-danger" *ngIf="productForm.get('status')?.errors?.['required']">Vui lòng chọn trạng thái của sản phẩm</spam>

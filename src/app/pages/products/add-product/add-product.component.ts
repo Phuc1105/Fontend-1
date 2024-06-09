@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ProductService } from 'app/@core/services/apis/products.service';
 
 @Component({
   selector: 'app-add-product',
@@ -8,8 +10,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddProductComponent {
   productForm: FormGroup;
+  product: any ={};
+  constructor(
+    private productService: ProductService,
+    private fb: FormBuilder,
+    private router: Router) {
 
-  constructor(private fb: FormBuilder) {
     this.productForm = this.fb.group({
       username: ['', Validators.required],
       file: ['', Validators.required],
@@ -25,5 +31,11 @@ export class AddProductComponent {
     } else {
       console.log('Form is invalid');
     }
+  }
+  create(): void {
+    this.productService.postProducts(this.product).subscribe(res => {
+      console.log(res);
+      this.router.navigate(['/products/list-products']);
+    });
   }
 }
