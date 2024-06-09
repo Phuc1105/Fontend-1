@@ -1,3 +1,6 @@
+<div *ngIf="createData" class="alert alert-success p-3 mb-3" role="alert">
+    Thêm thành công
+</div>
 <main class="form" id="orders_form">
     <section class="form__header">
         <h4>Thêm Đơn Hàng Trà Sữa Mới</h4>
@@ -23,42 +26,52 @@
             </div>
             <div class="form-group">
                 <label for="milkTea_flavor">Hương Vị Trà Sữa</label>
-                <select id="milkTea_flavor" name="milkTea_flavor" required>
+                <select id="milkTea_flavor" name="milkTea_flavor" required formControlName="milkTea_flavor">
+                    <option value="" disabled selected>Chọn vị trà sữa</option>
                     <option value="original">Truyền thống</option>
                     <option value="matcha">Matcha</option>
                     <option value="taro">Khoai Môn</option>
                     <option value="honeydew">Dưa Gang</option>
                     <option value="chocolate">Sô-cô-la</option>
                 </select>
+                <span class="text-danger" *ngIf="orderForm.get('milkTea_flavor')!.errors?.required">Hương vị không được để trống</span>
+
             </div>
             <div class="form-group">
                 <label for="sugar">Đường</label>
-                <select id="sugar" name="sugar" required>
+                <select id="sugar" name="sugar" required formControlName="sugar">
+                    <option value="" disabled selected>Chọn lượng đường</option>
                     <option value="0">Không đường</option>
                     <option value="30">30%</option>
                     <option value="50">50%</option>
                     <option value="70">70%</option>
                     <option value="100">100%</option>
                 </select>
+                <span class="text-danger" *ngIf="orderForm.get('sugar')!.errors?.required">Mức đường không được để trống</span>
+
             </div>
             <div class="form-group">
                 <label for="ice">Đá</label>
-                <select id="ice" name="ice" required>
+                <select id="ice" name="ice" required formControlName="ice">
+                    <option value="" disabled selected>Chọn lượng đá</option>
                     <option value="0">Không đá</option>
                     <option value="30">30%</option>
                     <option value="50">50%</option>
                     <option value="70">70%</option>
                     <option value="100">100%</option>
                 </select>
+            <span class="text-danger" *ngIf="orderForm.get('ice')!.errors?.required">Mức đá không được để trống</span>
             </div>
             <div class="form-group">
                 <label for="toppings">Topping</label>
-                <select id="toppings" name="toppings" multiple>
+                <select id="toppings" name="toppings" required formControlName="toppings">
+                    <option value="" disabled selected>Chọn toppings</option>
                     <option value="pearl">Trân Châu</option>
                     <option value="pudding">Pudding</option>
                     <option value="aloe">Thạch Lô Hội</option>
                     <option value="grass_jelly">Thạch Đen</option>
                 </select>
+                <span class="text-danger" *ngIf="orderForm.get('toppings')!.errors?.required">Topping không được để trống</span>
             </div>
             <div class="form-actions">
                 <button type="submit">Thêm Đơn Hàng</button>

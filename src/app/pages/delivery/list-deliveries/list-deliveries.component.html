@@ -1,8 +1,13 @@
+<div *ngIf="createData" class="alert alert-success  p-3 mb-3" role="alert">
+    Xóa thành công
+</div>
+
 <main class="table" id="orders_table">
     <section class="table__header">
         <h4>Danh Sách Đơn Hàng Trà Sữa</h4>
         <div class="input-group">
-            <input type="search" placeholder="Tìm kiếm..." [(ngModel)]="filterValue" (input)="filter()" style="margin-top: 2px;">
+            <input type="search" placeholder="Tìm kiếm..." [(ngModel)]="filterValue" (input)="filter()"
+                style="margin-top: 2px;">
 
         </div>
         <div class="export__file">
@@ -12,7 +17,7 @@
                 <label>Xuất Dữ Liệu &nbsp; &#10140;</label>
             </div>
         </div>
-        <ngx-alerts></ngx-alerts>
+
     </section>
     <section class="table__body">
         <table>
@@ -29,8 +34,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let d of listDeliveries">
-                    <td> {{d.id}} </td>
+                <tr *ngFor="let d of listDeliveries, let i = index">
+                    <td> {{i+1}} </td>
                     <td> {{d.customer_name}} </td>
                     <td> {{d.customer_phone}} </td>
                     <td> {{d.milkTea_flavor}} </td>
@@ -46,7 +51,8 @@
                                     <path fill-rule="evenodd"
                                         d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                 </svg></button></a>
-                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')"><svg
+
+                        <button (click)="openDeleteDialog(d.id)" class="btn btn-danger px-4 py-1"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-trash3" viewBox="0 0 16 16">
                                 <path
@@ -56,11 +62,8 @@
                 </tr>
             </tbody>
         </table>
-        <ngx-paginator   
-        [apiUrl]="apiUrl" 
-        [current_page]="currentDelivery" 
-        [last_page]="lastDelivery" 
-        (dataList)="getPage($event)">
-    </ngx-paginator>
+        <ngx-paginator [apiUrl]="apiUrl" [current_page]="currentDelivery" [last_page]="lastDelivery"
+            (dataList)="getPage($event)">
+        </ngx-paginator>
     </section>
 </main>
