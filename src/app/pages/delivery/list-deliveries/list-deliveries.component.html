@@ -2,8 +2,8 @@
     <section class="table__header">
         <h4>Danh Sách Đơn Hàng Trà Sữa</h4>
         <div class="input-group">
-            <input type="search" placeholder="Tìm kiếm..." [(ngModel)]='filterValue' (input)='filter()'
-                style="margin-top: 2px;">
+            <input type="search" placeholder="Tìm kiếm..." [(ngModel)]="filterValue" (input)="filter()" style="margin-top: 2px;">
+
         </div>
         <div class="export__file">
             <label for="export-file" class="export__file-btn" title="Xuất File"></label>
@@ -29,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let d of deliveries">
+                <tr *ngFor="let d of listDeliveries">
                     <td> {{d.id}} </td>
                     <td> {{d.customer_name}} </td>
                     <td> {{d.customer_phone}} </td>
@@ -56,5 +56,11 @@
                 </tr>
             </tbody>
         </table>
+        <ngx-paginator   
+        [apiUrl]="apiUrl" 
+        [current_page]="currentDelivery" 
+        [last_page]="lastDelivery" 
+        (dataList)="getPage($event)">
+    </ngx-paginator>
     </section>
 </main>

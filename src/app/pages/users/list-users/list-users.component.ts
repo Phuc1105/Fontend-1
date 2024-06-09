@@ -34,4 +34,8 @@ export class ListUsersComponent {
       this.lastUser = users.meta.last_user;
     })
   }
+  getPage(users: any){
+    this.listUsers = users;
+    console.log(users);
+  }
 }

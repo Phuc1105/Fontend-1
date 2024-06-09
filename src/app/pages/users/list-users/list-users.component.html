@@ -45,5 +45,11 @@
                 </tr>
             </tbody>
         </table>
+        <ngx-paginator   
+        [apiUrl]="apiUrl" 
+        [current_page]="currentUser" 
+        [last_page]="lastUser"
+        (dataList)="getPage($event)">>
+        </ngx-paginator>
     </section>
 </main>
