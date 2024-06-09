@@ -2,8 +2,7 @@
   "name": "asm",
   "version": "1.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve --open",
+    "start": "concurrently \"nodemon ./server.js localhost\" \"  --open\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./list-users.component.scss']
 })
 export class ListUsersComponent {
-
+  listUsers: any;
+  lastUser: number = 0;
+  currentUser: number = 0;
+  apiUrl = 'http://localhost:3000/api/users';
+  constructor(
+    private user: UsersService
+  ) {}
+  ngOnInit(): void {
+    this.getUsers();
+  }
+  getUsers(){
+    this.user.getUsers().subscribe(users =>{
+      console.log(users);
+      this.listUsers = users.data;
+      this.currentUser = users.meta.current_user;
+      this.lastUser = users.meta.last_user;
+    })
+  }
 }
