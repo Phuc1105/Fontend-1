@@ -3,17 +3,17 @@
         <h4>Sửa Đơn Hàng Trà Sữa</h4>
     </section>
     <section class="form__body p-3">
-        <form>
+        <form (ngSubmit)="update()">
             <div class="form-group">
                 <label for="customer_name">Tên Khách Hàng:</label>
                 <input type="text" id="customer_name" name="customer_name" formControlName="customer_name"
-                    [(ngModel)]="delivery.customer_name" [value]="delivery.customer_name">
+                     [value]="editdelivery.customer_name">
 
             </div>
             <div class="form-group">
                 <label for="customer_phone">Số Điện Thoại:</label>
                 <input type="tel" id="customer_phone" name="customer_phone" formControlName="customer_phone"
-                    [(ngModel)]="delivery.customer_phone" [value]="delivery.customer_phone">
+                    [(ngModel)]="editdelivery.customer_phone" [value]="editdelivery.customer_phone">
             </div>
             <div class="form-group">
                 <label for="milkTea_flavor">Hương Vị Trà Sữa</label>

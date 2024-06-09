@@ -20,7 +20,7 @@ export class ListDeliveriesComponent {
   listDeliveries: IDeliveries[] = [];
   lastDelivery: number = 0;
   currentDelivery: number = 0;
-  apiUrl = 'http://localhost:3000/api/deliveries';
+  apiUrl = 'http://localhost:3000/api/delivery';
 
   constructor(
     private delivery: DeliveriesService
@@ -28,20 +28,16 @@ export class ListDeliveriesComponent {
 
   ngOnInit(): void {
     this.getDeliveries();
-  
   }
   getDeliveries() {
     this.delivery.getDeliveries().subscribe(data => {
-      console.log(data);
-
-      this.listDeliveries = data;
+      this.listDeliveries = data.data;
       this.currentDelivery = data.meta.current_delivery;
       this.lastDelivery = data.meta.last_delivery;
-      localStorage.setItem('data', JSON.stringify(this.listDeliveries));
     });
   }
   getPage(deliveries: any) {
-    this.listDeliveries = deliveries;
+    this.listDeliveries = deliveries.data;
     console.log(deliveries);
   }
   filterValue: string = '';

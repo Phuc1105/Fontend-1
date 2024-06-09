@@ -1,14 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const apiRouter = require('./routes/api');
 
 app.use(express.json()); 
 app.use(cors()); 
 
-const userRouter = require('./models/users');
-app.use('/api', userRouter);
-const deliveryRouter = require('./deliveries');
-app.use('/api', deliveryRouter)
+app.use('/api', apiRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

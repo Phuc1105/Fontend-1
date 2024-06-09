@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DeliveriesService } from 'app/@core/services/apis/deliveries.service';
+
 
 @Component({
   selector: 'app-edit-delivery',
@@ -7,23 +9,28 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-delivery.component.scss']
 })
 export class EditDeliveryComponent implements OnInit {
-  delivery: any;
+  editdelivery: any = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private deliveryService: DeliveriesService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params['id'];
-    console.log(id);
-    const data = JSON.parse(localStorage.getItem('data') || '[]');
-    console.log(data);
-    data.forEach((element: { id: number }) => {
-      if (element.id === id) {
-        this.delivery = element;
-        console.log(this.delivery);
-      }
+    this.deliveryService.getDeliveryById(id).subscribe(res => {
+      console.log(res.data);
+      this.editdelivery = res.data;
     });
-    if (!this.delivery) {
-      console.error('Không tìm thấy đơn hàng');
-    }
+  };
+
+
+  update(): void {
+    const id = +this.route.snapshot.params['id'];
+    this.deliveryService.putDelivery(this.editdelivery, id).subscribe(res => {
+      console.log(res);
+      this.router.navigate(['/list_deliveries']);
+    });
   }
 }

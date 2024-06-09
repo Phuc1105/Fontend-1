@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { IDeliveries } from 'app/pages/delivery/list-deliveries/list-deliveries.component';
 
-const API_DELIVERY = 'http://localhost:3000/api/deliveries';
+const API_DELIVERY = 'http://localhost:3000/api/delivery';
 @Injectable({
   providedIn: 'root'
 })
