@@ -8,17 +8,18 @@ import {
   NbSidebarModule,
   NbMenuModule,
   NbDatepickerModule,
-  NbDialogModule, NbWindowModule, NbToastrModule, NbChatModule
+  NbDialogModule, NbWindowModule, NbToastrModule, NbChatModule,
+  NbThemeModule, NbLayoutModule
 } from '@nebular/theme';
-import {HttpClientModule} from "@angular/common/http";
-import {CoreModule} from "./@core/core.module";
-import {ThemeModule} from "./@theme/theme.module";
-
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { HttpClientModule } from "@angular/common/http";
+import { CoreModule } from "./@core/core.module";
+import { ThemeModule } from "./@theme/theme.module";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-   
   ],
   imports: [
     BrowserModule,
@@ -34,8 +35,13 @@ import {ThemeModule} from "./@theme/theme.module";
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule,
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

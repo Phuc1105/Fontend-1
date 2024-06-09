@@ -1,6 +1,15 @@
-import { Component } from '@angular/core';
-import { UserService } from 'app/@core/services/apis/user.service';
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'app/@core/services/apis/users.service';
 
+export interface Iusers {
+  id: string;
+  username: string;
+  email: string;
+  phone: string;
+  password: string;
+  status: string;
+  role: string;
+}
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
@@ -12,17 +21,21 @@ export class ListUsersComponent {
   currentUser: number = 0;
   apiUrl = 'http://localhost:3000/api/users';
   constructor(
-    private user: UserService
-  ) { }
+    private user: UsersService
+  ) {}
   ngOnInit(): void {
     this.getUsers();
   }
-  getUsers() {
-    this.user.getUsers().subscribe(users => {
+  getUsers(){
+    this.user.getUsers().subscribe(users =>{
       console.log(users);
       this.listUsers = users.data;
       this.currentUser = users.meta.current_user;
       this.lastUser = users.meta.last_user;
     })
+  }
+  getPage(users: any){
+    this.listUsers = users;
+    console.log(users);
   }
 }

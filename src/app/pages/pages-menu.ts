@@ -7,15 +7,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
   },
   {
-    title: 'Quản Lý Nhân Viên',
+    title: 'Quản Lý Khách Hàng',
     icon: 'people-outline',
     children: [
       {
-        title: 'Thêm Nhân Viên',
+        title: 'Thêm Khách Hàng',
         link: '/pages/users/add-user',
       },
       {
-        title: 'Danh Sách Nhân Viên',
+        title: 'Danh Sách Khách Hàng',
         link: '/pages/users/list-users',
       },
     ],
@@ -64,7 +64,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Thống Kê Doanh Thu',
-        link: '/pages/dashboard',
+        link: '/pages/statistics/revenue',
       },
     ]
   },
@@ -74,11 +74,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Thêm Khuyến Mãi',
-        link: '/pages/dashboard',
+        link: '/pages/discounts/add-discount',
       },
       {
         title: 'Danh Sách Khuyến Mãi',
-        link: '/pages/dashboard',
+        link: '/pages/discounts/list-discount',
       },
     ],
   },
@@ -88,11 +88,25 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Thêm Khách Hàng',
-        link: '/pages/dashboard',
+        link: '/pages/personnels/add-personnel',
       },
       {
-        title: 'Danh Sách Khách Hàng',
-        link: '/pages/dashboard',
+        title: 'Danh sách Khách Hàng',
+        link: '/pages/personnels/list-personnel',
+      },
+    ],
+  },
+  {
+    title: 'Quản Lý Giao Hàng',
+    icon: 'person-outline',
+    children: [
+      {
+        title: 'Thêm Đơn Hàng',
+        link: '/pages/delivery/add-delivery',
+      },
+      {
+        title: 'Danh Sách Giao Hàng',
+        link: '/pages/delivery/list-deliveries',
       },
     ],
   },
