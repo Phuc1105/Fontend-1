@@ -35,7 +35,6 @@ exports.getPersonnel = async (req, res, next) => {
         res.status(500).json({ error: error.message });
     }
 };
-
 exports.detail = async (req, res, next) =>{
     try{
         let id = req.params.id;
