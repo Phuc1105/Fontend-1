@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-delivery.component.scss']
 })
 export class AddDeliveryComponent implements OnInit {
-  orderForm: FormGroup;
-
+  orderForm!: FormGroup;
+  createData: boolean = false;
   constructor(
     private deliveryService: DeliveriesService,
     private router: Router
@@ -20,30 +20,27 @@ export class AddDeliveryComponent implements OnInit {
     this.orderForm = new FormGroup({
       customer_name: new FormControl('', [Validators.required]),
       customer_phone: new FormControl('', [Validators.required, Validators.pattern("^0[0-9]{9}$")]),
-      milkTea_flavor: new FormControl('original'),
-      sugar: new FormControl('0'),
-      ice: new FormControl('0'),
-      toppings: new FormControl([])
-    });
+      milkTea_flavor: new FormControl('', [Validators.required]),
+      sugar: new FormControl('', [Validators.required]),
+      ice: new FormControl('', [Validators.required]),
+      toppings: new FormControl('', [Validators.required])
+    });    
   }
-
   onSubmit(): void {
-    if (this.orderForm.valid) {
-      this.create();
-    } else {
-      console.log('Form is not valid');
+    if(this.orderForm.valid){
+      const formData = this.orderForm.value;
+      console.log(formData);
+      this.deliveryService.postDeliveries(formData).subscribe(res=>{
+        this.createData = true;
+        setTimeout(() => {
+          this.createData = false;
+        }, 1500);
+      },err=>{
+        console.error(err);
+      })
     }
   }
 
-  create(): void {
-    this.deliveryService.postDeliveries(this.orderForm.value).subscribe(
-      (data) => {
-        console.log('New delivery created:', data);
-        this.router.navigate(['/pages/delivery/list-deliveries']);
-      },
-      (error) => {
-        console.error('Error creating new delivery:', error);
-      }
-    );
-  }
+  
+  
 }

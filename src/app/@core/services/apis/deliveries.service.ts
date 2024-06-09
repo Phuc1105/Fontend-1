@@ -20,7 +20,7 @@ export class DeliveriesService {
     });
   }
   postDeliveries(delivery: any): Observable<any> {
-    return this.http.post<any>(API_DELIVERY, {
+    return this.http.post(API_DELIVERY, {
       customer_name: delivery.customer_name,
       customer_phone: delivery.customer_phone,
       milkTea_flavor: delivery.milkTea_flavor,
@@ -43,7 +43,7 @@ export class DeliveriesService {
     });
   }
   deleteDelivery(id: number){
-    return this.http.delete<any>(API_DELIVERY + '/' + id);
+    return this.http.delete(`${API_DELIVERY}/${id}`);
   }
  
 }

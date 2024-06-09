@@ -15,7 +15,7 @@ import { ListCategoriesComponent } from './categories/list-categories/list-categ
 import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
-import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
+
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 import { AddPersonnelComponent } from './personnel/add-personnel/add-personnel.component';
 import { ListPersonnelComponent } from './personnel/list-personnel/list-personnel.component';
@@ -25,6 +25,7 @@ import { AddDiscountComponent } from './discounts/add-discount/add-discount.comp
 import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
 
 @NgModule({
   imports: [
