@@ -1,44 +1,48 @@
 <div class="container">
-<main class="form" id="customers_form">
-    <section class="form__header">
-        <h4>Thêm Nhân Viên Mới</h4>
-    </section>
-    <section class="form__body p-3">
-        <form>
-            <div class="form-group">
-                <label for="username">Tên nhân viên</label>
-                <input type="text" id="username" name="username" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Điện thoại:</label>
-                <input type="text" id="phone" name="phone" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="position">Chức vụ:</label>
-                <select id="position" name="position" class="form-control" required>
-                    <option value="" disabled selected>Chọn chức vụ nhân viên...</option>
-                    <option value="1">Quản lý</option>
-                    <option value="2">Nhân viên</option>
-                    <option value="3">Giao hàng</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="shift">Ca làm:</label>
-                <select id="shift" name="shift" class="form-control" required>
-                    <option value="" disabled selected>Chọn ca làm...</option>
-                    <option value="1">Ca 1(6h30 - 9h)</option>
-                    <option value="2">Ca 2(9h - 1h)</option>
-                    <option value="3">Ca 3(1h 4h)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="img">Ảnh</label>
-                <input type="file" id="img" name="img" class="form-control">
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Thêm Nhân Viên</button>
-            </div>
-        </form>
-    </section>
-</main>
+    <div *ngIf="createData" class="alert alert-success" role="alert">
+        Thêm thành công
+    </div>
+    <main class="form" id="customers_form">
+        <section class="form__header">
+            <h4>Thêm Nhân Viên Mới</h4>
+        </section>
+        <section class="form__body p-3">
+            <form (ngSubmit)="onSubmit()" [formGroup]="createForm">
+                <div class="form-group">
+                    <label for="username">Tên nhân viên</label>
+                    <input type="text" id="username" name="username" class="form-control" formControlName="username"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Điện thoại:</label>
+                    <input type="text" id="phone" name="phone" class="form-control" formControlName="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="position">Chức vụ:</label>
+                    <select id="position" name="position" class="form-control" formControlName="position" required>
+                        <option value="" disabled selected>Chọn chức vụ nhân viên...</option>
+                        <option value="Manager">Quản lý</option>
+                        <option value="Staff">Nhân viên</option>
+                        <option value="Delivery">Giao hàng</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="shift">Ca làm:</label>
+                    <select id="shift" name="shift" class="form-control" formControlName="shift" required>
+                        <option value="" disabled selected>Chọn ca làm...</option>
+                        <option value="Shift 1">Ca 1(7h - 10h)</option>
+                        <option value="Shift 2">Ca 2(10h - 14h)</option>
+                        <option value="Shift 3">Ca 3(14h - 18h)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="img">Ảnh</label>
+                    <input type="file" id="img" name="img" formControlName="img" class="form-control">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Thêm Nhân Viên</button>
+                </div>
+            </form>
+        </section>
+    </main>
 </div>

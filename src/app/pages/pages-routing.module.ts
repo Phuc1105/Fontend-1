@@ -112,7 +112,7 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Nhân viên / Sửa'},
-        path: 'personnels/edit-personnel',
+        path: 'personnels/edit-personnel/:id',
         component: EditPersonneComponent,
       },
       {
