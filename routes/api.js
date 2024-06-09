@@ -1,6 +1,5 @@
 const express = require('express');
 const usersApiControllers = require('../controllers/api/users');
-const deliveryApiControllers = require('../controllers/api/delivery');
 const personnelApiControllers = require('../controllers/api/personnels');
 const router = express.Router();
 // ============== Api User ================

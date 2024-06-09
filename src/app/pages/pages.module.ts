@@ -15,7 +15,6 @@ import { ListCategoriesComponent } from './categories/list-categories/list-categ
 import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
-
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 import { AddPersonnelComponent } from './personnel/add-personnel/add-personnel.component';
 import { ListPersonnelComponent } from './personnel/list-personnel/list-personnel.component';
