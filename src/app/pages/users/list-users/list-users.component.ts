@@ -29,7 +29,7 @@ export class ListUsersComponent {
   getUsers(){
     this.user.getUsers().subscribe(users =>{
       console.log(users);
-      this.listUsers = users;
+      this.listUsers = users.data;
       this.currentUser = users.meta.current_user;
       this.lastUser = users.meta.last_user;
     })
