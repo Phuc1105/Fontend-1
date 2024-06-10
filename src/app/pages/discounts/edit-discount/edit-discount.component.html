@@ -1,0 +1,77 @@
+<div class="container">
+    <main class="form" id="customers_form">
+        <section class="form__header">
+            <h4>Sửa Khuyến mãi mới</h4>
+        </section>
+        <div *ngIf="editNotification" class="alert alert-success alert alert-success m-3 p-2" role="alert">
+            Sửa thành công
+          </div>
+        <section class="form__body p-3">
+            <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+                <div class="form-group">
+                    <label for="id">Id:</label>
+                    <input type="text" id="id" name="id" class="form-control" [value]="data?.id" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="nameDiscount">Tên chương trình khuyến mãi:</label>
+                    <input type="text" id="nameDiscount" name="nameDiscount" class="form-control"
+                        [value]="data?.nameDiscount">
+                    <span class="text-danger"
+                        *ngIf="editForm.get('nameDiscount')!.invalid && (editForm.get('nameDiscount')!.dirty || editForm.get('nameDiscount')!.touched)">
+                        Tên mã giảm giá không được để trống!!
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="startDate">Ngày bắt đầu:</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control"
+                        [value]="formatDate(data?.startDate)">
+                    <span class="text-danger"
+                        *ngIf="editForm.get('startDate')!.invalid && (editForm.get('startDate')!.dirty || editForm.get('startDate')!.touched)">
+                        Ngày bắt đầu không được để trống!!
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="endDate">Ngày kết thúc:</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control"
+                        [value]="formatDate(data?.endDate)">
+                    <span class="text-danger"
+                        *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
+                        Ngày kết thúc không được bỏ trống
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="img">Ảnh:</label>
+                    <input type="file" id="img" name="img" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="status">Trạng thái:</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="" disabled>Vui lòng chọn trạng thái..</option>
+                        <option value="Hoạt động" class="text text-success" [selected]="data?.status == 'Hoạt động'">
+                            Hoạt động</option>
+                        <option value="Sắp bắt đầu" class="text text-warning"
+                            [selected]="data?.status == 'Sắp bắt đầu'">Sắp bắt đầu</option>
+                        <option value="Đã kết thúc" class="text text-secondary"
+                            [selected]="data?.status == 'Đã kết thúc'">Đã kết thúc</option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+                        Trạng thái không được để trống!!
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="contentDiscount">Nội dung chương trình:</label>
+                    <textarea name="contentDiscount" id="contentDiscount" class="form-control" cols=""
+                        rows="5">{{data?.contentDiscount}}</textarea>
+                    <span class="text-danger"
+                        *ngIf="editForm.get('img')!.invalid && (editForm.get('img')!.dirty || editForm.get('img')!.touched)">
+                        Hình không được để trống!!
+                    </span>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</div>

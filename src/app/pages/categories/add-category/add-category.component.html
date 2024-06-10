@@ -1,0 +1,36 @@
+<main class="form" id="customers_form">
+    <section class="form__header">
+        <h4>Danh Mục Sản Phẩm</h4>
+    </section>
+    <section class="form__body p-3">
+        <form>
+            <div class="form-group">
+                <label for="name">Loại Sản Phẩm</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Mô Tả</label>
+                <textarea id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="status">Trạng Thái:</label>
+                <select id="status" name="status" required>
+                    <option value="1">Kích hoạt</option>
+                    <option value="2">Chưa kích hoạt</option>
+                    <option value="3">Ẩn</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="role">Xu Hướng</label>
+                <select id="role" name="role" required>
+                    <option value="1">Có</option>
+                    <option value="2">Không</option>
+
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Thêm Danh Mục</button>
+            </div>
+        </form>
+    </section>
+</main>
