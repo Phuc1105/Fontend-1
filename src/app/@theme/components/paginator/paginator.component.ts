@@ -62,7 +62,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   getPaginator(): Observable<any> {
-    return this.apiService.get(this.apiUrl + '?page=' + Number(this.indexPage));
+    return this.apiService.get(this.apiUrl + '?page=' + this.indexPage);
   }
 
   getData() {
