@@ -1,38 +1,80 @@
 import { Component } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { API_PERSONNELS } from 'app/@core/config/api-endpoint.config';
+import { PersonnelsService } from 'app/@core/services/apis/personnels.service';
+import { DialogConfirmComponent } from 'app/@theme/components/dialog-confirm/dialog-confirm.component';
 
+export interface Ipersonnel {
+  id: string;
+  img: string;
+  username: string;
+  phone: string;
+  position: string;
+  shift: string
+}
 @Component({
   selector: 'app-list-personnel',
   templateUrl: './list-personnel.component.html',
   styleUrls: ['./list-personnel.component.scss']
 })
 export class ListPersonnelComponent {
-  employees = [
-    {
-      id: 1,
-      image: 'assets/images/Zinzu Chan Lee.jpg',
-      name: 'Nhân viên 1',
-      phone: '012345678',
-      position: 'Nhân viên',
-      status: 'Hoạt động',
-      shift: 'Ca 2 (9h-1h)'
-    },
-    {
-      id: 2,
-      image: 'assets/images/nhanvien2.jpg',
-      name: 'Nhân viên 2',
-      phone: '098765432',
-      position: 'Nhân viên',
-      status: 'Hoàn thành',
-      shift: 'Ca 1 (6h30-9h)'
-    },
-    {
-      id: 3,
-      image: 'assets/images/nhanvien2.jpg',
-      name: 'Nhân viên 3',
-      phone: '098765432',
-      position: 'Nhân viên',
-      status: 'Chưa làm',
-      shift: 'Ca 3 (1h-4h)'
+  lisPersonnels: any;
+  deleteNotification: boolean = false;
+  lastPage: number = 0;
+  currentPage: number = 0;
+  apiUrl = API_PERSONNELS;
+  constructor(
+    private personnel: PersonnelsService,
+    private dialogService: NbDialogService,
+  ) {}
+  ngOnInit(): void {
+    this.getPersonnels();
+  }
+  getPersonnels(){
+    this.personnel.getPersonnel().subscribe(res =>{
+      console.log(res);
+      this.lisPersonnels = res.data;
+      
+    },err=>{
+      console.error(err);
+    })
+  }
+  getPage(res: any) {
+    if (res && res.meta) {
+      this.lisPersonnels = res.data;
+      this.currentPage = res.meta.current_page;
+      this.lastPage = res.meta.last_page;
+      this.getPersonnels();
+    } else {
+      console.error('Invalid response format');
     }
-  ];
+  }
+  
+  openDeleteDialog(id: number): void {
+    this.dialogService.open(DialogConfirmComponent, {
+      context: {
+        title: 'Xác nhận xóa',
+        content: 'Bạn có chắc chắn muốn xóa đơn hàng này không?'
+      }
+    }).onClose.subscribe(confirmed => {
+      if (confirmed) {
+        this.btnDelete(id);
+      } else {
+      }
+    });
+  }
+  btnDelete(id: number): void {
+    this.personnel.deletePersonnel(id).subscribe(
+      res => {
+        this.deleteNotification = true; 
+        setTimeout(() => {
+          this.deleteNotification = false;
+        }, 1500);
+        this.getPersonnels();
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
 }

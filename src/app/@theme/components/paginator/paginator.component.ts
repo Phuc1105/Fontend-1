@@ -3,11 +3,10 @@ import {ApiService} from "../../../@core/services/common";
 import {finalize, Observable} from "rxjs";
 import {SpinnerService} from "../spinner/spinner.service";
 
-// const apiUrl ='http://localhost:3000/api/products';
 @Component({
   selector: 'ngx-paginator',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './paginator.component.html',  
+  templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit {
@@ -82,6 +81,7 @@ export class PaginatorComponent implements OnInit {
   protected handleSuccess(res) {
     this.dataList.emit(res);
   }
+
   protected handleErrors(res) {
     this.dataList.emit(res);
   }

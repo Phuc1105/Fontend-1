@@ -18,7 +18,7 @@ export interface Products{
 export class ListProductsComponent {
   listProducts: any;
   lastProduct: number=0;
-  carrentProduct : number = 0;
+  currentProduct : number = 0;
   apiUrl = 'http://localhost:3000/api/products'
   constructor(
     private product: ProductService
@@ -31,8 +31,8 @@ export class ListProductsComponent {
       console.log(res);
       // const data = res.data;
       this.listProducts = res;
-      this.carrentProduct = res.meta.current_product;
-      this.lastProduct = res.meta.last_product;
+      this.currentProduct = res.meta.current_page;
+      this.lastProduct = res.meta.last_page;
     })
   }
   getPage(res:any){

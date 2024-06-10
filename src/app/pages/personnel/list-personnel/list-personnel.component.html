@@ -1,7 +1,11 @@
 <main class="table" id="customers_table">
     <section class="table__header">
         <h4>Danh Sách Nhân Viên</h4>
+
     </section>
+    <div *ngIf="deleteNotification" class="alert alert-success" role="alert">
+        Xóa thành công
+    </div>
     <section class="table__body">
         <table class="table table-bordered table-hover">
             <thead class="thead-light">
@@ -11,7 +15,6 @@
                     <th>Tên nhân viên <span class="icon-arrow">&UpArrow;</span></th>
                     <th>SĐT <span class="icon-arrow">&UpArrow;</span></th>
                     <th>Chức vụ <span class="icon-arrow">&UpArrow;</span></th>
-                    <!-- <th>Trạng Thái <span class="icon-arrow">&UpArrow;</span></th> -->
                     <th>Ca làm <span class="icon-arrow">&UpArrow;</span></th>
                     <th></th>
                 </tr>
@@ -32,10 +35,18 @@
                         <a [routerLink]="['/pages/personnels/edit-personnel', employee.id]">
                             <button class="btn btn-primary px-4 py-1">Sửa</button>
                         </a>
-                        <button class="btn btn-danger px-4 py-1" (click)="confirmDelete()">Xóa</button>
+                        <button type="button" class="btn btn-danger px-4 py-1" (click)="openDeleteDialog(employee.id)">
+                            Xóa
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <ngx-paginator 
+        [apiUrl]="apiUrl" 
+        [current_page]="currentPage"
+        [last_page]="lastPage"
+        (dataList)="getPage($event)">
+    </ngx-paginator>
     </section>
 </main>

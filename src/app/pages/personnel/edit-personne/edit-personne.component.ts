@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PersonnelsService } from 'app/@core/services/apis/personnels.service';
 
+
 @Component({
   selector: 'app-edit-personne',
   templateUrl: './edit-personne.component.html',
@@ -21,7 +22,7 @@ export class EditPersonneComponent {
   getPersonnelById(id: number): void {
     this.personnel.getPersonnelById(id).subscribe(res=>{
       this.data = res.data[0];
-      console.log(this.data);
+      console.log(this.data); 
   },err=>{
     console.error(err);
   })
