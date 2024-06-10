@@ -38,16 +38,18 @@
                     </td>
                     <td>  {{products.status}}</td>
                     <td class="d-flex justify-content-between align-items-center">
-                        <a routerLink="/pages/products/edit-product"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
-                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')">Xóa</button>
+                        <a routerLink="/pages/products/edit-product/{{products.id}}"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
+                        <button type="button" class="btn btn-danger px-4 py-1" (click)="openDeleteDialog(products.id)">
+                            Xóa
+                        </button>
                     </td>                                                         
                 </tr>
                 
             </tbody>
             <ngx-paginator
             [apiUrl]="apiUrl" 
-            [current_page]="currentProduct" 
-            [last_page]="lastProduct"
+            [current_page]="currentPage" 
+            [last_page]="lastPage"
             (dataList)="getPage($event)"
             >
                 

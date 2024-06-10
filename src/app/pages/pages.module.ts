@@ -25,6 +25,7 @@ import { AddDiscountComponent } from './discounts/add-discount/add-discount.comp
 import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RevenueComponent } from './statistics/revenue/revenue.component';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddDiscountComponent,
     EditDiscountComponent,
     EditCategoryComponent,
+    RevenueComponent,
 
   ],
   providers: []

@@ -60,7 +60,8 @@ const routes: Routes = [
         component: ListProductsComponent,
       },
       {
-        path: 'products/edit-product',
+        data: { breadcrumb:'Sản phẩm / Danh sách'},
+        path: 'products/edit-product/:id',
         component: EditProductComponent,
       },
      

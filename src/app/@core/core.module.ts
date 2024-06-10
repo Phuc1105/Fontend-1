@@ -82,7 +82,7 @@ export const NB_CORE_PROVIDERS = [
   exports: [
     NbAuthModule,
   ],
-  declarations: [],
+
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

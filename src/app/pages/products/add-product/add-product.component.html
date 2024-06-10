@@ -1,56 +1,71 @@
-<main class="form" id="customers_form">
+<div class="container">
+  <div *ngIf="createData" class="alert alert-success" role="alert">
+    Thêm thành công
+  </div>
+  <main class="form" id="customers_form">
     <section class="form__header">
-      <h4>Thêm sản phẩm</h4>
+      <h4>Thêm Nhân Viên Mới</h4>
     </section>
     <section class="form__body p-3">
-      <form (ngSubmit)="create()" [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <form (ngSubmit)="onSubmit()" [formGroup]="productForm" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="username">Tên sản phẩm:</label>
-          <input type="text" id="username" formControlName="username">
-          <div *ngIf="productForm.get('username')?.invalid && productForm.get('username')?.touched">
-            <spam class="text-danger" *ngIf="productForm.get('username')?.errors?.['required']">Vui lòng nhập tên sản phẩm</spam>
+          <label for="name">Tên sản phẩm:</label>
+          <input type="text" id="name" formControlName="product_name" name="product_name"  > 
+          <div *ngIf="productForm.get('product_name')?.invalid && productForm.get('product_name')?.touched">
+            <span class="text-danger" *ngIf="productForm.get('product_name')?.errors?.['required']">Vui lòng nhập tên
+              sản phẩm</span>
           </div>
         </div>
+
         <div class="form-group">
           <label for="file">Hình ảnh:</label>
-          <input type="file" id="file" formControlName="file">
-          <div *ngIf="productForm.get('file')?.invalid && productForm.get('file')?.touched">
-            <spam class="text-danger" *ngIf="productForm.get('file')?.errors?.['required']">Vui lòng nhập hình ảnh</spam>
+          <input type="file" id="image" formControlName="image" name="imgae">
+          <div *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched">
+            <span class="text-danger" *ngIf="productForm.get('image')?.errors?.['required']">Vui lòng nhập hình
+              ảnh</span>
           </div>
         </div>
+
         <div class="form-group">
           <label for="price">Giá sản phẩm:</label>
-          <input type="number" id="price" formControlName="price">
+          <input type="number" id="price" formControlName="price" name="price">
           <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
-            <spam class="text-danger" *ngIf="productForm.get('price')?.errors?.['required']">Vui lòng nhập giá sản phẩm</spam>
-            <spam class="text-danger" *ngIf="productForm.get('price')?.errors?.['min']">Giá sản phẩm phải lớn hơn 0</spam>
+            <span class="text-danger" *ngIf="productForm.get('price')?.errors?.['required']">Vui lòng nhập giá sản
+              phẩm</span>
+            <span class="text-danger" *ngIf="productForm.get('price')?.errors?.['min']">Giá sản phẩm phải lớn hơn
+              0</span>
           </div>
         </div>
+
         <div class="form-group">
           <label for="status">Trạng Thái:</label>
-          <select id="status" formControlName="status">
+          <select id="status" formControlName="status" name="status">
             <option value="active">Hiển thị</option>
-            <option value="displayed">Ẩn</option>
+            <option value="hidden">Ẩn</option>
           </select>
           <div *ngIf="productForm.get('status')?.invalid && productForm.get('status')?.touched">
-            <spam class="text-danger" *ngIf="productForm.get('status')?.errors?.['required']">Vui lòng chọn trạng thái của sản phẩm</spam>
+            <span class="text-danger" *ngIf="productForm.get('status')?.errors?.['required']">Vui lòng chọn trạng thái
+              của sản phẩm</span>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="role">Loại sản phẩm:</label>
-          <select id="role" formControlName="role">
-            <option value="1">Trà sữa</option>
-            <option value="2">Trà</option>
-            <option value="3">Bánh ngọt</option>
+          <label for="category">Loại sản phẩm:</label>
+          <select id="category" formControlName="category" name="category">
+            <option value="dessert">Bánh ngọt</option>
+            <option value="tea">Trà</option>
+            <option value="milk_tea">Trà sữa</option>
           </select>
-          <div *ngIf="productForm.get('role')?.invalid && productForm.get('role')?.touched">
-            <spam class="text-danger" *ngIf="productForm.get('role')?.errors?.['required']">Vui lòng chonj loại sản phẩm</spam>
+          <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
+            <span class="text-danger" *ngIf="productForm.get('category')?.errors?.['required']">Vui lòng chọn loại sản
+              phẩm</span>
           </div>
         </div>
+
         <div class="form-actions">
           <button type="submit" [disabled]="productForm.invalid">Thêm sản phẩm</button>
         </div>
       </form>
     </section>
   </main>
-  
+</div>

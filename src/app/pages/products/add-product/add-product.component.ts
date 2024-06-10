@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from 'app/@core/services/apis/products.service';
 
@@ -10,32 +10,45 @@ import { ProductService } from 'app/@core/services/apis/products.service';
 })
 export class AddProductComponent {
   productForm: FormGroup;
-  product: any ={};
+  createData : boolean = false;
+  // product: any ={};
   constructor(
     private productService: ProductService,
-    private fb: FormBuilder,
+
     private router: Router) {
 
-    this.productForm = this.fb.group({
-      username: ['', Validators.required],
-      file: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
-      status: ['', Validators.required],
-      role: ['', Validators.required]
+   
+  }
+  ngOnInit(): void {
+    this.productForm = new FormGroup({
+      product_name: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required, Validators.min(1)]),
+      status: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
     });
   }
-
   onSubmit() {
     if (this.productForm.valid) {
       console.log('Form Submitted', this.productForm.value);
-    } else {
-      console.log('Form is invalid');
+
+      const formData = this.productForm.value;
+      console.log(formData);
+      this.productService.postProducts(formData).subscribe(res=>{
+        this.ngOnInit();
+        this.createData = true;
+        setTimeout(() => {
+          this.createData = false;
+        }, 1500);
+      },err=>{
+        console.error(err);
+      })
     }
   }
-  create(): void {
-    this.productService.postProducts(this.product).subscribe(res => {
-      console.log(res);
-      this.router.navigate(['/products/list-products']);
-    });
-  }
+  // create(): void {
+  //   this.productService.postProducts(this.product).subscribe(res => {
+  //     console.log(res);
+  //     this.router.navigate(['/products/list-products']);
+  //   });
+  // }
 }
