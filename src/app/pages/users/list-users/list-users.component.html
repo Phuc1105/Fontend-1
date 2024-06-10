@@ -42,17 +42,14 @@
                     </td>
                     <td> <strong> {{users.role}} </strong></td>
                     <td class="d-flex justify-content-between align-items-center">
-                        <a [routerLink]="['/pages/users/edit-user/',users.id ]"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
-                        <button (click)="openDeleteDialog(users.id)" class="btn btn-danger px-4 py-1">Xóa</button>
+                        <a [routerLink]="['/pages/users/edit-user/',users.id ]"><button class="btn btn-primary px-3 py-2"><nb-icon icon="edit-outline"></nb-icon></button></a>
+                        <button (click)="openDeleteDialog(users.id)" class="btn btn-danger px-3 py-2"><nb-icon icon="trash-2-outline"></nb-icon></button>
                     </td>                                                         
                 </tr>
             </tbody>
         </table>
-        <!-- <ngx-paginator   
-        [apiUrl]="apiUrl" 
-        [current_page]="currentUser" 
-        [last_page]="lastUser"
-        (dataList)="getPage($event)">>
-        </ngx-paginator> -->
+        <ngx-paginator [apiUrl]="apiUrl" [current_page]="currentPage" [last_page]="lastPage"
+        (dataList)="getPage($event)">
+    </ngx-paginator>
     </section>
 </main>

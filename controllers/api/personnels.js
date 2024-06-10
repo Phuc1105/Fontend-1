@@ -35,6 +35,7 @@ exports.getPersonnel = async (req, res, next) => {
         res.status(500).json({ error: error.message });
     }
 };
+
 exports.detail = async (req, res, next) =>{
     try{
         let id = req.params.id;
@@ -46,6 +47,7 @@ exports.detail = async (req, res, next) =>{
         res.status(500).json({ error: error.message})
     }
 };
+
 exports.add = async (req, res, next) => {
     try {
         let personnel = {
@@ -54,12 +56,49 @@ exports.add = async (req, res, next) => {
             position: req.body.position,
             shift: req.body.shift,
             img: req.body.img,
-        }
+        };
+        console.log(personnel);
         const add = await personnels.add(personnel);
         res.status(200).json({
             data: add,
         });
     } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({
+            error: 'Internal Server Error',
+        });
+    }
+};
+exports.delete = async (req, res, next) => {
+    let id = req.params.id;
+
+    let result = await personnels.delete(id);
+
+    console.log(result);
+    res.status(201).json({
+        result: result
+    })
+};
+exports.update = async (req, res, next) => {
+    try {
+        let id = req.params.id;
+        let personnel = {
+            username: req.body.username,
+            phone: req.body.phone,
+            position: req.body.position,
+            shift: req.body.shift,
+
+        };
+        if (req.body.img) {
+            personnel.img = req.body.img;
+        } else if (req.body.img) {
+            personnel.img = req.body.img;
+        }
+        const editPersonnel = await personnels.update(id, personnel);
+        res.status(200).json({
+            data: editPersonnel,
+        });
+} catch (error) {
         console.error("Error:", error);
         res.status(500).json({
             error: 'Internal Server Error'

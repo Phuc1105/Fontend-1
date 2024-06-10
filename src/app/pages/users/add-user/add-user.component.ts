@@ -17,6 +17,9 @@ export class AddUserComponent {
     private router: Router,
   ) { }
   ngOnInit(): void {
+    this.validate();
+  }
+  validate(){
     this.userForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),

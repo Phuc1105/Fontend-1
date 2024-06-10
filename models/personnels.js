@@ -1,5 +1,5 @@
 const db = require('./db');
-module.exports = class User {
+module.exports = class personnel {
     constructor(){}
     static fetchAll(offset, limit) {
         return new Promise((resolve, reject) => {

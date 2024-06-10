@@ -2,8 +2,33 @@ const delivery = require('../../models/deliveries');
 
 exports.getDelivery = async (req, res, next) => {
     try {
-        const deliveryList = await delivery.fetchAll();
-        res.status(200).json({ data: deliveryList });
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 6;
+        const offset = (page - 1) * limit;
+
+        const { data, total } = await delivery.fetchAll(offset, limit);
+        const totalPages = Math.ceil(total / limit);
+        const from = offset + 1;
+        const to = offset + data.length;
+
+        res.status(200).json({
+            data: data,
+            meta: {
+                current_page: page,
+                from: from,
+                last_page: totalPages,
+                path: req.baseUrl,
+                per_page: limit,
+                to: to,
+                total: total
+            },
+            links: {
+                first: `${req.baseUrl}/delivery?page=1&limit=${limit}`,
+                last: `${req.baseUrl}/delivery?page=${totalPages}&limit=${limit}`,
+                prev: page > 1 ? `${req.baseUrl}/delivery?page=${page - 1}&limit=${limit}` : null,
+                next: page < totalPages ? `${req.baseUrl}/delivery?page=${page + 1}&limit=${limit}` : null
+            }
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

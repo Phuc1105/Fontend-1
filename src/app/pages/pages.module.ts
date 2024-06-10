@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {NbMenuModule, } from "@nebular/theme";
+import {NbIconModule, NbMenuModule, } from "@nebular/theme";
 import {ThemeModule} from '../@theme/theme.module';
 
 import {PagesComponent} from './pages.component';
@@ -36,6 +36,7 @@ import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.compo
     PaginatorModule,
     ReactiveFormsModule, 
     FormsModule,
+    NbIconModule,
     
   ],
   declarations: [

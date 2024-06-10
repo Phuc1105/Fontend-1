@@ -3,13 +3,37 @@ const argon2 = require('argon2');
 
 exports.getUsers = async (req, res, next) => {
     try {
-        const userList = await users.fetchAll();
-        res.status(200).json({ data: userList });
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 6;
+        const offset = (page - 1) * limit;
+
+        const { data, total } = await users.fetchAll(offset, limit);
+        const totalPages = Math.ceil(total / limit);
+        const from = offset + 1;
+        const to = offset + data.length;
+
+        res.status(200).json({
+            data: data,
+            meta: {
+                current_page: page,
+                from: from,
+                last_page: totalPages,
+                path: req.baseUrl,
+                per_page: limit,
+                to: to,
+                total: total
+            },
+            links: {
+                first: `${req.baseUrl}/users?page=1&limit=${limit}`,
+                last: `${req.baseUrl}/users?page=${totalPages}&limit=${limit}`,
+                prev: page > 1 ? `${req.baseUrl}/users?page=${page - 1}&limit=${limit}` : null,
+                next: page < totalPages ? `${req.baseUrl}/users?page=${page + 1}&limit=${limit}` : null
+            }
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
-
 exports.create = async (req, res, next) => {
     try {
         let username = req.body.username;
