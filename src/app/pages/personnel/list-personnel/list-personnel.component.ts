@@ -24,10 +24,47 @@ export class ListPersonnelComponent {
   ngOnInit(): void {
     this.getUsers();
   }
-  getUsers(){
-    this.personnel.getPersonnel().subscribe(personnels =>{
-      console.log(personnels);
-      this.lisPersonnels = personnels.data;
+  getPersonnels(){
+    this.personnel.getPersonnel().subscribe(res =>{
+      console.log(res);
+      this.lisPersonnels = res.data;
+      this.currentPage = res.meta.current_page;
+      this.lastPage = res.meta.last_page;
+    },err=>{
+      console.error(err);
     })
+  }
+  getPage(res: any) {
+      this.lisPersonnels = res.data;
+      this.currentPage = res.meta.current_page;
+      this.lastPage = res.meta.last_page;
+  }
+  
+  openDeleteDialog(id: number): void {
+    this.dialogService.open(DialogConfirmComponent, {
+      context: {
+        title: 'Xác nhận xóa',
+        content: 'Bạn có chắc chắn muốn xóa đơn hàng này không?'
+      }
+    }).onClose.subscribe(confirmed => {
+      if (confirmed) {
+        this.btnDelete(id);
+      } else {
+      }
+    });
+  }
+  btnDelete(id: number): void {
+    this.personnel.deletePersonnel(id).subscribe(
+      res => {
+        this.deleteNotification = true; 
+        setTimeout(() => {
+          this.deleteNotification = false;
+        }, 1500);
+        this.getPersonnels();
+      },
+      err => {
+        console.error(err);
+      }
+    );
   }
 }
