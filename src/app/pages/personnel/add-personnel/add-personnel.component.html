@@ -15,7 +15,13 @@
                 </div>
                 <div class="form-group">
                     <label for="phone">Điện thoại:</label>
-                    <input type="text" id="phone" name="phone" class="form-control" formControlName="phone" required>
+                    <input type="text" id="phone" name="phone" class="form-control" formControlName="phone" placeholder="Nhập số điện thoại.." required>
+                    <span class="text-danger" *ngIf="createForm.get('phone')!.invalid && (createForm.get('phone')!.dirty || createForm.get('phone')!.touched) && createForm.get('phone')!.errors?.required">
+                        Số điện thoại không được để trống
+                    </span>
+                    <span class="text-danger" *ngIf="createForm.get('phone')!.invalid && (createForm.get('phone')!.dirty || createForm.get('phone')!.touched) && createForm.get('phone')!.errors?.pattern">
+                        Số điện thoại phải bắt đầu là 0 và phải đủ 10 số
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="position">Chức vụ:</label>
