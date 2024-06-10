@@ -27,26 +27,26 @@ export class ListPersonnelComponent {
   constructor(
     private personnel: PersonnelsService,
     private dialogService: NbDialogService,
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.getPersonnels();
   }
-  getPersonnels(){
-    this.personnel.getPersonnel().subscribe(res =>{
+  getPersonnels() {
+    this.personnel.getPersonnel().subscribe(res => {
       console.log(res);
       this.lisPersonnels = res.data;
       this.currentPage = res.meta.current_page;
       this.lastPage = res.meta.last_page;
-    },err=>{
+    }, err => {
       console.error(err);
     })
   }
   getPage(res: any) {
-      this.lisPersonnels = res.data;
-      this.currentPage = res.meta.current_page;
-      this.lastPage = res.meta.last_page;
+    this.lisPersonnels = res.data;
+    this.currentPage = res.meta.current_page;
+    this.lastPage = res.meta.last_page;
   }
-  
+
   openDeleteDialog(id: number): void {
     this.dialogService.open(DialogConfirmComponent, {
       context: {
@@ -63,12 +63,12 @@ export class ListPersonnelComponent {
   btnDelete(id: number): void {
     this.personnel.deletePersonnel(id).subscribe(
       res => {
-        this.deleteNotification = true; 
+        this.deleteNotification = true;
         setTimeout(() => {
           this.deleteNotification = false;
         }, 1500);
         this.getPersonnels();
-        
+
       },
       err => {
         console.error(err);

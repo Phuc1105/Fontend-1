@@ -10,6 +10,7 @@ import { PersonnelsService } from 'app/@core/services/apis/personnels.service';
 export class AddPersonnelComponent {
   createForm !: FormGroup;
   createData : boolean = false;
+  submitted: boolean = false;
   constructor(
     private personnel: PersonnelsService,
   ){}
@@ -23,6 +24,7 @@ export class AddPersonnelComponent {
     })
   }
   onSubmit() {
+    this.submitted = true;
     if(this.createForm.valid){
       const formData = this.createForm.value;
       formData.img = this.getFileNameFromPath(formData.img);
