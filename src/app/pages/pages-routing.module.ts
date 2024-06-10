@@ -77,18 +77,13 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Danh mục / Sửa'},
-        path: 'categories/edit-category',
+        path: 'categories/edit-category/:id',
         component: EditCategoryComponent,
       },
       {
         data: { breadcrumb:'Đơn hàng / Danh sách'},
         path: 'inventories/list-inventory',
         component: ListInventoryComponent,
-      },
-      {
-        data: { breadcrumb:'Đơn hàng / Sửa'},
-        path: 'inventories/edit-inventory',
-        component: EditInventoryComponent,
       },
       {
         data: { breadcrumb:'Vận chuyển / Danh sách'},

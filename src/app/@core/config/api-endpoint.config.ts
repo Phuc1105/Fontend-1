@@ -7,6 +7,7 @@ export const API_DISCOUNTS = API_BASE_URL +'/discounts';
 export const API_USERS = API_BASE_URL +'/users';
 export const API_DELIVERIES = API_BASE_URL +'/delivery';
 export const API_PRODUCTS = API_BASE_URL + '/products';
+export const API_CATEGORRIES = API_BASE_URL +'/categories'
 export const API_ENDPOINT: IAPIEndpoint = {
   auth: {
     base: API_BASE_URL + '/' + 'auth',
