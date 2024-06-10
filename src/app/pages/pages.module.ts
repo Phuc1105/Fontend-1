@@ -11,6 +11,7 @@ import { ListUsersComponent } from './users/list-users/list-users.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
 import { ListProductsComponent } from './products/list-products/list-products.component';
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
+import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
 import { ListCategoriesComponent } from './categories/list-categories/list-categories.component';
 import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
@@ -22,7 +23,6 @@ import { EditPersonneComponent } from './personnel/edit-personne/edit-personne.c
 import { ListDiscountComponent } from './discounts/list-discount/list-discount.component';
 import { AddDiscountComponent } from './discounts/add-discount/add-discount.component';
 import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
-import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
 

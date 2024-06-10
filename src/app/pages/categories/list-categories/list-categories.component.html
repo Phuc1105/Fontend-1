@@ -1,47 +1,49 @@
 <main class="table" id="customers_table">
     <section class="table__header">
         <h4>Danh Sách Danh Mục</h4>
-        <div class="input-group">
-            <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;">
-           
-        </div>
-        <div class="export__file">
-            <label for="export-file" class="export__file-btn" title="Xuất File"></label>
-            <input type="checkbox" id="export-file">
-            <div class="export__file-options">
-                <label>Xuất Dữ Liệu &nbsp; &#10140;</label>
-                <!-- <label for="export-file" id="toPDF">PDF <img src="assets/images/pdf.png" alt="PDF"></label>
-                <label for="export-file" id="toEXCEL">EXCEL <img src="assets/images/excel.png" alt="Excel"></label> -->
-            </div>
-        </div>
+
     </section>
+    <div *ngIf="deleteNotification" class="alert alert-success" role="alert">
+        Xóa thành công
+    </div>
     <section class="table__body">
-        <table>
-            <thead>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light">
                 <tr>
-                    <th> Id <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Loại Sản Phẩm <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Mô Tả <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
-                    <th> Xu Hướng <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Id <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Tên món <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Mô tả <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Trạng thái <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Xu hướng <span class="icon-arrow">&UpArrow;</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td> 1 </td>
-                    <td> <img src="assets/images/maxresdefault.jpg" alt="Zinzu Chan Lee">Trà trái cây tươi</td>
-                    <td> Ngon Quá Ngon Quá </td>
-                    <td>
-                        <p class="status delivered">Kích hoạt</p>
+                <tr *ngFor="let categories of lisCategories">
+                    <td>{{ categories.id }}</td>
+                    <td>{{ categories.name }}</td>
+                    <td>{{ categories.description }}</td>
+                    <td><strong *ngIf="categories.role == '1'">kích hoạt</strong>
+                        <strong *ngIf="categories.role == '2'">chưa kích hoạt</strong>
+
                     </td>
-                    <td> <strong> Có </strong></td>
+                    <td><strong *ngIf="categories.status == 'hot'">hot</strong>
+                        <strong *ngIf="categories.status == 'none'">none</strong>
+
+                    </td>
                     <td class="d-flex justify-content-between align-items-center">
-                        <a routerLink="/pages/categories/edit-category"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
-                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')">Xóa</button>
-                    </td>                                                         
+                        <a [routerLink]="['/pages/categories/edit-category', categories.id]">
+                            <button class="btn btn-primary px-4 py-1">Sửa</button>
+                        </a>
+                        <button type="button" class="btn btn-danger px-4 py-1" (click)="openDeleteDialog(categories.id)">
+                            Xóa
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <ngx-paginator [apiUrl]="apiUrl" [current_page]="currentPage" [last_page]="lastPage"
+            (dataList)="getPage($event)">
+        </ngx-paginator>
     </section>
 </main>

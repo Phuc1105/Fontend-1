@@ -1,11 +1,12 @@
 const express = require('express');
-
 const usersApiControllers = require('../controllers/api/users');
 const deliveryApiControllers = require('../controllers/api/delivery');
 const personnelApiControllers = require('../controllers/api/personnels');
-const discountApiControllers = require('../controllers/api/discounts')
+const discountApiControllers = require('../controllers/api/discounts');
+const categoriesApiControllers = require('../controllers/api/categories');
 const router = express.Router();
 const multer = require('multer');
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, '../src/assets/images')
@@ -39,4 +40,12 @@ router.put('/personnels/:id',upload.single('img'),personnelApiControllers.update
 router.get('/discounts',discountApiControllers.get);
 router.get('/discounts/:id',discountApiControllers.getById);
 router.delete('/discounts/:id',discountApiControllers.delete);
+
+// ============== APi Categories ===========
+router.get('/categories', categoriesApiControllers.getCategories);
+router.get('/categories', categoriesApiControllers.detail);
+router.post('/categories', categoriesApiControllers.add);
+router.delete('/categories/:id', categoriesApiControllers.delete);
+router.put('/category/:id', categoriesApiControllers.update);
+
 module.exports = router;

@@ -11,6 +11,7 @@ import { ListCategoriesComponent } from './categories/list-categories/list-categ
 import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
+import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { RevenueComponent } from './statistics/revenue/revenue.component';
@@ -22,7 +23,6 @@ import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.c
 import { AddDiscountComponent } from './discounts/add-discount/add-discount.component';
 import { ListDiscountComponent } from './discounts/list-discount/list-discount.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
-import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
 
 const routes: Routes = [
   {
@@ -77,18 +77,13 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Danh mục / Sửa'},
-        path: 'categories/edit-category',
+        path: 'categories/edit-category/:id',
         component: EditCategoryComponent,
       },
       {
         data: { breadcrumb:'Đơn hàng / Danh sách'},
         path: 'inventories/list-inventory',
         component: ListInventoryComponent,
-      },
-      {
-        data: { breadcrumb:'Đơn hàng / Sửa'},
-        path: 'inventories/edit-inventory',
-        component: EditInventoryComponent,
       },
       {
         data: { breadcrumb:'Vận chuyển / Danh sách'},
