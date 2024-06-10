@@ -1,38 +1,78 @@
 import { Component } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { API_DISCOUNTS } from 'app/@core/config/api-endpoint.config';
+import { DiscountsService } from 'app/@core/services/apis/discounts.service';
+import { DialogConfirmComponent } from 'app/@theme/components/dialog-confirm/dialog-confirm.component';
 
+export interface Idiscount {
+  id: string;
+  img: string;
+  nameDiscount: string;
+  startDate: string;
+  endDate: string;
+  status: string;
+  contentDiscount: string
+}
 @Component({
   selector: 'app-list-discount',
   templateUrl: './list-discount.component.html',
   styleUrls: ['./list-discount.component.scss']
 })
 export class ListDiscountComponent {
-  promotions = [
-    {
-      id: 1,
-      image: 'assets/images/discount1.png',
-      title: 'Ưu đãi mua hàng',
-      offer: 'Khi mua từ 2 sản phẩm trở lên được giảm 15% tổng hóa đơn.',
-      startDate: '01/01/2024',
-      endDate: '01/01/2025',
-      status: 'Hoạt động'
-    },
-    {
-      id: 2,
-      image: 'assets/images/discount1.png',
-      title: 'Khuyến mãi mùa hè',
-      offer: 'Giảm giá 20% cho tất cả các sản phẩm.',
-      startDate: '15/06/2024',
-      endDate: '15/07/2024',
-      status: 'Sắp bắt đầu'
-    },
-    {
-      id: 3,
-      image: 'assets/images/discount2.jpg',
-      title: 'Ưu đãi thành viên',
-      offer: 'Thành viên VIP được giảm 25% toàn bộ sản phẩm.',
-      startDate: '01/03/2024',
-      endDate: '01/04/2024',
-      status: 'Đã kết thúc'
-    }
-  ];
+  lisDiscounts: any;
+  deleteNotification: boolean = false;
+  lastPage: number = 0;
+  currentPage: number = 0;
+  apiUrl = API_DISCOUNTS;
+  constructor(
+    private discount: DiscountsService,
+    private dialogService: NbDialogService,
+  ) { }
+  ngOnInit(): void {
+    this.getDiscounts();
+  }
+  getDiscounts() {
+    this.discount.getDiscount().subscribe(res => {
+      console.log(res);
+      this.lisDiscounts = res.data;
+      this.currentPage = res.meta.current_page;
+      this.lastPage = res.meta.last_page;
+    }, err => {
+      console.error(err);
+    })
+  }
+  getPage(res: any) {
+    this.lisDiscounts = res.data;
+    this.currentPage = res.meta.current_page;
+    this.lastPage = res.meta.last_page;
+
+  }
+  
+  openDeleteDialog(id: number): void {
+    this.dialogService.open(DialogConfirmComponent, {
+      context: {
+        title: 'Xác nhận xóa',
+        content: 'Bạn có chắc chắn muốn xóa sự kiện này không?'
+      }
+    }).onClose.subscribe(confirmed => {
+      if (confirmed) {
+        this.btnDelete(id);
+      } else {
+      }
+    });
+  }
+  btnDelete(id: number): void {
+    this.discount.deleteDiscount(id).subscribe(
+      res => {
+        this.deleteNotification = true;
+        setTimeout(() => {
+          this.deleteNotification = false;
+        }, 1500);
+        this.getDiscounts();
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
 }

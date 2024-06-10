@@ -127,7 +127,7 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Khuyến mãi / Sửa'},
-        path: 'discounts/edit-discount',
+        path: 'discounts/edit-discount/:id',
         component: EditDiscountComponent,
       },
       {

@@ -25,6 +25,7 @@ export class AddPersonnelComponent {
   onSubmit() {
     if(this.createForm.valid){
       const formData = this.createForm.value;
+      formData.img = this.getFileNameFromPath(formData.img);
       console.log(formData);
       this.personnel.postPersonnel(formData).subscribe(res=>{
         this.ngOnInit();
@@ -37,4 +38,8 @@ export class AddPersonnelComponent {
       })
     }
   }
+  getFileNameFromPath(path: string): string {
+    return path.split('\\').pop() || '';
+  }
+  
 }

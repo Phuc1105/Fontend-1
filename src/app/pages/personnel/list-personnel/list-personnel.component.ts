@@ -51,7 +51,7 @@ export class ListPersonnelComponent {
     this.dialogService.open(DialogConfirmComponent, {
       context: {
         title: 'Xác nhận xóa',
-        content: 'Bạn có chắc chắn muốn xóa đơn hàng này không?'
+        content: 'Bạn có chắc chắn muốn xóa nhân viên này không?'
       }
     }).onClose.subscribe(confirmed => {
       if (confirmed) {
@@ -68,6 +68,7 @@ export class ListPersonnelComponent {
           this.deleteNotification = false;
         }, 1500);
         this.getPersonnels();
+        
       },
       err => {
         console.error(err);

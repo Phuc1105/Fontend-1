@@ -47,6 +47,7 @@ exports.detail = async (req, res, next) =>{
         res.status(500).json({ error: error.message})
     }
 };
+
 exports.add = async (req, res, next) => {
     try {
         let personnel = {
@@ -54,8 +55,9 @@ exports.add = async (req, res, next) => {
             phone: req.body.phone,
             position: req.body.position,
             shift: req.body.shift,
-            img: req.body.img
+            img: req.body.img,
         };
+        console.log(personnel);
         const add = await personnels.add(personnel);
         res.status(200).json({
             data: add,
@@ -87,8 +89,8 @@ exports.update = async (req, res, next) => {
             shift: req.body.shift,
 
         };
-        if (req.file) {
-            personnel.img = req.file.filename;
+        if (req.body.img) {
+            personnel.img = req.body.img;
         } else if (req.body.img) {
             personnel.img = req.body.img;
         }

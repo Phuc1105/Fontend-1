@@ -1,16 +1,17 @@
 <div class="container">
-    <div *ngIf="createData" class="alert alert-success" role="alert">
-        Thêm thành công
-    </div>
+    
     <main class="form" id="customers_form">
         <section class="form__header">
             <h4>Thêm Nhân Viên Mới</h4>
         </section>
+        <div *ngIf="createData" class="alert alert-success alert alert-success m-3 p-2" role="alert">
+            Thêm thành công
+        </div>
         <section class="form__body p-3">
             <form (ngSubmit)="onSubmit()" [formGroup]="createForm">
                 <div class="form-group">
                     <label for="username">Tên nhân viên</label>
-                    <input type="text" id="username" name="username" class="form-control" formControlName="username"
+                    <input type="text" id="username" name="username" class="form-control" formControlName="username" placeholder="Nhập tên nhân viên.."
                         required>
                     <span class="text-danger"
                         *ngIf="createForm.get('username')!.invalid && (createForm.get('username')!.dirty || createForm.get('username')!.touched)">
@@ -19,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phone">Điện thoại:</label>
-                    <input type="text" id="phone" name="phone" class="form-control" formControlName="phone" required>
+                    <input type="text" id="phone" name="phone" class="form-control" formControlName="phone" placeholder="Nhập số điện thoại.." required>
                     <span class="text-danger" 
                     *ngIf="createForm.get('phone')!.invalid && (createForm.get('phone')!.dirty || createForm.get('phone')!.touched)"
                     >
