@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Ipersonnel } from 'app/pages/personnel/list-personnel/list-personnel.component';
 import { API_PERSONNELS } from 'app/@core/config/api-endpoint.config';
 
-const API_USER = 'http://localhost:3000/api/personnels';
+const API_PERSONNEL = API_PERSONNELS
 @Injectable({
   providedIn: 'root'
 })

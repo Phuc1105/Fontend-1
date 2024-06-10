@@ -42,9 +42,14 @@ export class ListPersonnelComponent {
     })
   }
   getPage(res: any) {
+    if (res && res.meta) {
       this.lisPersonnels = res.data;
       this.currentPage = res.meta.current_page;
       this.lastPage = res.meta.last_page;
+      this.getPersonnels();
+    } else {
+      console.error('Invalid response format');
+    }
   }
   
   openDeleteDialog(id: number): void {

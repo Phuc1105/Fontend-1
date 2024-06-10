@@ -1,7 +1,6 @@
 const  personnels = require('../../models/personnels');
 const path = require('path');
 
-
 exports.getPersonnel = async (req, res, next) => {
     try {
         const page = parseInt(req.query.page) || 1;
