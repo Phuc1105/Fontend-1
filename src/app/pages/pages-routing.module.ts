@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Khách hàng/ Thêm'},
-        path: 'users/edit-user',
+        path: 'users/edit-user/:id',
         component: EditUserComponent,
       },
       {
@@ -84,6 +84,11 @@ const routes: Routes = [
         data: { breadcrumb:'Đơn hàng / Danh sách'},
         path: 'inventories/list-inventory',
         component: ListInventoryComponent,
+      },
+      {
+        data: { breadcrumb:'Đơn hàng / Sửa'},
+        path: 'inventories/edit-inventory',
+        component: EditInventoryComponent,
       },
       {
         data: { breadcrumb:'Vận chuyển / Danh sách'},

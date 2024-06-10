@@ -1,9 +1,10 @@
 const db = require('./db');
-module.exports = class User {
-    constructor() { }
+
+module.exports = class Deliveries {
+    constructor() {}
     static fetchAll(offset, limit) {
         return new Promise((resolve, reject) => {
-            const sql = `SELECT SQL_CALC_FOUND_ROWS * FROM users LIMIT ?, ?`;
+            const sql = `SELECT SQL_CALC_FOUND_ROWS * FROM deliveries LIMIT ?, ?`;
             db.query(sql, [offset, limit], (err, data) => {
                 if (err) {
                     reject(err);
@@ -22,37 +23,11 @@ module.exports = class User {
             });
         });
     }
-    static async fetchById(userId) {
+   
+    static async fetchById(deliveryId) {
         return new Promise((resolve, reject) => {
-            let sql = `SELECT * FROM users WHERE id = ?`;
-            db.query(sql, [userId], function (err, data) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(data);
-                }
-            })
-        })
-    }
-
-    static async add(user) {
-        return new Promise((resolve, reject) => {
-            db.query(
-            "INSERT INTO users SET ?",user,
-            function (err, data) {
-              if (err) {
-                reject(err);
-              } else {
-                resolve(data);
-              }
-            });
-        });
-      }
-
-      static async delete(userId){
-        return new Promise((resolve, reject) => {
-            let sql = `DELETE FROM users WHERE id = ?`;
-            db.query(sql, [userId], function (err, data) {
+            let sql = 'SELECT * FROM deliveries WHERE id = ?';
+            db.query(sql, [deliveryId], function (err, data) {
                 if (err) {
                     reject(err);
                 } else {
@@ -62,10 +37,9 @@ module.exports = class User {
         });
     }
 
-    static async update(userId, user){
+    static async add(delivery) {
         return new Promise((resolve, reject) => {
-            let sql = 'UPDATE users SET ? WHERE id = ?';
-            db.query(sql, [user, userId], function (err, data) {
+            db.query('INSERT INTO deliveries SET ?', delivery, function (err, data) {
                 if (err) {
                     reject(err);
                 } else {
@@ -74,16 +48,30 @@ module.exports = class User {
             });
         });
     }
-    static async login(username){
-        return new Promise((resolve, reject)=>{
-            let sql =`SELECT * FROM users WHERE username='${username}'`;
-            db.query(sql,function(err, data){
-                if(err){
+
+    static async delete(deliveryId) {
+        return new Promise((resolve, reject) => {
+            let sql = 'DELETE FROM deliveries WHERE id = ?';
+            db.query(sql, [deliveryId], function (err, data) {
+                if (err) {
                     reject(err);
-                }else{
+                } else {
                     resolve(data);
                 }
-            })
-        })
+            });
+        });
     }
-}
+
+    static async update(deliveryId, delivery) {
+        return new Promise((resolve, reject) => {
+            let sql = 'UPDATE deliveries SET ? WHERE id = ?';
+            db.query(sql, [delivery, deliveryId], function (err, data) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(data);
+                }
+            });
+        });
+    }
+};

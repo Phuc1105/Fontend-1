@@ -68,7 +68,6 @@ export class ListPersonnelComponent {
           this.deleteNotification = false;
         }, 1500);
         this.getPersonnels();
-
       },
       err => {
         console.error(err);
