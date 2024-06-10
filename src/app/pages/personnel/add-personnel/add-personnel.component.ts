@@ -19,7 +19,7 @@ export class AddPersonnelComponent {
       phone: new FormControl('', [Validators.required]),
       position: new FormControl('', [Validators.required]),
       shift: new FormControl('', [Validators.required]),
-      img: new FormControl('',[Validators.required])
+      img: new FormControl(null, [Validators.required])
     })
   }
   onSubmit() {
@@ -27,6 +27,7 @@ export class AddPersonnelComponent {
       const formData = this.createForm.value;
       console.log(formData);
       this.personnel.postPersonnel(formData).subscribe(res=>{
+        this.ngOnInit();
         this.createData = true;
         setTimeout(() => {
           this.createData = false;

@@ -3,41 +3,69 @@
         <section class="form__header">
             <h4>Sửa Nhân Viên Mới</h4>
         </section>
+        <div *ngIf="editNotification" class="alert alert-success" role="alert">
+            Sửa thành công
+          </div>
         <section class="form__body p-3">
-            <form>
+            <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+                
                 <div class="form-group">
                     <label for="id">Id</label>
                     <input type="text" id="id" name="id" class="form-control" value="{{data?.id}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="username">Tên nhân viên</label>
-                    <input type="text" id="username" name="username" class="form-control" value="{{data?.username}}" required>
+                    <input type="text" id="username" name="username" class="form-control" value="{{data?.username}}" formControlName="username" required>
+                    <span class="text-danger"
+                        *ngIf="editForm.get('username')!.invalid && (editForm.get('username')!.dirty || editForm.get('username')!.touched)">
+                        Tên không được để trống!!
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="phone">Điện thoại:</label>
-                    <input type="text" id="phone" name="phone" class="form-control" value="{{data?.phone}}" required>
+                    <input type="text" id="phone" name="phone" class="form-control" value="{{data?.phone}}" formControlName="phone" required>
+                    <span class="text-danger" 
+                    *ngIf="editForm.get('phone')!.invalid && (editForm.get('phone')!.dirty || editForm.get('phone')!.touched)"
+                    >
+                      Số điện thoại không được để trống!!
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label for="chucvu">Chức vụ:</label>
-                    <select id="chucvu" name="chucvu" class="form-control" required>
+                    <label for="position">Chức vụ:</label>
+                    <select id="position" name="position" class="form-control" formControlName="position" required>
                         <option value="" disabled>Chọn chức vụ nhân viên...</option>
                         <option value="Manager" [selected]="data?.position == 'Manager'">Quản lý</option>
                         <option value="Staff" [selected]="data?.position == 'Staff'" >Nhân viên</option>
                         <option value="Delivery" [selected]="data?.position == 'Delivery'">Giao hàng</option>
                     </select>
+                    <span class="text-danger" 
+                    *ngIf="editForm.get('position')!.invalid && (editForm.get('position')!.dirty || editForm.get('position')!.touched)"
+                    >
+                      Vui lòng chọn chức vụ!!
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label for="ca">Ca làm:</label>
-                    <select id="ca" name="ca" class="form-control" required>
+                    <label for="shift">Ca làm:</label>
+                    <select id="shift" name="shift" class="form-control" formControlName="shift" required>
                         <option value="" disabled selected>Chọn ca làm...</option>
                         <option value="Shift 1" [selected]="data?.shift == 'Shift 1'">Ca 1(7h-10h)</option>
                         <option value="Shift 2" [selected]="data?.shift == 'Shift 2'">Ca 2(10h-14h)</option>
                         <option value="Shift 3" [selected]="data?.shift == 'Shift 3'">Ca 3(14h-18h)</option>
                     </select>
+                    <span class="text-danger" 
+                    *ngIf="editForm.get('shift')!.invalid && (editForm.get('shift')!.dirty || editForm.get('shift')!.touched)"
+                    >
+                      Vui lòng chọn ca làm!!
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="img">Ảnh</label>
-                    <input type="file" id="img" name="img" class="form-control">
+                    <input type="file" id="img" name="img" class="form-control" formControlName="img">
+                    <span class="text-danger" 
+                    *ngIf="editForm.get('img')!.invalid && (editForm.get('img')!.dirty || editForm.get('img')!.touched)"
+                    >
+                      Ảnh không được để trống!!
+                    </span>
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Xác nhận</button>
