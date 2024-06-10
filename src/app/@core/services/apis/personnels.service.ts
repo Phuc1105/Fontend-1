@@ -31,7 +31,7 @@ export class PersonnelsService {
   }
   putPersonnel(personnel: Ipersonnel, id: number): Observable<any>{
     return this.http.put(`${API_USER}/${id}`, {
-      username: personnel.name,
+      username: personnel.username,
       phone:  personnel.phone,
       position: personnel.position,
       shift: personnel.shift,
