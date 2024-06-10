@@ -1,8 +1,36 @@
 const  personnels = require('../../models/personnels');
+const path = require('path');
+
+
 exports.getPersonnel = async (req, res, next) => {
     try {
-        const personnelList = await personnels.fetchAll();
-        res.status(200).json({ data: personnelList });
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 6;
+        const offset = (page - 1) * limit;
+
+        const { data, total } = await personnels.fetchAll(offset, limit);
+        const totalPages = Math.ceil(total / limit);
+        const from = offset + 1;
+        const to = offset + data.length;
+
+        res.status(200).json({
+            data: data,
+            meta: {
+                current_page: page,
+                from: from,
+                last_page: totalPages,
+                path: req.baseUrl,
+                per_page: limit,
+                to: to,
+                total: total
+            },
+            links: {
+                first: `${req.baseUrl}/personnels?page=1&limit=${limit}`,
+                last: `${req.baseUrl}/personnels?page=${totalPages}&limit=${limit}`,
+                prev: page > 1 ? `${req.baseUrl}/personnels?page=${page - 1}&limit=${limit}` : null,
+                next: page < totalPages ? `${req.baseUrl}/personnels?page=${page + 1}&limit=${limit}` : null
+            }
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
