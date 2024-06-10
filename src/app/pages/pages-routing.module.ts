@@ -37,7 +37,7 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Khách hàng/ Thêm'},
-        path: 'users/edit-user',
+        path: 'users/edit-user/:id',
         component: EditUserComponent,
       },
       {

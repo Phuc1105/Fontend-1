@@ -9,6 +9,8 @@ router.get('/users',usersApiControllers.getUsers);
 router.post('/users',usersApiControllers.create);
 router.get('/users/:id',usersApiControllers.edit);
 router.put('/users/:id',usersApiControllers.update);
+router.delete('/users/:id',usersApiControllers.delete);
+
 //delivery
 router.get('/delivery',deliveryApiControllers.getDelivery);
 router.post('/delivery',deliveryApiControllers.create);
