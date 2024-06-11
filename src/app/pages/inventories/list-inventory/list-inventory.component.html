@@ -1,0 +1,48 @@
+<main class="table" id="orders_table">
+    <section class="table__header">
+        <h4>Danh Sách Đơn Hàng</h4>
+        <div class="input-group">
+            <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;">
+        </div>
+        <div class="export__file">
+            <label for="export-file" class="export__file-btn" title="Xuất File"></label>
+            <input type="checkbox" id="export-file">
+            <div class="export__file-options">
+                <label>Xuất Dữ Liệu &nbsp; &#10140;</label>
+                <!-- <label for="export-file" id="toPDF">PDF <img src="assets/images/pdf.png" alt="PDF"></label>
+                <label for="export-file" id="toEXCEL">EXCEL <img src="assets/images/excel.png" alt="Excel"></label> -->
+            </div>
+        </div>
+    </section>
+    <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Tên Khách Hàng <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Sản Phẩm <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Số Lượng <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Tổng Giá <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> 1 </td>
+                    <td> Nguyễn Văn A </td>
+                    <td> Trà sữa trân châu đường đen </td>
+                    <td> 2 </td>
+                    <td> 100,000 VND </td>
+                    <td>
+                        <p class="status delivered">Đã giao</p>
+                    </td>
+                    <td class="d-flex justify-content-between align-items-center">
+                        <a routerLink="/pages/inventories/edit-inventory"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
+                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa đơn hàng này chứ?')">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
