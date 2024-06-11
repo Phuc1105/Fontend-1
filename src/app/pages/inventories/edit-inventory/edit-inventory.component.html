@@ -1,0 +1,36 @@
+<main class="form" id="edit_order_form">
+    <section class="form__header">
+        <h4>Sửa Đơn Hàng</h4>
+    </section>
+    <section class="form__body p-3">
+        <form>
+            <div class="form-group">
+                <label for="name">Tên Khách Hàng:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="product">Sản Phẩm:</label>
+                <input type="text" id="product" name="product" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Số Lượng:</label>
+                <input type="number" id="quantity" name="quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="total_price">Tổng Giá:</label>
+                <input type="number" id="total_price" name="total_price" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Trạng Thái:</label>
+                <select id="status" name="status" required>
+                    <option value="ordered">Đã đặt hàng</option>
+                    <option value="delivered">Đã giao</option>
+                    <option value="canceled">Đã hủy</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Sửa Đơn Hàng</button>
+            </div>
+        </form>
+    </section>
+</main>

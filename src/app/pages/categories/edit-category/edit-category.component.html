@@ -1,0 +1,64 @@
+<div class="container">
+    <main class="form" id="customers_form">
+        <section class="form__header">
+            <h4>Sửa Nhân Viên Mới</h4>
+        </section>
+        <div *ngIf="editNotification" class="alert alert-success" role="alert">
+            Sửa thành công
+        </div>
+        <section class="form__body p-3">
+            <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+
+                <div class="form-group">
+                    <label for="id">Id</label>
+                    <input type="text" id="id" name="id" class="form-control" value="{{data?.id}}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="name">Tên món</label>
+                    <input type="text" id="name" name="name" class="form-control" value="{{data?.name}}"
+                        formControlName="name" required>
+                    <span class="text-danger"
+                        *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        Tên không được để trống!!
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="description">Mô tả:</label>
+                    <input type="text" id="description" name="description" class="form-control"
+                        value="{{data?.description}}" formControlName="description" required>
+                    <span class="text-danger"
+                        *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                        Mô tả
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="role">Trạng thái:</label>
+                    <select id="role" name="role" class="form-control" formControlName="role" required>
+                        <option value="" disabled>Chọn trạng thái</option>
+                        <option value="1" [selected]="data?.role == '1'">Kích hoạt</option>
+                        <option value="2" [selected]="data?.role == '2'">Chưa kích hoạt</option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="editForm.get('role')!.invalid && (editForm.get('role')!.dirty || editForm.get('role')!.touched)">
+                        Vui lòng chọn trạng thái
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="status">Xu hướng:</label>
+                    <select id="status" name="status" class="form-control" formControlName="status" required>
+                        <option value="" disabled selected>Chọn xu hướng...</option>
+                        <option value="status" [selected]="data?.status == 'hot'">Hot</option>
+                        <option value="status" [selected]="data?.status == 'none'">None</option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+                        Vui lòng chọn xu hướng!!
+                    </span>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</div>
