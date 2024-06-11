@@ -1,0 +1,70 @@
+<div *ngIf="editNotification" class="alert alert-success p-3 mb-3" role="alert">
+    Sửa thành công
+</div>
+<main class="form" id="customers_form">
+    <section class="form__header">
+        <h4>Sửa sản phẩm</h4>
+    </section>
+    
+    <section class="form__body p-3">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Tên sản phẩm:</label>
+                <input type="text" id="product_name" formControlName="product_name" name="product_name"
+                    value="{{data?.product_name}}">
+                <span *ngIf="productForm.get('product_name')?.invalid && productForm.get('product_name')?.touched"
+                    class="text-danger">
+                    Vui lòng nhập tên sản phẩm
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="file">Hình ảnh:</label>
+                <img src="{{data?.image}}" alt="" width="80" height="80">
+                <input type="file" id="image" formControlName="image" value="{{data?.image}}">
+
+                <span *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched"
+                    class="text-danger">
+                    Vui lòng nhập hình ảnh
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="price">Giá sản phẩm:</label>
+                <input type="number" id="price" formControlName="price" value="{{data?.price}}">
+                <span *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+                    class="text-danger">
+                    <span *ngIf="productForm.get('price')?.errors?.['required']">Vui lòng nhập giá sản phẩm</span>
+                    <span *ngIf="productForm.get('price')?.errors?.['min']">Giá sản phẩm phải lớn hơn 0</span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="status">Trạng Thái:</label>
+                <select id="status" formControlName="status" value="{{data?.status}}" required>
+                    <option value="" disabled selected>Chọn trạng thái</option>
+                    <option value="active">Hiển thị</option>
+                    <option value="displayed">Kích hoạt</option>
+                    <!-- <option value="3">Ẩn</option> -->
+                </select>
+                <span *ngIf="productForm.get('status')?.invalid && productForm.get('status')?.touched"
+                    class="text-danger">
+                    Vui lòng chọn trạng thái của sản phẩm
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="role">Loại sản phẩm:</label>
+                <select id="role" formControlName="category" value="{{data?.category}}" required>
+                    <option value="" disabled selected>Chọn trạng thái</option>
+                    <option value="milk_tea">Trà sữa</option>
+                    <option value="tea">Trà</option>
+                    <option value="dessert">Bánh ngọt</option>
+                </select>
+                <span *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched"
+                    class="text-danger">
+                    Vui lòng chọn loại sản phẩm
+                </span>
+            </div>
+            <div class="form-actions">
+                <button type="submit" [disabled]="productForm.invalid">Lưu thay đổi</button>
+            </div>
+        </form>
+    </section>
+</main>

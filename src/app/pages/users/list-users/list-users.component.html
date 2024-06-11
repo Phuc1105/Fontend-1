@@ -1,0 +1,56 @@
+<div *ngIf="createData" class="alert alert-success p-3 mb-3" role="alert">
+    Xóa thành công
+</div>
+<main class="table" id="customers_table">
+    <section class="table__header">
+        <h4>Danh Sách Tài Khoản</h4>
+        <div class="input-group">
+            <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;" [(ngModel)]="listFilter"
+            >
+           
+        </div>
+        <div class="export__file">
+            <label for="export-file" class="export__file-btn" title="Xuất File"></label>
+            <input type="checkbox" id="export-file">
+            <div class="export__file-options">
+                <label>Xuất Dữ Liệu &nbsp; &#10140;</label>
+                <!-- <label for="export-file" id="toPDF">PDF <img src="assets/images/pdf.png" alt="PDF"></label>
+                <label for="export-file" id="toEXCEL">EXCEL <img src="assets/images/excel.png" alt="Excel"></label> -->
+            </div>
+        </div>
+    </section>
+    <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Tên Tài Khoản <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Email <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Số điện thoại <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Vai Trò <span class="icon-arrow">&UpArrow;</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let users of listUsers, let i = index">
+                    <td>{{i+1}}</td>
+                    <td> <img src="assets/images/Zinzu Chan Lee.jpg" alt="Zinzu Chan Lee">{{users.username}}</td>
+                    <td> {{users.email}} </td>
+                    <td> {{users.phone}} </td>
+                    <td>
+                        <p class="status delivered">{{users.status}}</p>
+                    </td>
+                    <td> <strong> {{users.role}} </strong></td>
+                    <td class="d-flex justify-content-between align-items-center">
+                        <a [routerLink]="['/pages/users/edit-user/',users.id ]"><button class="btn btn-primary px-3 py-2"><nb-icon icon="edit-outline"></nb-icon></button></a>
+                        <button (click)="openDeleteDialog(users.id)" class="btn btn-danger px-3 py-2"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                    </td>                                                         
+                </tr>
+            </tbody>
+        </table>
+        <ngx-paginator [apiUrl]="apiUrl" [current_page]="currentPage" [last_page]="lastPage"
+        (dataList)="getPage($event)">
+    </ngx-paginator>
+    </section>
+</main>

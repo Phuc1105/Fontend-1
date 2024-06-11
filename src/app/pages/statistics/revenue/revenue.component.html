@@ -1,0 +1,24 @@
+<nav>
+    <div class="container">
+        <ul>
+            <li><a href="#" class="active">Tổng Quan</a></li>
+      
+        </ul>
+    </div>
+</nav>
+<section id="content">
+    <div class="container">
+      <h2>Doanh Số Bán Hàng</h2>
+      <div class="chart">
+        <div *ngFor="let stat of listStatistics" class="bar" [style.height]="stat.percentage + '%'" [attr.data-label]="stat.month">
+          <span class="value">{{ stat.revenue | number }} đ</span>
+        </div>
+      </div>
+      <div class="sales-data">
+        <div *ngFor="let stat of listStatistics" class="month">
+          <h3>{{ stat.month }}</h3>
+          <p>Doanh số: {{ stat.revenue | number }} đ</p>
+        </div>
+      </div>
+    </div>
+  </section>
