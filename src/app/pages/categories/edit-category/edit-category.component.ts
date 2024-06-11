@@ -31,6 +31,8 @@ export class EditCategoryComponent implements OnInit {
   } 
   getCategoryById(id: number): void {
     this.category.getCategoryById(id).subscribe(res=>{
+      console.log(res);
+      
       this.data = res.data[0];
       this.createForm();
   },err=>{

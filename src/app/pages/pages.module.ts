@@ -26,6 +26,8 @@ import { AddDiscountComponent } from './discounts/add-discount/add-discount.comp
 import { EditDiscountComponent } from './discounts/edit-discount/edit-discount.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbIconModule } from '@nebular/theme';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
+import { RevenueComponent } from './statistics/revenue/revenue.component';
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -58,6 +60,8 @@ import { NbIconModule } from '@nebular/theme';
     AddDiscountComponent,
     EditDiscountComponent,
     EditCategoryComponent,
+    EditProductComponent,
+    RevenueComponent,
 
   ],
   providers: []

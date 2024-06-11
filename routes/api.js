@@ -4,6 +4,8 @@ const deliveryApiControllers = require('../controllers/api/delivery');
 const personnelApiControllers = require('../controllers/api/personnels');
 const discountApiControllers = require('../controllers/api/discounts');
 const categoriesApiControllers = require('../controllers/api/categories');
+const productsApiControllers = require('../controllers/api/products')
+const statisticsApiControllers = require('../controllers/api/statistics')
 const router = express.Router();
 const multer = require('multer');
 
@@ -49,9 +51,18 @@ module.exports = router;
 
 // ============== APi Categories ===========
 router.get('/categories', categoriesApiControllers.getCategories);
-router.get('/categories', categoriesApiControllers.detail);
+router.get('/categories/:id', categoriesApiControllers.detail);
 router.post('/categories', categoriesApiControllers.add);
 router.delete('/categories/:id', categoriesApiControllers.delete);
 router.put('/category/:id', categoriesApiControllers.update);
 
+// ============== APi Product ===========
+router.get('/products',productsApiControllers.getProducts);
+router.get('/products/:id',productsApiControllers.detail);
+router.post('/products/',productsApiControllers.add);
+router.delete('/products/:id',productsApiControllers.delete);
+router.put('/products/:id',productsApiControllers.update)
+
+// ============== APi statistics ===========
+router.get('/statistics',statisticsApiControllers.getStatistics)
 module.exports = router;

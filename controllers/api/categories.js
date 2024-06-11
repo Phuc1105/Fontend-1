@@ -38,9 +38,9 @@ exports.getCategories = async (req, res, next) => {
 exports.detail = async (req, res, next) =>{
     try{
         let id = req.params.id;
-        const categories = await categories.fetchById(id);
+        const categorie = await categories.fetchById(id);
         res.status(201).json({
-            data: categories,
+            data: categorie,
         })
     }catch(error){
         res.status(500).json({ error: error.message})

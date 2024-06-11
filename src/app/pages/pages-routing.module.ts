@@ -60,7 +60,7 @@ const routes: Routes = [
         component: ListProductsComponent,
       },
       {
-        path: 'products/edit-product',
+        path: 'products/edit-product/:id',
         component: EditProductComponent,
       },
      
