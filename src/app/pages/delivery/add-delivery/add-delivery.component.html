@@ -10,19 +10,28 @@
             <div class="form-group">
                 <label for="customer_name">Tên Khách Hàng <em class="text-danger">*</em></label>
                 <input type="text" name="customer_name" formControlName="customer_name">
-                <span class="text-danger" *ngIf="orderForm.get('customer_name')!.errors?.required">
-                    Tên khách hàng không được để trống
+
+                <span class="text-danger"
+                    *ngIf="orderForm.get('customer_name')!.invalid && (orderForm.get('customer_name')!.dirty || orderForm.get('customer_name')!.touched)">
+                    <ng-container *ngIf="orderForm.get('customer_name')!.errors?.['required']"> Tên khách hàng không
+                        được
+                        để trống</ng-container>
+
                 </span>
             </div>
             <div class="form-group">
                 <label for="customer_phone">Số Điện Thoại <em class="text-danger">*</em></label>
                 <input type="tel" id="customer_phone" name="customer_phone" formControlName="customer_phone">
-                <span class="text-danger" *ngIf="orderForm.get('customer_phone')!.errors?.required">
-                    Số điện thoại không được để trống
+                <span class="text-danger"
+                    *ngIf="orderForm.get('customer_phone')!.invalid && (orderForm.get('customer_phone')!.dirty || orderForm.get('customer_phone')!.touched)">
+                    <ng-container *ngIf="orderForm.get('customer_phone')!.errors?.['required']"> Số điện thoại không
+                        được để
+                        trống</ng-container>
+                    <ng-container *ngIf="orderForm.get('customer_phone')!.errors?.['pattern']"> Số điện thoại phải bắt
+                        đầu là 0 và
+                        phải đủ 10 số</ng-container>
                 </span>
-                <span class="text-danger" *ngIf="orderForm.get('customer_phone')!.errors?.pattern">
-                    Số điện thoại phải bắt đầu là 0 và phải đủ 10 số
-                </span>
+
             </div>
             <div class="form-group">
                 <label for="milkTea_flavor">Hương Vị Trà Sữa</label>
@@ -34,8 +43,11 @@
                     <option value="honeydew">Dưa Gang</option>
                     <option value="chocolate">Sô-cô-la</option>
                 </select>
-                <span class="text-danger" *ngIf="orderForm.get('milkTea_flavor')!.errors?.required">Hương vị không được để trống</span>
-
+                <span class="text-danger"
+                    *ngIf="orderForm.get('milkTea_flavor')!.invalid && (orderForm.get('milkTea_flavor')!.dirty || orderForm.get('milkTea_flavor')!.touched)">
+                    <ng-container *ngIf="orderForm.get('milkTea_flavor')!.errors?.['required']">Hương vị không được
+                        để trống</ng-container>
+                </span>
             </div>
             <div class="form-group">
                 <label for="sugar">Đường</label>
@@ -47,8 +59,11 @@
                     <option value="70">70%</option>
                     <option value="100">100%</option>
                 </select>
-                <span class="text-danger" *ngIf="orderForm.get('sugar')!.errors?.required">Mức đường không được để trống</span>
-
+                <span class="text-danger"
+                    *ngIf="orderForm.get('sugar')!.invalid && (orderForm.get('sugar')!.dirty || orderForm.get('sugar')!.touched)">
+                    <ng-container *ngIf="orderForm.get('sugar')!.errors?.['required']">Mức đường không được để
+                        trống</ng-container>
+                </span>
             </div>
             <div class="form-group">
                 <label for="ice">Đá</label>
@@ -60,7 +75,12 @@
                     <option value="70">70%</option>
                     <option value="100">100%</option>
                 </select>
-            <span class="text-danger" *ngIf="orderForm.get('ice')!.errors?.required">Mức đá không được để trống</span>
+                <span class="text-danger"
+                    *ngIf="orderForm.get('ice')!.invalid && (orderForm.get('ice')!.dirty || orderForm.get('ice')!.touched)">
+                    <ng-container *ngIf="orderForm.get('ice')!.errors?.['required']">Mức đá không được để
+                        trống</ng-container>
+                </span>
+
             </div>
             <div class="form-group">
                 <label for="toppings">Topping</label>
@@ -71,7 +91,12 @@
                     <option value="aloe">Thạch Lô Hội</option>
                     <option value="grass_jelly">Thạch Đen</option>
                 </select>
-                <span class="text-danger" *ngIf="orderForm.get('toppings')!.errors?.required">Topping không được để trống</span>
+                <span class="text-danger"
+                    *ngIf="orderForm.get('toppings')!.invalid && (orderForm.get('toppings')!.dirty || orderForm.get('toppings')!.touched)">
+                    <ng-container *ngIf="orderForm.get('toppings')!.errors?.['required']">Topping không được để
+                        trống</ng-container>
+                </span>
+
             </div>
             <div class="form-actions">
                 <button type="submit">Thêm Đơn Hàng</button>
