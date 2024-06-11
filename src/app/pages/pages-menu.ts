@@ -54,7 +54,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Danh Sách Đơn Hàng',
-        link: '/pages/inventories/list-inventory',
+        link: '/pages/inventory/list-inventory',
       },
     ]
   },
