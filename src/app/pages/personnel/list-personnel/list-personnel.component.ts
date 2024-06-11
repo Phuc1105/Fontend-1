@@ -30,7 +30,7 @@ export class ListPersonnelComponent implements OnInit {
   constructor(
     private personnel: PersonnelsService,
     private dialogService: NbDialogService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getPersonnels();
@@ -54,30 +54,6 @@ export class ListPersonnelComponent implements OnInit {
     );
   }
 
-  getPersonnels() {
-    this.personnel.getPersonnel().subscribe(res => {
-      console.log(res);
-      this.lisPersonnels = res.data;
-      this.currentPage = res.meta.current_page;
-      this.lastPage = res.meta.last_page;
-    }, err => {
-      console.error(err);
-    })
-  }
-
-  set listFilter(value: string) {
-    this._listFilter = value;
-    this.lisPersonnels = this.listFilter
-      ? this.performFilter(this.listFilter)
-      : this.originalPersonnels;
-  }
-
-  performFilter(filterBy: string): Ipersonnel[] {
-    filterBy = filterBy.toLocaleLowerCase();
-    return this.originalPersonnels.filter((personnel: Ipersonnel) =>
-      personnel.username.toLocaleLowerCase().includes(filterBy)
-    );
-  }
 
   getPersonnels() {
     this.personnel.getPersonnel().subscribe(
@@ -95,7 +71,7 @@ export class ListPersonnelComponent implements OnInit {
 
   getPage(res: any) {
     this.lisPersonnels = res.data;
-    this.originalPersonnels = res.data; 
+    this.originalPersonnels = res.data;
     this.currentPage = res.meta.current_page;
     this.lastPage = res.meta.last_page;
   }
