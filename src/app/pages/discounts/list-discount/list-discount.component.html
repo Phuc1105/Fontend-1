@@ -1,6 +1,9 @@
 <main class="table" id="customers_table">
   <section class="table__header">
     <h4>Danh Sách Khuyến Mãi</h4>
+    <div class="input-group">
+      <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;"  [(ngModel)]='listFilter'>
+  </div>
   </section>
   <div *ngIf="deleteNotification" class="alert alert-success alert alert-success m-3 p-2" role="alert">
     Xóa thành công

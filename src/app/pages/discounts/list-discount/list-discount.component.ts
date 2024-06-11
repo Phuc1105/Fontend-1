@@ -19,11 +19,13 @@ export interface Idiscount {
   styleUrls: ['./list-discount.component.scss']
 })
 export class ListDiscountComponent {
-  lisDiscounts: any;
+  lisDiscounts: Idiscount[] = [];
+  originalDiscounts: Idiscount[] = [];
   deleteNotification: boolean = false;
   lastPage: number = 0;
   currentPage: number = 0;
   apiUrl = API_DISCOUNTS;
+  private _listFilter: string = '';
   constructor(
     private discount: DiscountsService,
     private dialogService: NbDialogService,
@@ -35,6 +37,7 @@ export class ListDiscountComponent {
     this.discount.getDiscount().subscribe(res => {
       console.log(res);
       this.lisDiscounts = res.data;
+      this.originalDiscounts = res.data;
       this.currentPage = res.meta.current_page;
       this.lastPage = res.meta.last_page;
     }, err => {
@@ -45,7 +48,6 @@ export class ListDiscountComponent {
     this.lisDiscounts = res.data;
     this.currentPage = res.meta.current_page;
     this.lastPage = res.meta.last_page;
-
   }
   
   openDeleteDialog(id: number): void {
@@ -73,6 +75,23 @@ export class ListDiscountComponent {
       err => {
         console.error(err);
       }
+    );
+  }
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.lisDiscounts = this.listFilter
+      ? this.performFilter(this.listFilter)
+      : this.originalDiscounts;
+  }
+
+  performFilter(filterBy: string): Idiscount[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.originalDiscounts.filter((discount: Idiscount) =>
+      discount.nameDiscount.toLocaleLowerCase().includes(filterBy)
     );
   }
 }
