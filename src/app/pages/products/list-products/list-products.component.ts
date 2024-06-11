@@ -1,5 +1,17 @@
 import { Component } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { API_PRODUCTS } from 'app/@core/config/api-endpoint.config';
+import { ProductService } from 'app/@core/services/apis/products.service';
+import { DialogConfirmComponent } from 'app/@theme/components/dialog-confirm/dialog-confirm.component';
 
+export interface Products{
+  id: string;
+  product_name: string;
+  image: string;
+  price: string;
+  status: string;
+  category: string;
+}
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -12,11 +24,11 @@ export class ListProductsComponent {
   currentPage : number = 0;
   deleteNotification: boolean = false;
   apiUrl = API_PRODUCTS
-  private _listFilter: string = ''; 
+  private _listFilter: string = '';
   constructor(
     private product: ProductService,
     private dialogService: NbDialogService,
-  ) {}  
+  ) {}
   ngOnInit(): void {
     this.getProducts();
   }
