@@ -58,7 +58,7 @@
                     <option value="3">Ẩn</option>
                 </select>
                 <span class="text-danger"
-                    *ngIf="userForm.get('status')!.invalid && (userForm.get('status')!.dirty || userForm.get('status')!.touched)">
+                        *ngIf="userForm.get('status')!.invalid && (userForm.get('status')!.dirty || userForm.get('status')!.touched)">
                     <ng-container *ngIf="userForm.get('status')!.errors?.['required']"> Trạng thái không được để
                         trống</ng-container>
                 </span>
