@@ -20,9 +20,11 @@ export interface Iusers {
 })
 export class ListUsersComponent {
   listUsers: any;
+  originalUsers: Iusers[] = [];
   lastPage: number = 0;
   currentPage: number = 0;
   createData : boolean = false;
+  private _listFilter: string = '';
   apiUrl = API_USERS;
   constructor(
     private user: UsersService,
@@ -31,10 +33,27 @@ export class ListUsersComponent {
   ngOnInit(): void {
     this.getUsers();
   }
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.listUsers = this.listFilter
+      ? this.performFilter(this.listFilter)
+      : this.originalUsers;
+  }
+  performFilter(filterBy: string): Iusers[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.originalUsers.filter((user: Iusers) =>
+      user.username.toLocaleLowerCase().includes(filterBy)
+    );
+  }
   getUsers(){
     this.user.getUsers().subscribe(users =>{
       console.log(users);
       this.listUsers = users.data;
+      this.originalUsers = users.data;
       this.currentPage = users.meta.current_page;
       this.lastPage = users.meta.last_page;
     })

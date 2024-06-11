@@ -26,11 +26,31 @@ export class ListPersonnelComponent {
   apiUrl = API_PERSONNELS;
   constructor(
     private personnel: PersonnelsService,
-    private dialogService: NbDialogService,
-  ) { }
+    private dialogService: NbDialogService
+  ) {}
+
   ngOnInit(): void {
     this.getPersonnels();
   }
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.lisPersonnels = this.listFilter
+      ? this.performFilter(this.listFilter)
+      : this.originalPersonnels;
+  }
+
+  performFilter(filterBy: string): Ipersonnel[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.originalPersonnels.filter((personnel: Ipersonnel) =>
+      personnel.username.toLocaleLowerCase().includes(filterBy)
+    );
+  }
+
   getPersonnels() {
     this.personnel.getPersonnel().subscribe(res => {
       console.log(res);

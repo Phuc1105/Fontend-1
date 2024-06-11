@@ -22,10 +22,12 @@ export interface IDeliveries {
 })
 export class ListDeliveriesComponent {
   listDeliveries: IDeliveries[] = [];
+  originalDeliveries: IDeliveries[] = [];
   lastPage: number = 0;
   currentPage: number = 0;
-  createData : boolean = false;
+  createData: boolean = false;
   searchData: any;
+  private _listFilter: string = '';
   apiUrl = API_DELIVERIES;
 
   constructor(
@@ -37,13 +39,29 @@ export class ListDeliveriesComponent {
   ngOnInit(): void {
     this.getDeliveries();
   }
+  get listFilter(): string {
+    return this._listFilter;
+  }
 
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.listDeliveries = this.listFilter
+      ? this.performFilter(this.listFilter)
+      : this.originalDeliveries;
+  }
+  performFilter(filterBy: string): IDeliveries[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.originalDeliveries.filter((delivery: IDeliveries) =>
+      delivery.customer_name.toLocaleLowerCase().includes(filterBy)
+    );
+  }
   getDeliveries() {
     this.deliveryService.getDeliveries().subscribe(data => {
       this.listDeliveries = data.data;
+      this.originalDeliveries = data.data;
       this.currentPage = data.meta.current_page;
       this.lastPage = data.meta.last_page;
-     
+
     });
   }
 
@@ -51,14 +69,8 @@ export class ListDeliveriesComponent {
     this.listDeliveries = res.data;
     this.currentPage = res.meta.current_page;
     this.lastPage = res.meta.last_page;
-}
-
-  filterValue: string = '';
-  filter() {
-    this.listDeliveries = this.listDeliveries.filter(delivery => {
-      return delivery.customer_name.includes(this.filterValue);
-    });
   }
+
 
   openDeleteDialog(id: number): void {
     this.dialogService.open(DialogConfirmComponent, {
