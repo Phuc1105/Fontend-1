@@ -13,7 +13,7 @@ import { ListProductsComponent } from './products/list-products/list-products.co
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
 import { ListCategoriesComponent } from './categories/list-categories/list-categories.component';
-import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
+import { ListInventoryComponent } from './inventory/list-inventory/list-inventory.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
 import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
