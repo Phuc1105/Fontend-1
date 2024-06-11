@@ -29,10 +29,15 @@ export class ListPersonnelComponent implements OnInit {
 
   constructor(
     private personnel: PersonnelsService,
-    private dialogService: NbDialogService,
+    private dialogService: NbDialogService
   ) {}
+
   ngOnInit(): void {
     this.getPersonnels();
+  }
+
+  get listFilter(): string {
+    return this._listFilter;
   }
 
   set listFilter(value: string) {
@@ -69,7 +74,7 @@ export class ListPersonnelComponent implements OnInit {
     this.currentPage = res.meta.current_page;
     this.lastPage = res.meta.last_page;
   }
-  
+
   openDeleteDialog(id: number): void {
     this.dialogService.open(DialogConfirmComponent, {
       context: {
@@ -86,7 +91,7 @@ export class ListPersonnelComponent implements OnInit {
   btnDelete(id: number): void {
     this.personnel.deletePersonnel(id).subscribe(
       res => {
-        this.deleteNotification = true; 
+        this.deleteNotification = true;
         setTimeout(() => {
           this.deleteNotification = false;
         }, 1500);

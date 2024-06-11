@@ -6,9 +6,7 @@
     <section class="table__header">
         <h4>Danh Sách Đơn Hàng Trà Sữa</h4>
         <div class="input-group">
-            <input type="search" placeholder="Tìm kiếm..." [(ngModel)]="filterValue" (input)="filter()"
-                style="margin-top: 2px;">
-
+            <input type="search" placeholder="Tìm kiếm..." [(ngModel)]='listFilter' style="margin-top: 2px;">
         </div>
         <div class="export__file">
             <label for="export-file" class="export__file-btn" title="Xuất File"></label>
@@ -46,7 +44,8 @@
                         <a [routerLink]="['/pages/delivery/edit-delivery', d.id]"><button
                                 class="btn btn-primary px-3 py-2"><nb-icon icon="edit-outline"></nb-icon></button></a>
 
-                        <button (click)="openDeleteDialog(d.id)" class="btn btn-danger px-3 py-2"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                        <button (click)="openDeleteDialog(d.id)" class="btn btn-danger px-3 py-2"><nb-icon
+                                icon="trash-2-outline"></nb-icon></button>
                     </td>
                 </tr>
             </tbody>
