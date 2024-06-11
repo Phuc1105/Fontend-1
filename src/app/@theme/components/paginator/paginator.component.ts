@@ -81,7 +81,6 @@ export class PaginatorComponent implements OnInit {
   protected handleSuccess(res) {
     this.dataList.emit(res);
   }
-
   protected handleErrors(res) {
     this.dataList.emit(res);
   }
