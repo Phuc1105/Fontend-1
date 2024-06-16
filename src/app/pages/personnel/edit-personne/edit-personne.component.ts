@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PersonnelsService } from 'app/@core/services/apis/personnels.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class EditPersonneComponent implements OnInit {
     private personnel: PersonnelsService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router
   ){}
   ngOnInit(): void { 
     this.id = this.route.snapshot.params['id'];
@@ -51,12 +52,12 @@ export class EditPersonneComponent implements OnInit {
   onSubmit(): void {
     if (this.editForm.valid) {
       const formData = this.editForm.value;
-      formData.img = this.getFileNameFromPath(formData.img);
       console.log(formData);
       this.personnel.putPersonnel(formData, this.id).subscribe(res => {
         this.editNotification = true;
         setTimeout(() => {
           this.editNotification = false;
+          this.router.navigate(['pages/personnels/list-personnel']);
         }, 1500);
       }, err => {
         console.error(err);

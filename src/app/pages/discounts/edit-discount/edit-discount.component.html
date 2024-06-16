@@ -1,12 +1,12 @@
+<div *ngIf="editNotification" class="alert-wrapper" role="alert">
+    Xóa thành công
+  </div>
 <div class="container">
     <main class="form" id="customers_form">
         <section class="form__header">
             <h4>Sửa Khuyến mãi mới</h4>
         </section>
-        <div *ngIf="editNotification" class="alert alert-success alert alert-success m-3 p-2" role="alert">
-            Sửa thành công
-          </div>
-        <section class="form__body p-3">
+        <section class="p-3">
             <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
                 <div class="form-group">
                     <label for="id">Id:</label>

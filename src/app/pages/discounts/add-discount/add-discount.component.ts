@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DiscountsService } from 'app/@core/services/apis/discounts.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class AddDiscountComponent {
   createData : boolean = false;
   constructor(
     private discount: DiscountsService,
+    private router: Router
   ){}
   ngOnInit(): void{
     this.createForm = new FormGroup({
@@ -32,6 +34,7 @@ export class AddDiscountComponent {
         this.createData = true;
         setTimeout(() => {
           this.createData = false;
+          this.router.navigate(['pages/discounts/list-discount']);
         }, 1500);
       },err=>{
         console.error(err);

@@ -92,11 +92,12 @@ export class ListPersonnelComponent implements OnInit {
   btnDelete(id: number): void {
     this.personnel.deletePersonnel(id).subscribe(
       res => {
+        this.getPersonnels();
         this.deleteNotification = true;
         setTimeout(() => {
           this.deleteNotification = false;
         }, 1500);
-        this.getPersonnels();
+       
       },
       err => {
         console.error(err);

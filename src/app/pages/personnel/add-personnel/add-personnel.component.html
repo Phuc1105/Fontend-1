@@ -1,12 +1,12 @@
+<div *ngIf="createData" class="alert-wrapper" role="alert">
+    Xóa thành công
+  </div>
 <div class="container">
     <main class="form" id="customers_form">
         <section class="form__header">
             <h4>Thêm Nhân Viên Mới</h4>
         </section>
-        <div *ngIf="createData" class="alert alert-success alert alert-success m-3 p-2" role="alert">
-            Thêm thành công
-        </div>
-        <section class="form__body p-3">
+        <section class="p-3">
             <form (ngSubmit)="onSubmit()" [formGroup]="createForm">
                 <div class="form-group">
                     <label for="username">Tên nhân viên</label>

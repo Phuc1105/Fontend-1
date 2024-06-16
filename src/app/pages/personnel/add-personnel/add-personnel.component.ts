@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonnelsService } from 'app/@core/services/apis/personnels.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-personnel',
@@ -13,6 +14,7 @@ export class AddPersonnelComponent {
   submitted: boolean = false;
   constructor(
     private personnel: PersonnelsService,
+    private router : Router
   ){}
   ngOnInit(): void{
     this.createForm = new FormGroup({
@@ -31,9 +33,11 @@ export class AddPersonnelComponent {
       console.log(formData);
       this.personnel.postPersonnel(formData).subscribe(res=>{
         this.ngOnInit();
+        this.submitted = false;
         this.createData = true;
         setTimeout(() => {
           this.createData = false;
+          this.router.navigate(['pages/personnels/list-personnel']);
         }, 1500);
       },err=>{
         console.error(err);
