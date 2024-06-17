@@ -48,7 +48,6 @@ router.get('/discounts/:id',discountApiControllers.getById);
 router.delete('/discounts/:id',discountApiControllers.delete);
 router.post('/discounts',discountApiControllers.add);
 router.put('/discounts/:id',discountApiControllers.update);
-module.exports = router;
 
 // ============== APi Categories ===========
 router.get('/categories', categoriesApiControllers.getCategories);
