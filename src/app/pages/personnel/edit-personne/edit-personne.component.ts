@@ -49,9 +49,9 @@ export class EditPersonneComponent implements OnInit {
     });
   }
   onSubmit(): void {
-    console.log('abc')
     if (this.editForm.valid) {
       const formData = this.editForm.value;
+      formData.img = this.getFileNameFromPath(formData.img);
       console.log(formData);
       this.personnel.putPersonnel(formData, this.id).subscribe(res => {
         this.editNotification = true;
@@ -63,5 +63,7 @@ export class EditPersonneComponent implements OnInit {
       });
     }
   }
-  
+  getFileNameFromPath(path: string): string {
+    return path.split('\\').pop() || '';
+  }
 }

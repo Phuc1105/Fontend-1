@@ -3,6 +3,7 @@ import { DeliveriesService } from 'app/@core/services/apis/deliveries.service';
 import { NbDialogService } from '@nebular/theme';
 import { DialogConfirmComponent } from 'app/@theme/components/dialog-confirm/dialog-confirm.component';
 import { Router } from '@angular/router';
+import { API_DELIVERIES } from 'app/@core/config/api-endpoint.config';
 
 export interface IDeliveries {
   id: string;
@@ -21,10 +22,13 @@ export interface IDeliveries {
 })
 export class ListDeliveriesComponent {
   listDeliveries: IDeliveries[] = [];
-  lastDelivery: number = 0;
-  currentDelivery: number = 0;
-  createData : boolean = false;
-  apiUrl = 'http://localhost:3000/api/delivery';
+  originalDeliveries: IDeliveries[] = [];
+  lastPage: number = 0;
+  currentPage: number = 0;
+  createData: boolean = false;
+  searchData: any;
+  private _listFilter: string = '';
+  apiUrl = API_DELIVERIES;
 
   constructor(
     private deliveryService: DeliveriesService,
@@ -35,25 +39,38 @@ export class ListDeliveriesComponent {
   ngOnInit(): void {
     this.getDeliveries();
   }
+  get listFilter(): string {
+    return this._listFilter;
+  }
 
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.listDeliveries = this.listFilter
+      ? this.performFilter(this.listFilter)
+      : this.originalDeliveries;
+  }
+  performFilter(filterBy: string): IDeliveries[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.originalDeliveries.filter((delivery: IDeliveries) =>
+      delivery.customer_name.toLocaleLowerCase().includes(filterBy)
+    );
+  }
   getDeliveries() {
     this.deliveryService.getDeliveries().subscribe(data => {
       this.listDeliveries = data.data;
-      this.currentDelivery = data.meta.current_delivery;
-      this.lastDelivery = data.meta.last_delivery;
+      this.originalDeliveries = data.data;
+      this.currentPage = data.meta.current_page;
+      this.lastPage = data.meta.last_page;
+
     });
   }
 
-  getPage(deliveries: any) {
-    this.listDeliveries = deliveries.data;
+  getPage(res: any) {
+    this.listDeliveries = res.data;
+    this.currentPage = res.meta.current_page;
+    this.lastPage = res.meta.last_page;
   }
 
-  filterValue: string = '';
-  filter() {
-    this.listDeliveries = this.listDeliveries.filter(delivery => {
-      return delivery.customer_name.includes(this.filterValue);
-    });
-  }
 
   openDeleteDialog(id: number): void {
     this.dialogService.open(DialogConfirmComponent, {

@@ -1,48 +1,63 @@
 <main class="table" id="customers_table">
   <section class="table__header">
-      <h4>Danh Sách Khuyến Mãi</h4>
+    <h4>Danh Sách Khuyến Mãi</h4>
+    <div class="input-group">
+      <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;"  [(ngModel)]='listFilter'>
+  </div>
   </section>
+  <div *ngIf="deleteNotification" class="alert alert-success alert alert-success m-3 p-2" role="alert">
+    Xóa thành công
+  </div>
   <section class="table__body">
-      <table class="table table-bordered table-hover">
-          <thead class="thead-light">
-              <tr>
-                  <th>Id <span class="icon-arrow">&UpArrow;</span></th>
-                  <th>Ảnh <span class="icon-arrow">&UpArrow;</span></th>
-                  <th>Chương trình khuyến mãi <span class="icon-arrow">&UpArrow;</span></th>
-                  <th>Ưu đãi <span class="icon-arrow">&UpArrow;</span></th>
-                  <th>Ngày bắt đầu <span class="icon-arrow">&UpArrow;</span></th>
-                  <th>Ngày kết thúc <span class="icon-arrow">&UpArrow;</span></th>
-                  <th>Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let promo of promotions">
-                  <td>{{ promo.id }}</td>
-                  <td>
-                    <img [src]="promo.image" class="img-thumbnail" style="width: 50px; height: 50px;" alt="{{ promo.title }}">
-                  </td>
-                  <td>{{ promo.title }}</td>
-                  <td>{{ promo.offer }}</td>
-                  <td>{{ promo.startDate }}</td>
-                  <td>{{ promo.endDate }}</td>
-                  <td>
-                    <p [ngClass]="{
-                        'badge badge-success': promo.status === 'Hoạt động',
-                        'badge badge-warning': promo.status === 'Sắp bắt đầu',
-                        'badge badge-secondary': promo.status === 'Đã kết thúc'
-                      }"> 
-                      {{ promo.status }}
-                    </p>
-                  </td>
-                  <td class="d-flex justify-content-around">
-                    <a [routerLink]="['/pages/discounts/edit-discount']">
-                      <button class="btn btn-primary px-4 py-1">Sửa</button>
-                    </a>
-                    <button class="btn btn-danger px-4 py-1" (click)="confirmDelete()">Xóa</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>Id <span class="icon-arrow">&UpArrow;</span></th>
+          <th>Ảnh <span class="icon-arrow">&UpArrow;</span></th>
+          <th>Chương trình khuyến mãi <span class="icon-arrow">&UpArrow;</span></th>
+          <th>Ngày bắt đầu <span class="icon-arrow">&UpArrow;</span></th>
+          <th>Ngày kết thúc <span class="icon-arrow">&UpArrow;</span></th>
+          <th>Trạng Thái <span class="icon-arrow">&UpArrow;</span></th>
+          <th>Ưu đãi <span class="icon-arrow">&UpArrow;</span></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let promo of lisDiscounts">
+          <td>{{ promo.id }}</td>
+          <td>
+            <img [src]="promo.img" class="img-thumbnail" style="width: 50px; height: 50px;" alt="{{ promo.title }}">
+          </td>
+          <td>{{ promo.nameDiscount }}</td>
+          <td>{{ promo.startDate.split('T')[0] }}</td>
+          <td>{{ promo.endDate.split('T')[0] }}</td>
+          <td>
+            <p class="text-center">
+              <span [ngClass]="{
+                        'text text-success': promo.status === 'Hoạt động',
+                        'text text-warning': promo.status === 'Sắp bắt đầu',
+                        'text text-secondary': promo.status === 'Đã kết thúc'
+                      }">
+                {{ promo.status }}
+              </span>
+            </p>
+          </td>
+
+          <td>{{ promo.contentDiscount }}</td>
+          <td class="d-flex justify-content-between">
+            <a [routerLink]="['/pages/discounts/edit-discount', promo.id]">
+              <button class="btn btn-primary px-3 py-2"><nb-icon icon="edit-outline"></nb-icon></button>
+            </a>
+            <div class="mx-1"></div>
+            <button class="btn btn-danger px-3 py-2" (click)="openDeleteDialog(promo.id)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+
+    <ngx-paginator [apiUrl]="apiUrl" [current_page]="currentPage" [last_page]="lastPage" (dataList)="getPage($event)">
+    </ngx-paginator>
   </section>
+  
 </main>

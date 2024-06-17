@@ -8,14 +8,14 @@ import { AddProductComponent } from './products/add-product/add-product.componen
 import { ListProductsComponent } from './products/list-products/list-products.component';
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
 import { ListCategoriesComponent } from './categories/list-categories/list-categories.component';
-import { ListInventoryComponent } from './inventory/list-inventory/list-inventory.component';
+import { ListInventoryComponent } from './inventories/list-inventory/list-inventory.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListDeliveriesComponent } from './delivery/list-deliveries/list-deliveries.component';
 import { AddDeliveryComponent } from './delivery/add-delivery/add-delivery.component';
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { RevenueComponent } from './statistics/revenue/revenue.component';
-import { EditInventoryComponent } from './inventory/edit-inventory/edit-inventory.component';
+import { EditInventoryComponent } from './inventories/edit-inventory/edit-inventory.component';
 import { ListPersonnelComponent } from './personnel/list-personnel/list-personnel.component';
 import { EditPersonneComponent } from './personnel/edit-personne/edit-personne.component';
 import { AddPersonnelComponent } from './personnel/add-personnel/add-personnel.component';
@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Khách hàng/ Thêm'},
-        path: 'users/edit-user',
+        path: 'users/edit-user/:id',
         component: EditUserComponent,
       },
       {
@@ -60,7 +60,7 @@ const routes: Routes = [
         component: ListProductsComponent,
       },
       {
-        path: 'products/edit-product',
+        path: 'products/edit-product/:id',
         component: EditProductComponent,
       },
      
@@ -84,6 +84,11 @@ const routes: Routes = [
         data: { breadcrumb:'Đơn hàng / Danh sách'},
         path: 'inventory/list-inventory',
         component: ListInventoryComponent,
+      },
+      {
+        data: { breadcrumb:'Đơn hàng / Sửa'},
+        path: 'inventory/edit-inventory/:id',
+        component: EditInventoryComponent,
       },
       {
         data: { breadcrumb:'Vận chuyển / Danh sách'},
@@ -127,7 +132,7 @@ const routes: Routes = [
       },
       {
         data: { breadcrumb:'Khuyến mãi / Sửa'},
-        path: 'discounts/edit-discount',
+        path: 'discounts/edit-discount/:id',
         component: EditDiscountComponent,
       },
       {

@@ -62,6 +62,7 @@ main.form {
 
 .form__header .input-group:hover {
     width: 45%;
+    
     background-color: #fff8;
     box-shadow: 0 .1rem .4rem #0002;
 }
@@ -96,13 +97,13 @@ main.form {
     height: 0.5rem;
 }
 
-.form__body::-webkit-scrollbar-thumb {
+.form__body::-webkit-scrollbar-thumb{
     border-radius: .5rem;
     background-color: #0004;
     visibility: hidden;
 }
 
-.form__body:hover::-webkit-scrollbar-thumb {
+.form__body:hover::-webkit-scrollbar-thumb{ 
     visibility: visible;
 }
 

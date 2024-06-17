@@ -42,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ThemeModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

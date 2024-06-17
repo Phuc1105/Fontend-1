@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class EditDeliveryComponent implements OnInit {
   editForm!: FormGroup;
   editdelivery: any = {};
-
+  createData: boolean = false;
   constructor(
     private deliveryService: DeliveriesService,
     private route: ActivatedRoute,
@@ -19,7 +19,6 @@ export class EditDeliveryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Initialize the form first
     this.editForm = new FormGroup({
       customer_name: new FormControl('', [Validators.required]),
       customer_phone: new FormControl('', [Validators.required, Validators.pattern("^0[0-9]{9}$")]),
@@ -29,9 +28,9 @@ export class EditDeliveryComponent implements OnInit {
       toppings: new FormControl('', [Validators.required])
     });
 
-    // Fetch the delivery data
     const id = +this.route.snapshot.params['id'];
     this.deliveryService.getDeliveryById(id).subscribe(res => {
+
       console.log("Dữ liệu log: ", res.data);
       const data = res.data;
 
@@ -39,7 +38,7 @@ export class EditDeliveryComponent implements OnInit {
 
       this.editForm.patchValue({
         customer_name: this.editdelivery.customer_name,
-        customer_phone: this.editdelivery.customer_phone, 
+        customer_phone: this.editdelivery.customer_phone,
         milkTea_flavor: this.editdelivery.milkTea_flavor,
         sugar: this.editdelivery.sugar,
         ice: this.editdelivery.ice,
@@ -53,9 +52,15 @@ export class EditDeliveryComponent implements OnInit {
     if (this.editForm.valid) {
       const updatedDelivery = this.editForm.value;
       this.deliveryService.putDelivery(updatedDelivery, id).subscribe(res => {
+        this.createData = true;
+        setTimeout(() => {
+          this.createData = false;
+          this.router.navigate(['/pages/delivery/list-deliveries']);
+
+        }, 1500);
         console.log(res);
-        this.router.navigate(['/pages/delivery/list-deliveries']);
       });
     }
   }
 }
+  

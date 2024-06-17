@@ -87,8 +87,8 @@ exports.update = async (req, res, next) => {
             shift: req.body.shift,
 
         };
-        if (req.file) {
-            personnel.img = req.file.filename;
+        if (req.body.img) {
+            personnel.img = req.body.img;
         } else if (req.body.img) {
             personnel.img = req.body.img;
         }

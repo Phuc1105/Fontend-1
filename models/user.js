@@ -1,26 +1,34 @@
 const db = require('./db');
 module.exports = class User {
-    constructor(){}
-    static async fetchAll() {
-        return new Promise((resolve,reject)=>{
-            let sql = `SELECT * FROM users`;
-            db.query(sql, function(err, data){
-                if(err){
+    constructor() { }
+    static fetchAll(offset, limit) {
+        return new Promise((resolve, reject) => {
+            const sql = `SELECT SQL_CALC_FOUND_ROWS * FROM users LIMIT ?, ?`;
+            db.query(sql, [offset, limit], (err, data) => {
+                if (err) {
                     reject(err);
-                }else{
-                    resolve(data);
+                } else {
+                    db.query('SELECT FOUND_ROWS() as total', (err, result) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve({
+                                data: data,
+                                total: result[0].total
+                            });
+                        }
+                    });
                 }
-            })
-        })
+            });
+        });
     }
-
     static async fetchById(userId) {
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject) => {
             let sql = `SELECT * FROM users WHERE id = ?`;
-            db.query(sql,[userId],function(err, data){
-                if(err){
+            db.query(sql, [userId], function (err, data) {
+                if (err) {
                     reject(err);
-                }else{
+                } else {
                     resolve(data);
                 }
             })

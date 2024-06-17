@@ -1,8 +1,12 @@
+<div *ngIf="createData" class="alert alert-success p-3 mb-3" role="alert">
+    Xóa thành công
+</div>
 <main class="table" id="customers_table">
     <section class="table__header">
         <h4>Danh Sách Tài Khoản</h4>
         <div class="input-group">
-            <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;">
+            <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;" [(ngModel)]="listFilter"
+            >
            
         </div>
         <div class="export__file">
@@ -31,7 +35,7 @@
             <tbody>
                 <tr *ngFor="let users of listUsers, let i = index">
                     <td>{{i+1}}</td>
-                    <td> <img src="assets/images/Zinzu Chan Lee.jpg" alt="Zinzu Chan Lee">{{users.usersname}}</td>
+                    <td> <img src="assets/images/Zinzu Chan Lee.jpg" alt="Zinzu Chan Lee">{{users.username}}</td>
                     <td> {{users.email}} </td>
                     <td> {{users.phone}} </td>
                     <td>
@@ -39,17 +43,14 @@
                     </td>
                     <td> <strong> {{users.role}} </strong></td>
                     <td class="d-flex justify-content-between align-items-center">
-                        <a routerLink="/pages/users/edit-user"><button class="btn btn-primary px-4 py-1">Sửa</button></a>
-                        <button class="btn btn-danger px-4 py-1" onclick="confirm('Bạn có chắc chắn muốn xóa chứ')">Xóa</button>
+                        <a [routerLink]="['/pages/users/edit-user/',users.id ]"><button class="btn btn-primary px-3 py-2"><nb-icon icon="edit-outline"></nb-icon></button></a>
+                        <button (click)="openDeleteDialog(users.id)" class="btn btn-danger px-3 py-2"><nb-icon icon="trash-2-outline"></nb-icon></button>
                     </td>                                                         
                 </tr>
             </tbody>
         </table>
-        <ngx-paginator   
-        [apiUrl]="apiUrl" 
-        [current_page]="currentUser" 
-        [last_page]="lastUser"
-        (dataList)="getPage($event)">>
-        </ngx-paginator>
+        <ngx-paginator [apiUrl]="apiUrl" [current_page]="currentPage" [last_page]="lastPage"
+        (dataList)="getPage($event)">
+    </ngx-paginator>
     </section>
 </main>
