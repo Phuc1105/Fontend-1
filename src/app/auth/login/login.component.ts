@@ -6,6 +6,7 @@ import {AuthService} from "../../@core/services/apis";
 import {LocalStorageService} from "../../@core/services/common";
 import {LOCALSTORAGE_KEY, ROUTER_CONFIG} from "../../@core/config";
 import {IAlertMessage} from "../../@theme/components/alert/ngx-alerts.component";
+import { finalize } from "rxjs";
 
 @Component({
   selector: 'ngx-login',
@@ -37,25 +38,21 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.router.navigate([ROUTER_CONFIG.pages]).then();
-      // this.auth.login(this.loginForm.value)
-      //   .pipe(
-      //     finalize(() => {
-      //       this.spinner.hide();
-      //     }),
-      //   )
-      //   .subscribe({
-      //     next: this.handleLoginSuccess.bind(this),
-      //     error: this.handleLoginFailed.bind(this),
-      //   });
+      // this.router.navigate([ROUTER_CONFIG.pages]).then();
+      this.auth.login(this.loginForm.value).subscribe({
+          next: this.handleLoginSuccess.bind(this),
+          error: this.handleLoginFailed.bind(this),
+        });
     }
   }
 
-  protected handleLoginSuccess(res) {
+  protected handleLoginSuccess(res: any) {
     this.storageService.setItem(LOCALSTORAGE_KEY.userInfo, res.name);
     this.storageService.setItem(LOCALSTORAGE_KEY.token, res.token);
     this.router.navigate([ROUTER_CONFIG.pages]).then();
     this.spinner.hide();
+    console.log(res);
+    
   }
 
   protected handleLoginFailed() {

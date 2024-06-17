@@ -33,7 +33,6 @@ export class UsersService {
   putUser(user: Iusers, id: number): Observable<any>{
     return this.http.put(`${API_USER}/${id}`, {
       username: user.username,
-      password:  user.password,
       email: user.email,
       phone: user.phone,
       status: user.status,

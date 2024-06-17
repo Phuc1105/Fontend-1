@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 export interface IAlertMessage {
   status: string;
@@ -14,15 +14,24 @@ export interface IAlertMessage {
   `,
 })
 export class AlertShowcaseComponent implements OnChanges {
-  @Input() messages: IAlertMessage[];
+  @Input() messages: IAlertMessage[] = [];
 
   onClose(indexOfItem: number) {
     this.messages = this.messages.filter((item, index) => index !== indexOfItem);
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['messages']) {
+      setTimeout(() => {
+        this.messages = [];
+      }, 3000);
+    }
+  }
+
+  addMessage(message: IAlertMessage) {
+    this.messages.push(message);
     setTimeout(() => {
-      this.messages = [];
+      this.messages = this.messages.filter(m => m !== message);
     }, 3000);
   }
 }

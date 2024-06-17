@@ -67,16 +67,13 @@ exports.update = async (req, res, next) => {
     try {
         const user_id = req.params.id;
         let username = req.body.username;
-        let password = req.body.password;
         let email = req.body.email;
         let phone = req.body.phone;
         let role = req.body.role;
         let status = req.body.status;
-        let hashedPassword = await argon2.hash(password);
 
         const user = {
             username: username,
-            password: hashedPassword,
             phone: phone,
             email: email,
             role: role,

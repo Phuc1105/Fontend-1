@@ -23,7 +23,6 @@ module.exports = class Deliveries {
             });
         });
     }
-   
     static async fetchById(deliveryId) {
         return new Promise((resolve, reject) => {
             let sql = 'SELECT * FROM deliveries WHERE id = ?';
@@ -74,4 +73,5 @@ module.exports = class Deliveries {
             });
         });
     }
+    
 };

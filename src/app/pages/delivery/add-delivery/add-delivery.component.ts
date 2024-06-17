@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DeliveriesService } from 'app/@core/services/apis/deliveries.service';
 import { Router } from '@angular/router';
+import { AlertShowcaseComponent } from 'app/@theme/components/alert/ngx-alerts.component';
 
 @Component({
   selector: 'app-add-delivery',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
 export class AddDeliveryComponent implements OnInit {
   orderForm!: FormGroup;
   createData: boolean = false;
+
+  @ViewChild(AlertShowcaseComponent) alertShowcase: AlertShowcaseComponent;
   constructor(
     private deliveryService: DeliveriesService,
     private router: Router
@@ -31,10 +34,11 @@ export class AddDeliveryComponent implements OnInit {
       const formData = this.orderForm.value;
       console.log(formData);
       this.deliveryService.postDeliveries(formData).subscribe(res=>{
-        this.createData = true;
+        this.alertShowcase.addMessage({ status: 'success', message: 'Thêm thành công!' });
         setTimeout(() => {
-          this.createData = false;
-        }, 1500);
+          this.router.navigate(['/pages/delivery/list-deliveries']);
+        }, 2000);
+       
       },err=>{
         console.error(err);
       })
