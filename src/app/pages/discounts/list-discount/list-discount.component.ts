@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { API_DISCOUNTS } from 'app/@core/config/api-endpoint.config';
 import { DiscountsService } from 'app/@core/services/apis/discounts.service';
 import { DialogConfirmComponent } from 'app/@theme/components/dialog-confirm/dialog-confirm.component';
+import { AlertShowcaseComponent, IAlertMessage } from 'app/@theme/components/alert/ngx-alerts.component';
 
 export interface Idiscount {
   id: string;
@@ -11,8 +12,9 @@ export interface Idiscount {
   startDate: string;
   endDate: string;
   status: string;
-  contentDiscount: string
+  contentDiscount: string;
 }
+
 @Component({
   selector: 'app-list-discount',
   templateUrl: './list-discount.component.html',
@@ -26,13 +28,20 @@ export class ListDiscountComponent {
   currentPage: number = 0;
   apiUrl = API_DISCOUNTS;
   private _listFilter: string = '';
+
+  @ViewChild('alertContainer', { read: ViewContainerRef, static: true }) alertContainer: ViewContainerRef;
+
   constructor(
     private discount: DiscountsService,
     private dialogService: NbDialogService,
+    private cfr: ComponentFactoryResolver,
+    private cdr: ChangeDetectorRef
   ) { }
+
   ngOnInit(): void {
     this.getDiscounts();
   }
+
   getDiscounts() {
     this.discount.getDiscount().subscribe(res => {
       console.log(res);
@@ -42,14 +51,15 @@ export class ListDiscountComponent {
       this.lastPage = res.meta.last_page;
     }, err => {
       console.error(err);
-    })
+    });
   }
+
   getPage(res: any) {
     this.lisDiscounts = res.data;
     this.currentPage = res.meta.current_page;
     this.lastPage = res.meta.last_page;
   }
-  
+
   openDeleteDialog(id: number): void {
     this.dialogService.open(DialogConfirmComponent, {
       context: {
@@ -59,10 +69,22 @@ export class ListDiscountComponent {
     }).onClose.subscribe(confirmed => {
       if (confirmed) {
         this.btnDelete(id);
-      } else {
       }
     });
   }
+
+  showAlert(message: IAlertMessage) {
+    const alertFactory = this.cfr.resolveComponentFactory(AlertShowcaseComponent);
+    const alertRef = this.alertContainer.createComponent(alertFactory);
+    alertRef.instance.messages = [message];
+    this.cdr.detectChanges();
+
+    setTimeout(() => {
+      alertRef.destroy();
+      this.cdr.detectChanges();
+    }, 3000);
+  }
+
   btnDelete(id: number): void {
     this.discount.deleteDiscount(id).subscribe(
       res => {
@@ -74,9 +96,11 @@ export class ListDiscountComponent {
       },
       err => {
         console.error(err);
+        this.showAlert({ status: 'danger', message: 'Xóa thất bại!' });
       }
     );
   }
+
   get listFilter(): string {
     return this._listFilter;
   }

@@ -21,10 +21,23 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+.alert-wrapper {
+    position: fixed;
+    width: 18,5%;
+    margin-top: 4%; /* Position relative to the viewport */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    background-color: #d4edda; /* Background color for the alert (green) */
+    color: #155724; /* Text color (dark green) */
+    padding: 15px 20px; /* Padding inside the alert */
+    border: 1px solid #c3e6cb; /* Border color (light green) */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a better look */
+    z-index: 1000; /* Ensure it is on top of other elements */
+  }
 main.table {
     width: 78vw;
-    height: 90vh;
+    height: 100%;
     background-color: #fff5;
 
     backdrop-filter: blur(7px);

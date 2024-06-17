@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DiscountsService } from 'app/@core/services/apis/discounts.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class EditDiscountComponent {
     private discount: DiscountsService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -57,6 +58,7 @@ export class EditDiscountComponent {
         this.editNotification = true;
         setTimeout(() => {
           this.editNotification = false;
+          this.router.navigate(['pages/discounts/list-discount']);
         }, 1500);
       }, err => {
         console.error(err);

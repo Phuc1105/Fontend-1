@@ -1,18 +1,13 @@
+<div *ngIf="editNotification" class="alert-wrapper" role="alert">
+    Xóa thành công
+  </div>
 <div class="container">
     <main class="form" id="customers_form">
         <section class="form__header">
             <h4>Sửa Nhân Viên Mới</h4>
         </section>
-        <div *ngIf="editNotification" class="alert alert-success alert alert-success m-3 p-2" role="alert">
-            Sửa thành công
-          </div>
-        <section class="form__body p-3">
+        <section class="p-3">
             <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
-                
-                <div class="form-group">
-                    <label for="id">Id</label>
-                    <input type="text" id="id" name="id" class="form-control" value="{{data?.id}}" disabled>
-                </div>
                 <div class="form-group">
                     <label for="username">Tên nhân viên</label>
                     <input type="text" id="username" name="username" class="form-control" value="{{data?.username}}" formControlName="username" required>

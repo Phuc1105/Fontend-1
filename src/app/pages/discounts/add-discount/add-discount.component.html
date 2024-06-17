@@ -1,37 +1,41 @@
+<div *ngIf="createData" class="alert-wrapper" role="alert">
+    Xóa thành công
+  </div>
 <div class="container">
-    
+
     <main class="form" id="customers_form">
         <section class="form__header">
             <h4>Thêm Khuyến mãi mới</h4>
         </section>
-        <div *ngIf="createData" class="alert alert-success alert alert-success m-3 p-2" role="alert">
-            Thêm thành công
-        </div>
-        <section class="form__body p-3">
+
+        <section class="p-3">
             <form (ngSubmit)="onSubmit()" [formGroup]="createForm">
                 <div class="form-group">
                     <label for="nameDiscount">Tên chương trình khuyến mãi:</label>
-                    <input type="text" id="nameDiscount" name="nameDiscount" class="form-control" formControlName="nameDiscount" placeholder="Nhập tên chương trình khuyến mãi.." required>
+                    <input type="text" id="nameDiscount" name="nameDiscount" class="form-control"
+                        formControlName="nameDiscount" placeholder="Nhập tên chương trình khuyến mãi.." required>
                     <span class="text-danger"
-                    *ngIf="createForm.get('nameDiscount')!.invalid && (createForm.get('nameDiscount')!.dirty || createForm.get('nameDiscount')!.touched)">
-                    Tên mã giảm giá không được để trống!!
-                </span>
+                        *ngIf="createForm.get('nameDiscount')!.invalid && (createForm.get('nameDiscount')!.dirty || createForm.get('nameDiscount')!.touched)">
+                        Tên mã giảm giá không được để trống!!
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="startDate">Ngày bắt đầu:</label>
-                    <input type="date" id="startDate" name="startDate" class="form-control" formControlName="startDate" required>
+                    <input type="date" id="startDate" name="startDate" class="form-control" formControlName="startDate"
+                        required>
                     <span class="text-danger"
-                    *ngIf="createForm.get('startDate')!.invalid && (createForm.get('startDate')!.dirty || createForm.get('startDate')!.touched)">
-                    Ngày bắt đầu không được để trống!!
-                </span>
+                        *ngIf="createForm.get('startDate')!.invalid && (createForm.get('startDate')!.dirty || createForm.get('startDate')!.touched)">
+                        Ngày bắt đầu không được để trống!!
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="endDate">Ngày kết thúc:</label>
-                    <input type="date" id="endDate" name="endDate" class="form-control" formControlName="endDate" required>
+                    <input type="date" id="endDate" name="endDate" class="form-control" formControlName="endDate"
+                        required>
                     <span class="text-danger"
-                    *ngIf="createForm.get('endDate')!.invalid && (createForm.get('endDate')!.dirty || createForm.get('endDate')!.touched)">
-                    Ngày kết thúc không được bỏ trống
-                </span>
+                        *ngIf="createForm.get('endDate')!.invalid && (createForm.get('endDate')!.dirty || createForm.get('endDate')!.touched)">
+                        Ngày kết thúc không được bỏ trống
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="status">Trang thái:</label>
@@ -42,25 +46,26 @@
                         <option value="Đã kết thúc" class="text text-secondary">Đã kết thúc</option>
                     </select>
                     <span class="text-danger"
-                    *ngIf="createForm.get('status')!.invalid && (createForm.get('status')!.dirty || createForm.get('status')!.touched)">
-                    Trạng thái không được để trống!!
-                </span>
+                        *ngIf="createForm.get('status')!.invalid && (createForm.get('status')!.dirty || createForm.get('status')!.touched)">
+                        Trạng thái không được để trống!!
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="img">Ảnh</label>
                     <input type="file" id="img" name="img" class="form-control" formControlName="img">
                     <span class="text-danger"
-                    *ngIf="createForm.get('img')!.invalid && (createForm.get('img')!.dirty || createForm.get('img')!.touched)">
-                    Hình không được để trống!!
-                </span>
+                        *ngIf="createForm.get('img')!.invalid && (createForm.get('img')!.dirty || createForm.get('img')!.touched)">
+                        Hình không được để trống!!
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="contentDiscount">Nội dung chương trình:</label>
-                    <textarea name="contentDiscount" id="contentDiscount" class="form-control" cols="" rows="5" formControlName="contentDiscount" placeholder="Nhập nội dung khuyến mãi.."></textarea>
+                    <textarea name="contentDiscount" id="contentDiscount" class="form-control" cols="" rows="5"
+                        formControlName="contentDiscount" placeholder="Nhập nội dung khuyến mãi.."></textarea>
                     <span class="text-danger"
-                    *ngIf="createForm.get('contentDiscount')!.invalid && (createForm.get('contentDiscount')!.dirty || createForm.get('contentDiscount')!.touched)">
-                    Nội dung không được để trống!!
-                </span>
+                        *ngIf="createForm.get('contentDiscount')!.invalid && (createForm.get('contentDiscount')!.dirty || createForm.get('contentDiscount')!.touched)">
+                        Nội dung không được để trống!!
+                    </span>
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Thêm khuyến mãi</button>
@@ -68,4 +73,4 @@
             </form>
         </section>
     </main>
-    </div>
+</div>
