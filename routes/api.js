@@ -6,6 +6,8 @@ const discountApiControllers = require('../controllers/api/discounts');
 const categoriesApiControllers = require('../controllers/api/categories');
 const productsApiControllers = require('../controllers/api/products')
 const statisticsApiControllers = require('../controllers/api/statistics')
+
+const inventoriesApiControllers = require('../controllers/api/inventories')
 const router = express.Router();
 const multer = require('multer');
 
@@ -54,7 +56,14 @@ router.get('/categories', categoriesApiControllers.getCategories);
 router.get('/categories/:id', categoriesApiControllers.detail);
 router.post('/categories', categoriesApiControllers.add);
 router.delete('/categories/:id', categoriesApiControllers.delete);
-router.put('/category/:id', categoriesApiControllers.update);
+router.put('/categories/:id', categoriesApiControllers.update);
+
+// ============== APi inventories ===========
+router.get('/inventories',inventoriesApiControllers.getInventories);
+router.get('/inventories/:id',inventoriesApiControllers.detail);
+router.post('/inventories/',inventoriesApiControllers.add);
+router.delete('/inventories/:id',inventoriesApiControllers.delete);
+router.put('/inventories/:id',inventoriesApiControllers.update)
 
 // ============== APi Product ===========
 router.get('/products',productsApiControllers.getProducts);
