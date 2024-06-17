@@ -8,7 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import {IAlertMessage} from "../../../@theme/components/alert/ngx-alerts.component";
 import {ApiService, LocalStorageService} from "../common";
 import {ILogin} from "../../interfaces/login.interface";
-import {API_BASE_URL, API_ENDPOINT} from "../../config/api-endpoint.config";
+import {API_BASE_URL, API_ENDPOINT, API_LOGIN} from "../../config/api-endpoint.config";
 import {UserInfoModel} from "../../model/user-info.model";
 import {LOCALSTORAGE_KEY} from "../../config";
 
@@ -29,11 +29,11 @@ export class AuthService extends ApiService {
     super(_http);
   }
 
-  login(form: ILogin): Observable<any>  {
-    return this.post<any>(API_BASE_URL + API_ENDPOINT.auth.login, {
-      idLogin: form.email.trim(),
-      password: form.password,
-    });
+  login(data: ILogin): Observable<any>{
+    return this._http.post(API_LOGIN, {
+      email: data.email,
+      password: data.password,
+    })
   }
 
 
@@ -120,5 +120,6 @@ export class AuthService extends ApiService {
 
   override getToken() {
     return this.localStorageService.getItem<any>(LOCALSTORAGE_KEY.token);
+
   }
 }

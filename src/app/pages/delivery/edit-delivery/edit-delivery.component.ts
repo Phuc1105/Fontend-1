@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeliveriesService } from 'app/@core/services/apis/deliveries.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlertShowcaseComponent } from 'app/@theme/components/alert/ngx-alerts.component';
 
 @Component({
   selector: 'app-edit-delivery',
@@ -11,13 +12,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class EditDeliveryComponent implements OnInit {
   editForm!: FormGroup;
   editdelivery: any = {};
-  createData: boolean = false;
   constructor(
     private deliveryService: DeliveriesService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
+  @ViewChild(AlertShowcaseComponent) alertShowcase: AlertShowcaseComponent;
   ngOnInit(): void {
     this.editForm = new FormGroup({
       customer_name: new FormControl('', [Validators.required]),
@@ -52,12 +53,11 @@ export class EditDeliveryComponent implements OnInit {
     if (this.editForm.valid) {
       const updatedDelivery = this.editForm.value;
       this.deliveryService.putDelivery(updatedDelivery, id).subscribe(res => {
-        this.createData = true;
+        this.alertShowcase.addMessage({ status: 'success', message: 'Sửa thành công!' });
         setTimeout(() => {
-          this.createData = false;
           this.router.navigate(['/pages/delivery/list-deliveries']);
-
-        }, 1500);
+        }, 2000);
+       
         console.log(res);
       });
     }

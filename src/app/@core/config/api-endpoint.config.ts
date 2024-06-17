@@ -10,6 +10,7 @@ export const API_PRODUCTS = API_BASE_URL + '/products';
 export const API_CATEGORRIES = API_BASE_URL +'/categories'
 export const API_INVENTORIES = API_BASE_URL +'/inventories'
 export const API_STATISTICS = API_BASE_URL +'/statistics';
+export const API_LOGIN = "https://knowledgehub.demopolyct.online/api/auth/login";
 export const API_ENDPOINT: IAPIEndpoint = {
   auth: {
     base: API_BASE_URL + '/' + 'auth',

@@ -1,6 +1,7 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthGuard} from "./@core/guards";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from "./@core/guards";
+import { LoginComponent } from './auth/login/login.component';
 
 export const routes: Routes = [
   {
@@ -10,18 +11,20 @@ export const routes: Routes = [
   },
   {
     path: 'pages',
-    // canActivateChild: [AuthGuard],
+    canActivateChild: [AuthGuard],
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
-    data: {breadcrumb: 'Trang chủ'},
+    data: { breadcrumb: 'Trang chủ' },
   },
   {
     path: 'error',
     loadChildren: () => import('./error/error.module')
       .then(m => m.ErrorModule),
   },
-  {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
-  {path: '**', redirectTo: 'error/404'},
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'error/404' },
 ];
 
 

@@ -4,6 +4,7 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {LayoutService} from "../../../@core/services/common/layout.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -29,19 +30,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Hồ sơ' }, { title: 'Đăng xuất' } ];
+  userMenu = [ { title: 'Hồ sơ', link: '' }, { title: 'Đăng xuất', link: '/logout' } ];
 
   constructor(
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
     private layoutService: LayoutService,
-    private breakpointService: NbMediaBreakpointsService
+    private breakpointService: NbMediaBreakpointsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-    this.user = {name: 'Alibaba', picture: 'assets/images/account.png'}
+    this.user = {name: 'Admin', picture: 'assets/images/account.png'}
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
         .pipe(
@@ -76,5 +78,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+  private logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

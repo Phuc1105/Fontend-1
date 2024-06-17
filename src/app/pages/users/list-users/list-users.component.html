@@ -1,12 +1,9 @@
-<div *ngIf="createData" class="alert alert-success p-3 mb-3" role="alert">
-    Xóa thành công
-</div>
+<ngx-alerts [messages]="[]"></ngx-alerts>
 <main class="table" id="customers_table">
     <section class="table__header">
         <h4>Danh Sách Tài Khoản</h4>
         <div class="input-group">
-            <input type="search" placeholder="Tìm kiếm..." style="margin-top: 2px;" [(ngModel)]="listFilter"
-            >
+            <input type="search" placeholder="Tìm kiếm..." class="mt-2 p-1" [(ngModel)]='listFilter'>
            
         </div>
         <div class="export__file">
@@ -19,7 +16,7 @@
             </div>
         </div>
     </section>
-    <section class="table__body">
+    <section class="p-3">
         <table>
             <thead>
                 <tr>

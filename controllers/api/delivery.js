@@ -99,7 +99,7 @@ exports.delete = async (req, res, next) => {
     try {
         const delivery_id = req.params.id;
         const data = await delivery.delete(delivery_id);
-        res.status(200).json({ data: data,  message: 'Xóa thành công!!!' })
+        res.status(200).json({ data: data, message: 'Xóa thành công!!!' })
     }
     catch (error) {
         console.error("Error:", error);

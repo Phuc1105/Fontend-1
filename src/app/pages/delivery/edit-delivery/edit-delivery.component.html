@@ -1,11 +1,9 @@
-<div *ngIf="createData" class="alert alert-success p-3 mb-3" role="alert">
-  Sửa thành công
-</div>
+<ngx-alerts [messages]="[]"></ngx-alerts>
 <main class="form" id="orders_form">
   <section class="form__header">
     <h4>Sửa Đơn Hàng Trà Sữa</h4>
   </section>
-  <section class="form__body p-3">
+  <section class="p-3">
     <form (ngSubmit)="update()" [formGroup]="editForm">
       <div class="form-group">
         <label for="customer_name">Tên Khách Hàng:</label>

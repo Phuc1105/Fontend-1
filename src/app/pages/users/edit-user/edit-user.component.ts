@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'app/@core/services/apis/user.service';
 import { UsersService } from 'app/@core/services/apis/users.service';
+import { AlertShowcaseComponent } from 'app/@theme/components/alert/ngx-alerts.component';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -12,6 +12,8 @@ export class EditUserComponent {
   customerForm!: FormGroup;
   createData: boolean = false;
   editUser: any = {};
+  
+  @ViewChild(AlertShowcaseComponent) alertShowcase: AlertShowcaseComponent;
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute,
@@ -23,7 +25,6 @@ export class EditUserComponent {
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, Validators.pattern("^0[0-9]{9}$")]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       status: new FormControl('', [Validators.required]),
       role: new FormControl('', [Validators.required]),
     });
@@ -53,15 +54,13 @@ export class EditUserComponent {
     if (this.customerForm.valid) {
       const updatedUser = this.customerForm.value;
       this.userService.putUser(updatedUser, id).subscribe(res => {
-        this.createData = true;
+        this.alertShowcase.addMessage({ status: 'success', message: 'Sửa thành công!' });
         setTimeout(() => {
-          this.createData = false;
           this.router.navigate(['/pages/users/list-users']);
-
-        }, 1500);
+        }, 2000);
         console.log(res);
-   
       });
     }
   }
+  
 }

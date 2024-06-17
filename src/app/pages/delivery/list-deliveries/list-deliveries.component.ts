@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DeliveriesService } from 'app/@core/services/apis/deliveries.service';
 import { NbDialogService } from '@nebular/theme';
 import { DialogConfirmComponent } from 'app/@theme/components/dialog-confirm/dialog-confirm.component';
 import { Router } from '@angular/router';
 import { API_DELIVERIES } from 'app/@core/config/api-endpoint.config';
+import { AlertShowcaseComponent } from 'app/@theme/components/alert/ngx-alerts.component';
 
 export interface IDeliveries {
   id: string;
@@ -30,6 +31,7 @@ export class ListDeliveriesComponent {
   private _listFilter: string = '';
   apiUrl = API_DELIVERIES;
 
+  @ViewChild(AlertShowcaseComponent) alertShowcase: AlertShowcaseComponent;
   constructor(
     private deliveryService: DeliveriesService,
     private dialogService: NbDialogService,
@@ -90,10 +92,8 @@ export class ListDeliveriesComponent {
     this.deliveryService.deleteDelivery(id).subscribe(res => {
       console.log(res);
       this.getDeliveries();
-      this.createData = true;
-      setTimeout(() => {
-        this.createData = false;
-      }, 2500);
+      this.alertShowcase.addMessage({ status: 'success', message: 'Xóa thành công!' });
     });
   }
+  
 }

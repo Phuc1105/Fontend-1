@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'app/@core/services/apis/user.service';
 import { UsersService } from 'app/@core/services/apis/users.service';
+import { AlertShowcaseComponent } from 'app/@theme/components/alert/ngx-alerts.component';
 
 @Component({
   selector: 'app-add-user',
@@ -12,6 +13,9 @@ import { UsersService } from 'app/@core/services/apis/users.service';
 export class AddUserComponent {
   userForm!: FormGroup;
   createData: boolean = false;
+
+  @ViewChild(AlertShowcaseComponent) alertShowcase: AlertShowcaseComponent;
+
   constructor(
     private userService: UsersService,
     private router: Router,
@@ -19,7 +23,7 @@ export class AddUserComponent {
   ngOnInit(): void {
     this.validate();
   }
-  validate(){
+  validate() {
     this.userForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -30,15 +34,15 @@ export class AddUserComponent {
     })
   }
   onSubmit(): void {
-    if(this.userForm.valid){
+    if (this.userForm.valid) {
       const formData = this.userForm.value;
       console.log(formData);
-      this.userService.postUsers(formData).subscribe(res=>{
-        this.createData = true;
+      this.userService.postUsers(formData).subscribe(res => {
+        this.alertShowcase.addMessage({ status: 'success', message: 'Thêm thành công!' });
         setTimeout(() => {
-          this.createData = false;
-        }, 1500);
-      },err=>{
+          this.router.navigate(['/pages/users/list-users']);
+        }, 2000);
+      }, err => {
         console.error(err);
       })
     }

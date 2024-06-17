@@ -1,11 +1,9 @@
-<div *ngIf="createData" class="alert alert-success p-3 mb-3" role="alert">
-    Thêm thành công
-</div>
+<ngx-alerts [messages]="[]"></ngx-alerts>
 <main class="form" id="customers_form">
     <section class="form__header">
         <h4>Thêm Khách Hàng Mới</h4>
     </section>
-    <section class="form__body p-3">
+    <section class="p-3">
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="username">Tên Tài Khoản <em class="text-danger">*</em></label>
