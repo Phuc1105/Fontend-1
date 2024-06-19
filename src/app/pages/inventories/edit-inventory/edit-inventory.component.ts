@@ -50,7 +50,6 @@ export class EditInventoryComponent implements OnInit {
     });
   }
   onSubmit(): void {
-    console.log('abc')
     if (this.editForm.valid) {
       const formData = this.editForm.value;
       console.log(formData);
@@ -64,5 +63,4 @@ export class EditInventoryComponent implements OnInit {
       });
     }
   }
-  
 }

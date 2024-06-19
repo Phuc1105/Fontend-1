@@ -28,18 +28,18 @@
                     <td>{{ inventories.quantity }}</td>
                     
                     <td>{{ inventories.total_price }}</td>
-                    <td><strong *ngIf="inventories.status == 'ordered'">ordered</strong>
-                        <strong *ngIf="inventories.status == 'delivered'">delivered</strong>
-                        <strong *ngIf="inventories.status == 'canceled'">canceled</strong>
+                    <td><strong *ngIf="inventories.status == 'ordered'">Đã thanh toán</strong>
+                        <strong *ngIf="inventories.status == 'delivered'">Đã giao hàng</strong>
+                        <strong *ngIf="inventories.status == 'canceled'">Đã hủy</strong>
 
                     </td>
                     <td class="d-flex justify-content-between align-items-center">
                         <a [routerLink]="['/pages/inventory/edit-inventory', inventories.id]">
                             <button class="btn btn-primary px-4 py-1">Sửa</button>
                         </a>
-                        <button type="button" class="btn btn-danger px-4 py-1" (click)="openDeleteDialog(inventories.id)">
+                        <!-- <button type="button" class="btn btn-danger px-4 py-1" (click)="openDeleteDialog(inventories.id)">
                             Xóa
-                        </button>
+                        </button> -->
                     </td>
                 </tr>
             </tbody>
