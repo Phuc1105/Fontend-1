@@ -28,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbIconModule } from '@nebular/theme';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { RevenueComponent } from './statistics/revenue/revenue.component';
+import { EditInventoryComponent } from './inventories/edit-inventory/edit-inventory.component';
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -61,6 +62,7 @@ import { RevenueComponent } from './statistics/revenue/revenue.component';
     EditDiscountComponent,
     EditCategoryComponent,
     EditProductComponent,
+    EditInventoryComponent,
     RevenueComponent,
 
   ],

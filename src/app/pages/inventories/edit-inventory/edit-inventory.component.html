@@ -2,35 +2,65 @@
     <section class="form__header">
         <h4>Sửa Đơn Hàng</h4>
     </section>
+    <div *ngIf="editNotification" class="alert alert-success" role="alert">
+        Sửa thành công
+    </div>
     <section class="form__body p-3">
-        <form>
+        <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
             <div class="form-group">
-                <label for="name">Tên Khách Hàng:</label>
-                <input type="text" id="name" name="name" required>
+                <label for="name">Name:</label>
+                <input id="name" type="text" formControlName="name" class="form-control" />
+                <span class="text-danger"
+                    *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                    Vui lòng nhập tên!
+                </span>
             </div>
+
             <div class="form-group">
-                <label for="product">Sản Phẩm:</label>
-                <input type="text" id="product" name="product" required>
+                <label for="product">Product:</label>
+                <input id="product" type="text" formControlName="product" class="form-control" />
+                <span class="text-danger"
+                    *ngIf="editForm.get('product')!.invalid && (editForm.get('product')!.dirty || editForm.get('product')!.touched)">
+                    Vui lòng nhập sản phẩm!
+                </span>
             </div>
+
             <div class="form-group">
-                <label for="quantity">Số Lượng:</label>
-                <input type="number" id="quantity" name="quantity" required>
+                <label for="quantity">Quantity:</label>
+                <input id="quantity" type="number" formControlName="quantity" class="form-control" />
+                <span class="text-danger"
+                    *ngIf="editForm.get('quantity')!.invalid && (editForm.get('quantity')!.dirty || editForm.get('quantity')!.touched)">
+                    Vui lòng nhập số lượng!
+                </span>
             </div>
+
             <div class="form-group">
-                <label for="total_price">Tổng Giá:</label>
-                <input type="number" id="total_price" name="total_price" required>
+                <label for="total_price">Total Price:</label>
+                <input id="total_price" type="number" formControlName="total_price" class="form-control" />
+                <span class="text-danger"
+                    *ngIf="editForm.get('total_price')!.invalid && (editForm.get('total_price')!.dirty || editForm.get('total_price')!.touched)">
+                    Vui lòng nhập tổng giá!
+                </span>
             </div>
+
             <div class="form-group">
-                <label for="status">Trạng Thái:</label>
-                <select id="status" name="status" required>
-                    <option value="ordered">Đã đặt hàng</option>
-                    <option value="delivered">Đã giao</option>
-                    <option value="canceled">Đã hủy</option>
+                <label for="status">Trạng thái:</label>
+                <select id="status" name="status" class="form-control" formControlName="status" required>
+                    <option value="" disabled selected>Chọn trạng thái...</option>
+                    <option value="ordered" [selected]="data?.status == 'ordered'">Đã thanh toán</option>
+                    <option value="delivered" [selected]="data?.status == 'delivered'">Đã giao hàng</option>
+                    <option value="canceled" [selected]="data?.status == 'canceled'">Đã hủy</option>
+
                 </select>
+                <span class="text-danger"
+                    *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+                    Vui lòng chọn xu hướng!
+                </span>
             </div>
             <div class="form-actions">
-                <button type="submit">Sửa Đơn Hàng</button>
+                <button type="submit" class="btn btn-primary">Xác nhận</button>
             </div>
         </form>
+
     </section>
 </main>
