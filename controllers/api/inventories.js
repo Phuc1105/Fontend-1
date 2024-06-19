@@ -50,9 +50,10 @@ exports.add = async (req, res, next) => {
     try {
         let inventory = {
             name: req.body.name,
-            description: req.body.description,
+            product: req.body.product,
+            quantity: req.body.quantity,
+            total_price: req.body.total_price,
             status: req.body.status,
-            role: req.body.role,
         };
         const add = await inventories.add(inventory);
         res.status(200).json({
@@ -80,9 +81,10 @@ exports.update = async (req, res, next) => {
         let id = req.params.id;
         let updatedInventory = {
            name: req.body.name,
-           description: req.body.description,
+           product: req.body.product,
+           quantity: req.body.quantity,
+           total_price: req.body.total_price,
            status: req.body.status,
-           role: req.body.role,
         };
 
         const editInventories = await inventories.update(id, updatedInventory);
